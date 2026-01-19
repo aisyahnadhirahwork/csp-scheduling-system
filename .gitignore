@@ -1,3 +1,40 @@
-nodemodules/
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django migrations (optional, but usually safe to commit initial migrations)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Environment / virtual environment
+venv/
+env/
+*.env
+
+# Django logs / local files
+*.log
+db.sqlite3
+
+# Pytest / coverage
+htmlcov/
+.coverage
+.tox/
+
+# Node modules
+node_modules/
+
+# Build / dist folder
 dist/
+build/
+
+# Local environment files
+.env
+
+# Windows
+Thumbs.db
+.DS_Store
+ehthumbs.db
+
+# VS Code
 .vscode/
