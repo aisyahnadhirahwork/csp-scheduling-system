@@ -6,8 +6,17 @@
   >
     <div>
       <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
-        Recent Orders
+        Matching Results
       </h3>
+       <div class="rounded-xl border border-success-500 bg-success-50 p-4 dark:border-success-500/30 dark:bg-success-500/15">
+          <h4 class="mb-1 text-sm font-semibold text-gray-800 dark:text-white/90">
+            Perfect Match Found!
+          </h4>
+
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Found a perfect match for your scheduling preferences.
+          </p>
+      </div>
     </div>
 
     <div class="flex items-center gap-3">
@@ -71,7 +80,7 @@
               <p
                 class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
               >
-                Products
+                Doctor
               </p>
             </div>
           </th>
@@ -80,7 +89,7 @@
               <p
                 class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
               >
-                Category
+                Specialty
               </p>
             </div>
           </th class="py-3">
@@ -89,7 +98,7 @@
               <p
                 class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
               >
-                Price
+                Time
               </p>
             </div>
           </th>
@@ -112,16 +121,16 @@
             <div class="flex items-center">
               <div class="flex items-center gap-3">
                 <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/product/product-01.jpg" alt="Product" />
+                  <img src="./images/user/user-02.jpg" alt="User" />
                 </div>
                 <div>
                   <p
                     class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
                   >
-                    Macbook pro 13”
+                    Dr Maria Smith
                   </p>
                   <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    2 Variants
+                    Female
                   </span>
                 </div>
               </div>
@@ -130,24 +139,29 @@
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Laptop
+                Cardiology
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                $2399.00
+                10:00 AM - 11:00 AM
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p
+              <!-- <p
                 class="rounded-full bg-success-50 px-2 py-0.5 text-theme-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500"
               >
-                Delivered
-              </p>
+                Accept
+              </p> -->
+              <button
+                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                >
+                  Select
+              </button>
             </div>
           </td>
         </tr>
@@ -157,16 +171,16 @@
             <div class="flex items-center">
               <div class="flex items-center gap-3">
                 <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/product/product-02.jpg" alt="Product" />
+                  <img src="./images/user/user-01.jpg" alt="User" />
                 </div>
                 <div>
                   <p
                     class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
                   >
-                    Apple Watch Ultra
+                    Dr Harison Lee
                   </p>
                   <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    1 Variants
+                    Male
                   </span>
                 </div>
               </div>
@@ -175,70 +189,24 @@
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Watch
+                Pediatrics
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                $879.00
+                9:00 AM - 10:00 AM
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p
-                class="rounded-full bg-warning-50 px-2 py-0.5 text-theme-xs font-medium text-warning-600 dark:bg-warning-500/15 dark:text-orange-400"
-              >
-                Pending
-              </p>
-            </div>
-          </td>
-        </tr>
-
-        <!-- table item -->
-        <tr>
-          <td class="py-3">
-            <div class="flex items-center">
-              <div class="flex items-center gap-3">
-                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/product/product-03.jpg" alt="Product" />
-                </div>
-                <div>
-                  <p
-                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
-                  >
-                    iPhone 15 Pro Max
-                  </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    2 Variants
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                SmartPhone
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                $1869.00
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p
-                class="rounded-full bg-success-50 px-2 py-0.5 text-theme-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500"
-              >
-                Delivered
-              </p>
+              <button
+                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                >
+                  Select
+              </button>
             </div>
           </td>
         </tr>
@@ -249,16 +217,16 @@
             <div class="flex items-center">
               <div class="flex items-center gap-3">
                 <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/product/product-04.jpg" alt="Product" />
+                  <img src="./images/user/user-09.jpg" alt="User" />
                 </div>
                 <div>
                   <p
                     class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
                   >
-                    iPad Pro 3rd Gen
+                    Dr Aisyah
                   </p>
                   <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    2 Variants
+                    Female
                   </span>
                 </div>
               </div>
@@ -267,24 +235,24 @@
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Electronics
+                Cardiology
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                $1699.00
+                11:00 AM - 12:00 PM
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p
-                class="rounded-full bg-error-50 px-2 py-0.5 text-theme-xs font-medium text-error-600 dark:bg-error-500/15 dark:text-error-500"
-              >
-                Canceled
-              </p>
+              <button
+                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                >
+                  Select
+              </button>
             </div>
           </td>
         </tr>
@@ -295,16 +263,16 @@
             <div class="flex items-center">
               <div class="flex items-center gap-3">
                 <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/product/product-05.jpg" alt="Product" />
+                  <img src="./images/user/user-03.jpg" alt="User" />
                 </div>
                 <div>
                   <p
                     class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
                   >
-                    Airpods Pro 2nd Gen
+                    Dr Jane Doe
                   </p>
                   <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    1 Variants
+                    Female
                   </span>
                 </div>
               </div>
@@ -313,24 +281,70 @@
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Accessories
+                Neurology
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                $240.00
+                1:00 PM - 2:00 PM
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p
-                class="rounded-full bg-success-50 px-2 py-0.5 text-theme-xs font-medium text-success-700 dark:bg-success-500/15 dark:text-success-500"
-              >
-                Delivered
+              <button
+                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                >
+                  Select
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- table item -->
+        <tr>
+          <td class="py-3">
+            <div class="flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
+                  <img src="./images/user/user-06.jpg" alt="User" />
+                </div>
+                <div>
+                  <p
+                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
+                  >
+                    Dr John Smith
+                  </p>
+                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
+                    Male
+                  </span>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                Dermatology
               </p>
+            </div>
+          </td>
+          <td class="py-3">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                2:00 PM - 3:00 PM
+              </p>
+            </div>
+          </td>
+          <td class="py-3">
+            <div class="flex items-center">
+              <button
+                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                >
+                  Select
+              </button>
             </div>
           </td>
         </tr>

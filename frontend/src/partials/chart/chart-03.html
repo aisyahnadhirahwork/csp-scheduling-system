@@ -4,10 +4,10 @@
   <div class="mb-6 flex flex-col gap-5 sm:flex-row sm:justify-between">
     <div class="w-full">
       <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
-        Statistics
+        Appointments
       </h3>
       <p class="text-theme-sm mt-1 text-gray-500 dark:text-gray-400">
-        Target you’ve set for each month
+        Manage all appointments for Dr Demo
       </p>
     </div>
 
@@ -21,21 +21,21 @@
           :class="selected === 'overview' ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800' : 'text-gray-500 dark:text-gray-400'"
           class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
         >
-          Overview
+          Upcoming
         </button>
         <button
           @click="selected = 'sales'"
           :class="selected === 'sales' ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800' : 'text-gray-500 dark:text-gray-400'"
           class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
         >
-          Sales
+          Completed
         </button>
         <button
           @click="selected = 'revenue'"
           :class="selected === 'revenue' ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800' : 'text-gray-500 dark:text-gray-400'"
           class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
         >
-          Revenue
+          Cancelled
         </button>
       </div>
 
