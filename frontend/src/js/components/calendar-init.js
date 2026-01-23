@@ -25,8 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   flatpickr("#mini-calendar", {
-  inline: true,
+    inline: true,
+  });
+
+  flatpickr("#appointment-time", {
+  enableTime: true,      // allow time selection
+  noCalendar: false,     // show calendar (set true if only time)
+  dateFormat: "Y-m-d H:i",
+  minTime: "09:00",      // earliest allowed
+  maxTime: "17:00",      // latest allowed
+  minuteIncrement: 15,   // step interval
 });
+
 
 });
 

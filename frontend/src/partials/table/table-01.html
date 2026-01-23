@@ -111,11 +111,30 @@
               </p>
             </div>
           </th>
+          <th class="py-3">
+            <div class="flex items-center col-span-2">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Select
+              </p>
+            </div>
+          </th>
         </tr>
       </thead>
       <!-- table header end -->
 
-      <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+      <tbody class="divide-y divide-gray-100 dark:divide-gray-800"
+              x-data="{
+                doctors: [],
+                async loadDoctors() {
+                    const res = await fetch('/api/doctors/');
+                    this.doctors = await res.json();
+                }
+            }"
+            x-init="loadDoctors()"
+        >
+        <template x-for="doctor in doctors" :key="doctor.id">
         <tr>
           <td class="py-3">
             <div class="flex items-center">
@@ -126,11 +145,11 @@
                 <div>
                   <p
                     class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
+                    x-text="doctor.name"
                   >
-                    Dr Maria Smith
                   </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    Female
+                  <span class="text-gray-500 text-theme-xs dark:text-gray-400"
+                    x-text="doctor.gender">
                   </span>
                 </div>
               </div>
@@ -138,17 +157,36 @@
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Cardiology
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400"
+                x-text="doctor.specialty">
               </p>
             </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                10:00 AM - 11:00 AM
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400"
+                x-text="doctor.slots.join(' - ')">
               </p>
             </div>
+          </td>
+          <td class="py-3">
+            <div class="flex items-center gap-2">
+              <!-- Available badge -->
+              <span
+                  x-show="doctor.status === 'available'"
+                  class="inline-flex items-center justify-center gap-1 rounded-full bg-success-500 px-2.5 py-0.5 text-sm font-medium text-white"
+              >
+                  Available
+              </span>
+
+              <!-- Full / error badge -->
+              <span
+                  x-show="doctor.status !== 'available'"
+                  class="inline-flex items-center justify-center gap-1 rounded-full bg-error-500 px-2.5 py-0.5 text-sm font-medium text-white"
+              >
+                  Full
+              </span>
+          </div>
           </td>
           <td class="py-3">
             <div class="flex items-center">
@@ -165,190 +203,7 @@
             </div>
           </td>
         </tr>
-        <!-- table item -->
-        <tr>
-          <td class="py-3">
-            <div class="flex items-center">
-              <div class="flex items-center gap-3">
-                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/user/user-01.jpg" alt="User" />
-                </div>
-                <div>
-                  <p
-                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
-                  >
-                    Dr Harison Lee
-                  </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    Male
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Pediatrics
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                9:00 AM - 10:00 AM
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <button
-                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
-                >
-                  Select
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <!-- table item -->
-        <tr>
-          <td class="py-3">
-            <div class="flex items-center">
-              <div class="flex items-center gap-3">
-                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/user/user-09.jpg" alt="User" />
-                </div>
-                <div>
-                  <p
-                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
-                  >
-                    Dr Aisyah
-                  </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    Female
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Cardiology
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                11:00 AM - 12:00 PM
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <button
-                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
-                >
-                  Select
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <!-- table item -->
-        <tr>
-          <td class="py-3">
-            <div class="flex items-center">
-              <div class="flex items-center gap-3">
-                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/user/user-03.jpg" alt="User" />
-                </div>
-                <div>
-                  <p
-                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
-                  >
-                    Dr Jane Doe
-                  </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    Female
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Neurology
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                1:00 PM - 2:00 PM
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <button
-                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
-                >
-                  Select
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <!-- table item -->
-        <tr>
-          <td class="py-3">
-            <div class="flex items-center">
-              <div class="flex items-center gap-3">
-                <div class="h-[50px] w-[50px] overflow-hidden rounded-md">
-                  <img src="./images/user/user-06.jpg" alt="User" />
-                </div>
-                <div>
-                  <p
-                    class="font-medium text-gray-800 text-theme-sm dark:text-white/90"
-                  >
-                    Dr John Smith
-                  </p>
-                  <span class="text-gray-500 text-theme-xs dark:text-gray-400">
-                    Male
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                Dermatology
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                2:00 PM - 3:00 PM
-              </p>
-            </div>
-          </td>
-          <td class="py-3">
-            <div class="flex items-center">
-              <button
-                  class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
-                >
-                  Select
-              </button>
-            </div>
-          </td>
-        </tr>
-        <!-- table body end -->
+        </template>
       </tbody>
     </table>
   </div>
