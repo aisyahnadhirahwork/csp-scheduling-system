@@ -2,6 +2,12 @@
 layer(base);
 
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Flatpickr default styles */
+@import "flatpickr/dist/flatpickr.min.css";
 
 @custom-variant dark (&:is(.dark *));
 

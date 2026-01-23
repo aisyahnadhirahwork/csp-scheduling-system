@@ -40,13 +40,22 @@ const generateHTMLPlugins = () =>
 module.exports = {
   mode: "development",
   entry: "./src/js/index.js",
-  devServer: {
+devServer: {
     static: {
       directory: path.join(__dirname, "./build"),
     },
     compress: true,
     port: 3000,
     hot: true,
+
+    // ✅ BETUL UNTUK VERSION KAU
+    proxy: [
+      {
+        context: ["/api"],
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
+    ],
   },
   module: {
     rules: [

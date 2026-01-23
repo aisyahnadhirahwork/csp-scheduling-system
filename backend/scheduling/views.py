@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Patient
 
-# Create your views here.
+def appointments_api(request):
+    patients = Patient.objects.all().values("id", "name", "status")
+    return JsonResponse(list(patients), safe=False)

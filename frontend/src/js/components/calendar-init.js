@@ -3,9 +3,32 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import flatpickr from "flatpickr";
+
 
 /*========Calender Js=========*/
 /*==========================*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  flatpickr("#datePicker", {
+    dateFormat: "Y-m-d",
+    animate: true,
+  });
+
+  flatpickr(".date-range", {
+    mode: "range",
+  });
+
+  flatpickr(".datetime", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+  });
+
+  flatpickr("#mini-calendar", {
+  inline: true,
+});
+
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const calendarWrapper = document.querySelector("#calendar");
@@ -311,5 +334,6 @@ document.addEventListener("DOMContentLoaded", function () {
         closeModal();
       }
     });
+
   }
 });

@@ -10,6 +10,10 @@
     <title>
       Intelligent Scheduling
     </title>
+
+    <!-- flyon ui datepicker css -->
+
+
   </head>
   <body
     x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -18,6 +22,7 @@
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark bg-gray-900': darkMode === true}"
   >
+
     <!-- ===== Preloader Start ===== -->
     <include src="./partials/preloader.html"></include>
     <!-- ===== Preloader End ===== -->
@@ -73,21 +78,22 @@
                 <!-- ====== Chart Three End -->
               </div>
 
-              <div class="col-span-7">
+              <div class="col-span-12 xl:col-span-6">
                 <!-- ====== Doctor Preferences Input -->
                 <include src="./partials/a-patient-view/patient-preferences.html" />
                 <!-- ====== Chart Three End -->
               </div>
 
-              <!-- <div class="col-span-12 xl:col-span-5">
-                <include src="./partials/map-01.html" />
-              </div> -->
-
-              <div class="col-span-12 xl:col-span-12">
+              <div class="col-span-12 xl:col-span-6">
                 <!-- ====== Table One Start -->
                 <include src="./partials/table/table-01.html" />
                 <!-- ====== Table One End -->
               </div>
+
+               <!-- <div class="col-span-12 xl:col-span-5">
+                <include src="./partials/map-01.html" />
+              </div> -->
+
             </div>
           </div>
         </main>
