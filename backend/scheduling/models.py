@@ -1,9 +1,31 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.conf import settings
+
+
+class User(AbstractUser):
+    USER_TYPE_CHOICES = (
+        ("patient", "Patient"),
+        ("doctor", "Doctor"),
+        ("admin", "Admin"),
+    )
+
+    user_type = models.CharField(
+        max_length=10,
+        choices=USER_TYPE_CHOICES
+    )
 
 # -----------------------------
 # Patient for CSP simulation
 # -----------------------------
 class PatientFull(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
     name = models.CharField(max_length=100)
     status = models.CharField(
         max_length=20,
@@ -16,26 +38,24 @@ class PatientFull(models.Model):
         blank=True
     )
 
-    # CSP constraints
     preferred_specialty = models.CharField(max_length=100, null=True, blank=True)
     preferred_gender = models.CharField(max_length=10, null=True, blank=True)
     time_start = models.TimeField(null=True, blank=True)
     time_end = models.TimeField(null=True, blank=True)
 
-    def __str__(self):
-        return self.name
-
-
 # -----------------------------
 # Doctor for CSP simulation
 # -----------------------------
 class DoctorFull(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     name = models.CharField(max_length=100)
     specialty = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 # -----------------------------

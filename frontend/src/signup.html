@@ -127,7 +127,7 @@
                   >
                 </div>
               </div>
-              <form>
+              <form id="signupForm">
                 <div class="space-y-5">
                   <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <!-- First Name -->
@@ -140,7 +140,7 @@
                       <input
                         type="text"
                         id="fname"
-                        name="fname"
+                        name="name"
                         placeholder="Enter your first name"
                         class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                       />
@@ -150,15 +150,58 @@
                       <label
                         class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                       >
-                        Last Name<span class="text-error-500">*</span>
+                        User Type<span class="text-error-500">*</span>
                       </label>
-                      <input
-                        type="text"
-                        id="lname"
-                        name="lname"
-                        placeholder="Enter your last name"
-                        class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                      />
+                        <div
+                        x-data="{ isOptionSelected: false }"
+                        class="relative z-20 bg-transparent"
+                      >
+                        <select
+                          class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+                          :class="isOptionSelected && 'text-gray-800 dark:text-white/90'"
+                          @change="isOptionSelected = true"
+                          name="user_type"
+                        >
+                          <option
+                            value=""
+                            class="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
+                          >
+                            Select Option
+                          </option>
+                          <option
+                            value="patient"
+                            class="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
+                          >
+                            Patient
+                          </option>
+                          <option
+                            value="Doctor"
+                            class="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
+                          >
+                            Doctor
+                          </option>
+                        </select>
+                        <span
+                          class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                        >
+                          <svg
+                            class="stroke-current"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M4.79175 7.396L10.0001 12.6043L15.2084 7.396"
+                              stroke=""
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <!-- Email -->
@@ -186,6 +229,7 @@
                     <div x-data="{ showPassword: false }" class="relative">
                       <input
                         :type="showPassword ? 'text' : 'password'"
+                        name="password"
                         placeholder="Enter your password"
                         class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                       />
@@ -284,6 +328,7 @@
                   <div>
                     <button
                       class="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                      type="submit"
                     >
                       Sign Up
                     </button>
@@ -362,3 +407,50 @@
     <!-- ===== Page Wrapper End ===== -->
   </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault()
+
+  const form = e.target
+
+  const payload = {
+    username: form.email.value,
+    password: form.password.value,
+    name: form.name.value,
+    user_type: form.user_type.value,
+  }
+
+  try {
+    const res = await fetch("/api/register/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+
+    const data = await res.json()
+
+    if (res.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful 🎉",
+        text: "Your account has been created.",
+      }).then(() => {
+        window.location.href = "/signin.html"
+      })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: data.error || "Something went wrong",
+      })
+    }
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "Cannot connect to server",
+    })
+  }
+})
+</script>
