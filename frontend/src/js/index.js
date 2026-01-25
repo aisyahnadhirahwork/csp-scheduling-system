@@ -82,6 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return; // 🚨 stop here, don’t init dashboard stuff
   }
 
+// ===== SIGN OUT (works with dynamic header) =====
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("#signOutBtn");
+  if (!btn) return;
+
+  localStorage.removeItem("user_type");
+  window.location.href = "/signin.html";
+});
+
+
   /* =========================
      DASHBOARD INIT ONLY
   ========================= */
