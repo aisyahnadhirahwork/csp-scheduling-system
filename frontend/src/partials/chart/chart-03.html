@@ -67,25 +67,48 @@
               <tr class="border-b border-gray-100 dark:border-gray-800">
                 <th class="px-5 py-3 sm:px-6">Patient</th>
                 <th class="px-5 py-3 sm:px-6">Reason</th>
+                <th class="px-5 py-3 sm:px-6">Time</th>
+                <th class="px-5 py-3 sm:px-6">Status</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-              <template x-for="patient in patients" :key="patient.id">
+              <!-- <template x-for="patient in patients" :key="patient.id"> -->
                 <tr>
-                  <td class="px-5 py-4 sm:px-6">
-                    <div class="flex items-center gap-3" x-text="patient.name"></div>
+                  <td class="px-5 py-4 sm:px-6 text-center align-middle">
+                    <div class="flex justify-center items-center gap-3">
+                      Sophia Johnson
+                    </div>
                   </td>
-                  <td class="px-5 py-4 sm:px-6 items-center">
-                    <div class="flex items-center gap-3">
+                  <td class="px-5 py-4 sm:px-6 items-center text-center align-middle">
+                    <div class="flex justify-center items-center gap-3">
                       <span
                           class="inline-flex items-center justify-center gap-1 rounded-full bg-error-500 px-2.5 py-0.5 text-sm font-medium text-white"
-                          x-text="patient.status"
                         >
+                          General Checkup
                         </span>
                     </div>
                   </td>
+                  <td class="px-5 py-4 sm:px-6 text-center align-middle">
+                    <div class="flex justify-center items-center gap-3">
+                      9:00 AM, 25th Dec 2024
+                    </div>
+                  </td>
+                  <td class="px-5 py-4 sm:px-6 items-center text-center align-middle">
+                    <div class="flex justify-center items-center gap-3">
+                      <button
+                          class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-success-500 shadow-theme-xs hover:bg-brand-600"
+                        >
+                          Completed
+                        </button>
+                        <button
+                          class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-error-500 shadow-theme-xs hover:bg-brand-600"
+                        >
+                          Cancel
+                        </button>
+                    </div>
+                  </td>
                 </tr>
-              </template>
+              <!-- </template> -->
             </tbody>
           </table>
         </div>
