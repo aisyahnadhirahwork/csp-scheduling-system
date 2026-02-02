@@ -57,7 +57,7 @@
 <div class="relative min-h-screen flex items-center justify-center p-6 bg-gray-100 dark:bg-gray-900">
   <div class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col lg:flex-row gap-12">
 
-    <!-- FORM -->
+  <!-- FORM -->
     <div class="flex flex-col flex-1 max-w-md mx-auto">
 
       <div class="fade-in">
@@ -83,6 +83,7 @@
               </svg>
               <input
                 name="first_name"
+                id="first_name"
                 required
                 placeholder="John"
                 class="w-full h-11 px-4 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white"
@@ -99,6 +100,7 @@
               </svg>
               <input
                 name="last_name"
+                id="last_name"
                 required
                 placeholder="Doe"
                 class="w-full h-11 px-4 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white"
@@ -112,6 +114,7 @@
           <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">User Type</label>
           <select
             name="user_type"
+            id="user_type"
             required
             x-model="userType"
             @change="showDoctorFields = userType === 'doctor'"
@@ -131,6 +134,7 @@
             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Gender</label>
             <select
               name="gender"
+              id="gender"
               class="w-full h-11 px-4 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white font-medium"
             >
               <option value="">👥 Select gender</option>
@@ -143,6 +147,7 @@
             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Specialisation</label>
             <select
               name="specialisation"
+              id="specialisation"
               class="w-full h-11 px-4 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white font-medium"
             >
               <option value="">🏥 Select specialisation</option>
@@ -165,6 +170,7 @@
             <input
               type="email"
               name="email"
+              id="email"
               required
               placeholder="you@example.com"
               class="w-full h-11 px-4 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white"
@@ -183,6 +189,7 @@
             <input
               :type="show ? 'text' : 'password'"
               name="password"
+              id="password"
               required
               placeholder="Minimum 8 characters"
               @input="strength = $el.value.length > 0 ? ((/[a-z]/.test($el.value) + /[A-Z]/.test($el.value) + /[0-9]/.test($el.value) + /[^a-zA-Z0-9]/.test($el.value)) * 25) : 0"
