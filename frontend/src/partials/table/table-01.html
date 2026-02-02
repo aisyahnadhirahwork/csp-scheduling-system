@@ -128,7 +128,7 @@
               x-data="{
                 doctors: [],
                 async loadDoctors() {
-                    const res = await fetch('/api/doctors/');
+                    const res = await fetch('http://127.0.0.1:8000/api/doctors/');
                     this.doctors = await res.json();
                 }
             }"
@@ -149,7 +149,7 @@
                   >
                   </p>
                   <span class="text-gray-500 text-theme-xs dark:text-gray-400"
-                    x-text="doctor.gender">
+                    x-text="doctor.gender === 'M' ? 'Male' : 'Female'">
                   </span>
                 </div>
               </div>

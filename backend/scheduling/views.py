@@ -2,6 +2,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, Patient, Doctor
+from django.db.models import Prefetch
 
 
 @csrf_exempt
@@ -128,6 +129,35 @@ def signin_api(request):
             "success": False,
             "error": "Invalid email or password"
         }, status=401)
+    
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+
+@csrf_exempt
+def get_doctors_api(request):
+    """Get all doctors with their details"""
+    if request.method != "GET":
+        return JsonResponse({"error": "GET only"}, status=405)
+
+    try:
+        # Fetch all doctors with related user data
+        doctors = Doctor.objects.select_related('user_id').all()
+        
+        doctors_data = []
+        for doctor in doctors:
+            user = doctor.user_id
+            doctors_data.append({
+                "id": doctor.doctor_id,
+                "name": f"{user.first_name} {user.last_name}",
+                "specialty": doctor.specialisation,
+                "gender": doctor.gender,
+                "email": user.email,
+                "status": "available",  # You can add logic to determine availability later
+                "slots": []  # Add appointment slots if needed
+            })
+        
+        return JsonResponse(doctors_data, safe=False, status=200)
     
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
