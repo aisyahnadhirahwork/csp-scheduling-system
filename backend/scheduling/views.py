@@ -79,17 +79,55 @@ def register_api(request):
 
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
-        if user_type == "patient":
-            Patient.objects.create(user_id=user)
-        elif user_type == "doctor":
-            if not gender or not specialisation:
-                return JsonResponse({"error": "Gender and specialisation required for doctor"}, status=400)
 
-            # Map frontend gender to DB choices
-            gender_db = "M" if gender.lower() == "male" else "F"
-            Doctor.objects.create(user_id=user, gender=gender_db, specialisation=specialisation)
 
-        return JsonResponse({"message": "User registered successfully"}, status=201)
+@csrf_exempt
+def signin_api(request):
+    """Authenticate user and return user_type"""
+    if request.method != "POST":
+        return JsonResponse({"error": "POST only"}, status=405)
 
+    try:
+        payload = json.loads(request.body.decode("utf-8"))
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=400)
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    # Extract form data
+    email = payload.get("email", "").strip()
+    password = payload.get("password", "").strip()
+
+    # Validation
+    if not email or not password:
+        return JsonResponse(
+            {"error": "email and password are required"},
+            status=400
+        )
+
+    try:
+        # Find user by email
+        user = User.objects.get(email=email)
+        
+        # Verify password
+        if user.check_password(password):
+            return JsonResponse({
+                "success": True,
+                "user_id": user.user_id,
+                "email": user.email,
+                "user_type": user.user_type,
+                "first_name": user.first_name,
+                "last_name": user.last_name
+            }, status=200)
+        else:
+            return JsonResponse({
+                "success": False,
+                "error": "Invalid email or password"
+            }, status=401)
+    
+    except User.DoesNotExist:
+        return JsonResponse({
+            "success": False,
+            "error": "Invalid email or password"
+        }, status=401)
+    
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
