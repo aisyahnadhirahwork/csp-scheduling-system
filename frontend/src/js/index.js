@@ -18,11 +18,14 @@ import "./components/image-resize";
 Alpine.plugin(persist);
 window.Alpine = Alpine;
 Alpine.start();
+
 document.addEventListener("DOMContentLoaded", () => {
-  const page = window.location.pathname.split("/").pop(); // get current page
+  /* =========================
+     PAGE & AUTH LOGIC
+  ========================= */
+  const page = window.location.pathname.split("/").pop();
   const userType = localStorage.getItem("user_type");
 
-  // REDIRECT RULES
   if ((page === "" || page === "index.html") && !userType) {
     window.location.href = "/signin.html";
     return;
@@ -33,7 +36,49 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // SIGNIN PAGE LOGIC
+  /* =========================
+     DATE LIMIT (TODAY → FUTURE)
+  ========================= */
+  const dateInput = document.getElementById("availability-date");
+  if (dateInput) {
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.min = today;
+  }
+
+  /* =========================
+     TIME LIMIT (09:00 → 17:00)
+  ========================= */
+  const startTime = document.getElementById("start-time");
+  const endTime = document.getElementById("end-time");
+
+  if (startTime && endTime) {
+    const MIN = "09:00";
+    const MAX = "17:00";
+
+    const clamp = (input) => {
+      if (!input.value) return;
+      if (input.value < MIN) input.value = MIN;
+      if (input.value > MAX) input.value = MAX;
+    };
+
+    startTime.addEventListener("input", () => {
+      clamp(startTime);
+      if (endTime.value && endTime.value < startTime.value) {
+        endTime.value = startTime.value;
+      }
+    });
+
+    endTime.addEventListener("input", () => {
+      clamp(endTime);
+      if (endTime.value < startTime.value) {
+        endTime.value = startTime.value;
+      }
+    });
+  }
+
+  /* =========================
+     SIGNIN PAGE LOGIC
+  ========================= */
   if (page === "signin.html") {
     const form = document.getElementById("signinForm");
     const loginBtn = document.getElementById("loginBtn");
@@ -59,16 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await res.json();
-
         if (!res.ok) throw new Error(data.error || "Login failed");
 
-        // Save everything in localStorage
         localStorage.setItem("user_type", data.user_type);
         localStorage.setItem("username", data.username);
         localStorage.setItem("first_name", data.first_name);
         localStorage.setItem("email", data.email);
 
-        // Redirect to dashboard
         window.location.href = "/index.html";
       } catch (err) {
         errorMsg.textContent = err.message;
@@ -77,23 +119,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    return; // stop here
+    return;
   }
 
-  // SIGNOUT BUTTON
+  /* =========================
+     SIGN OUT
+  ========================= */
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("#signOutBtn");
     if (!btn) return;
 
-    localStorage.removeItem("user_type");
-    localStorage.removeItem("username");
-    localStorage.removeItem("first_name");
-    localStorage.removeItem("email");
-
+    localStorage.clear();
     window.location.href = "/signin.html";
   });
 
-  // FILL TABLE-PATIENT.HTML OR DASHBOARD INFO
+  /* =========================
+     FILL USER INFO
+  ========================= */
   const usernameInput = document.querySelector('input[name="username"]');
   const userTypeInput = document.querySelector('input[name="user_type"]');
   const fnameInput = document.querySelector('input[name="first_name"]');
@@ -102,9 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userTypeInput) userTypeInput.value = localStorage.getItem("user_type") || "";
   if (fnameInput) fnameInput.value = localStorage.getItem("first_name") || "";
 
-
   /* =========================
-     DASHBOARD INIT ONLY
+     DASHBOARD INIT
   ========================= */
   chart01();
   chart02();

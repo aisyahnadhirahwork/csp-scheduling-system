@@ -23,8 +23,9 @@
                       <label
                         class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                       >
-                        Specialty<span class="text-error-500">*</span>
+                        Specialty<span class="text-gray-500"> (optional)</span>
                       </label>
+                   
                      <div
                         x-data="{ isOptionSelected: false }"
                         class="relative z-20 bg-transparent"
@@ -39,6 +40,12 @@
                             class="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
                           >
                             Select Option
+                          </option>
+                           <option
+                            value=""
+                            class="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
+                          >
+                            General
                           </option>
                           <option
                             value=""
@@ -80,13 +87,16 @@
                           </svg>
                         </span>
                       </div>
+                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        If no specialty is selected, a General Doctor will be assigned automatically.
+                      </p>
                     </div>
                     <!-- Last Name -->
                     <div class="sm:col-span-1">
                       <label
                         class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                       >
-                        Doctor's Gender<span class="text-error-500">*</span>
+                        Doctor's Gender<span class="text-gray-500"> (optional)</span>
                       </label>
                       <div
                         x-data="{ isOptionSelected: false }"
@@ -140,6 +150,106 @@
                     </div>
                   </div>
         </div>
+    </div>
+    <div
+        class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
+        >
+        <div class="mt-5 flex items-end justify-between">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <!-- First Name -->
+                    <div class="sm:col-span-1">
+                      <label
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-400"
+                      >
+                        Preferred Time<span class="text-error-500">*</span>
+                      </label>
+                    </div>
+                  </div>
+        </div>
+    </div>
+    <div
+        class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
+        >
+        <div
+  x-data="{ selected: '' }"
+  class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+>
+  <!-- Option 1 -->
+  <label
+    class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
+           hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
+    :class="selected === '9-11' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+  >
+    <input
+      type="radio"
+      name="time_range"
+      value="9-11"
+      class="sr-only"
+      @change="selected = '9-11'"
+    />
+    <span
+      class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
+      :class="selected === '9-11' && 'border-brand-500 bg-brand-500'"
+    >
+      <span
+        class="h-2.5 w-2.5 rounded-full bg-white"
+        x-show="selected === '9-11'"
+      ></span>
+    </span>
+    9:00 AM – 11:00 AM
+  </label>
+
+  <!-- Option 2 -->
+  <label
+    class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
+           hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
+    :class="selected === '11-1' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+  >
+    <input
+      type="radio"
+      name="time_range"
+      value="11-1"
+      class="sr-only"
+      @change="selected = '11-1'"
+    />
+    <span
+      class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
+      :class="selected === '11-1' && 'border-brand-500 bg-brand-500'"
+    >
+      <span
+        class="h-2.5 w-2.5 rounded-full bg-white"
+        x-show="selected === '11-1'"
+      ></span>
+    </span>
+    11:00 AM – 1:00 PM
+  </label>
+
+  <!-- Option 3 -->
+        <label
+          class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
+                hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
+          :class="selected === '2-5' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+        >
+          <input
+            type="radio"
+            name="time_range"
+            value="2-5"
+            class="sr-only"
+            @change="selected = '2-5'"
+          />
+          <span
+            class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
+            :class="selected === '2-5' && 'border-brand-500 bg-brand-500'"
+          >
+            <span
+              class="h-2.5 w-2.5 rounded-full bg-white"
+              x-show="selected === '2-5'"
+            ></span>
+          </span>
+          2:00 PM – 5:00 PM
+        </label>
+      </div>
+
     </div>
     <div
         class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
