@@ -18,15 +18,11 @@ import "./components/image-resize";
 Alpine.plugin(persist);
 window.Alpine = Alpine;
 Alpine.start();
-
-/* =========================
-   AUTH + PAGE BOOTSTRAP
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const page = window.location.pathname.split("/").pop();
+  const page = window.location.pathname.split("/").pop(); // get current page
   const userType = localStorage.getItem("user_type");
 
-  /* ---- Redirect rules ---- */
+  // REDIRECT RULES
   if ((page === "" || page === "index.html") && !userType) {
     window.location.href = "/signin.html";
     return;
@@ -37,9 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  /* =========================
-     SIGN IN PAGE LOGIC ONLY
-  ========================= */
+  // SIGNIN PAGE LOGIC
   if (page === "signin.html") {
     const form = document.getElementById("signinForm");
     const loginBtn = document.getElementById("loginBtn");
@@ -54,23 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("email")?.value;
       const password = document.getElementById("password")?.value;
 
-      errorMsg.textContent = "";
       spinner.style.display = "block";
+      errorMsg.textContent = "";
 
       try {
-        const response = await fetch("http://localhost:8000/api/login/", {
+        const res = await fetch("/api/login/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
         });
 
-        const data = await response.json();
+        const data = await res.json();
 
-        if (!response.ok) {
-          throw new Error(data.error || "Login failed");
-        }
+        if (!res.ok) throw new Error(data.error || "Login failed");
 
+        // Save everything in localStorage
         localStorage.setItem("user_type", data.user_type);
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("first_name", data.first_name);
+        localStorage.setItem("email", data.email);
+
+        // Redirect to dashboard
         window.location.href = "/index.html";
       } catch (err) {
         errorMsg.textContent = err.message;
@@ -79,17 +77,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    return; // 🚨 stop here, don’t init dashboard stuff
+    return; // stop here
   }
 
-// ===== SIGN OUT (works with dynamic header) =====
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("#signOutBtn");
-  if (!btn) return;
+  // SIGNOUT BUTTON
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("#signOutBtn");
+    if (!btn) return;
 
-  localStorage.removeItem("user_type");
-  window.location.href = "/signin.html";
-});
+    localStorage.removeItem("user_type");
+    localStorage.removeItem("username");
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("email");
+
+    window.location.href = "/signin.html";
+  });
+
+  // FILL TABLE-PATIENT.HTML OR DASHBOARD INFO
+  const usernameInput = document.querySelector('input[name="username"]');
+  const userTypeInput = document.querySelector('input[name="user_type"]');
+  const fnameInput = document.querySelector('input[name="first_name"]');
+
+  if (usernameInput) usernameInput.value = localStorage.getItem("username") || "";
+  if (userTypeInput) userTypeInput.value = localStorage.getItem("user_type") || "";
+  if (fnameInput) fnameInput.value = localStorage.getItem("first_name") || "";
 
 
   /* =========================

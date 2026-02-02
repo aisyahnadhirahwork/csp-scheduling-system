@@ -446,6 +446,15 @@ layer(base);
 .flatpickr-day {
   @apply text-theme-sm! flex! items-center! font-medium! text-gray-800! dark:text-white/90! dark:hover:border-gray-300! dark:hover:bg-gray-900!;
 }
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover {
+  color: #999 !important;
+  background: #f3f3f3 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .flatpickr-day.nextMonthDay,
 .flatpickr-day.prevMonthDay {
   @apply text-gray-400!;

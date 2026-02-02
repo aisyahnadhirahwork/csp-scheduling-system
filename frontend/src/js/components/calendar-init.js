@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   minTime: "09:00",      // earliest allowed
   maxTime: "17:00",      // latest allowed
   minuteIncrement: 15,   // step interval
+  minDate: "today" // optional but recommended
 });
 
 
