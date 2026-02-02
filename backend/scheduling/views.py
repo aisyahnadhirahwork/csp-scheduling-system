@@ -16,14 +16,14 @@ def register_api(request):
     except Exception as e:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
 
-    # Extract form data
-    email = payload.get("email", "").strip()
-    password = payload.get("password", "").strip()
-    first_name = payload.get("first_name", "").strip()
-    last_name = payload.get("last_name", "").strip()
-    user_type = payload.get("user_type", "").strip()
-    gender = payload.get("gender", "").strip()
-    specialisation = payload.get("specialisation", "").strip()
+    # Extract form data - handle None values properly
+    email = (payload.get("email") or "").strip()
+    password = (payload.get("password") or "").strip()
+    first_name = (payload.get("first_name") or "").strip()
+    last_name = (payload.get("last_name") or "").strip()
+    user_type = (payload.get("user_type") or "").strip()
+    gender = (payload.get("gender") or "").strip()
+    specialisation = (payload.get("specialisation") or "").strip()
 
     # Validation
     if not email or not password or not user_type:
