@@ -1,10 +1,7 @@
 from django.urls import path
-from .views import doctors_api, register_api, login_api, patient_api, current_user_api
+from . import views
 
 urlpatterns = [
-    path("api/doctors/", doctors_api, name="doctors_api"),       # list of doctors
-    path("api/register/", register_api, name="register_api"),    # signup
-    path("api/login/", login_api, name="login_api"),             # login
-    path("api/patient/", patient_api, name="patient_api"),       # list of patients
-    path("api/me/", current_user_api, name="current_user_api"),  # current logged-in user info
+    path('', lambda request: __import__('django.http', fromlist=['HttpResponse']).JsonResponse({'message': 'CSP Scheduling API'})),
+    path('api/register/', views.register_api, name='api_register'),
 ]

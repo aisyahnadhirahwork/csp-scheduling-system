@@ -1,98 +1,76 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.conf import settings
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("Users must have an email address")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # hashes the password
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        return self.create_user(email, password, **extra_fields)
 
 
-class User(AbstractUser):
+class User(AbstractBaseUser, PermissionsMixin):
+    """Custom User model for scheduling system"""
     USER_TYPE_CHOICES = (
         ("patient", "Patient"),
         ("doctor", "Doctor"),
-        ("admin", "Admin"),
     )
 
-    user_type = models.CharField(
-        max_length=10,
-        choices=USER_TYPE_CHOICES
-    )
+    user_id = models.AutoField(primary_key=True)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)  # required for admin
 
-# -----------------------------
-# Patient for CSP simulation
-# -----------------------------
-class PatientFull(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
-    )
+    objects = CustomUserManager()
 
-    name = models.CharField(max_length=100)
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ("upcoming", "Upcoming"),
-            ("completed", "Completed"),
-            ("cancelled", "Cancelled"),
-        ],
-        null=True,
-        blank=True
-    )
-
-    preferred_specialty = models.CharField(max_length=100, null=True, blank=True)
-    preferred_gender = models.CharField(max_length=10, null=True, blank=True)
-    time_start = models.TimeField(null=True, blank=True)
-    time_end = models.TimeField(null=True, blank=True)
-
-# -----------------------------
-# Doctor for CSP simulation
-# -----------------------------
-class DoctorFull(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
-    )
-    name = models.CharField(max_length=100)
-    specialty = models.CharField(max_length=100)
-    gender = models.CharField(max_length=10, null=True, blank=True)
-
-
-# -----------------------------
-# Doctor Availability Table
-# -----------------------------
-class DoctorAvailability(models.Model):
-    doctor = models.ForeignKey(DoctorFull, on_delete=models.CASCADE)
-    time = models.TimeField()
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ("available", "Available"),
-            ("unavailable", "Unavailable"),
-        ],
-        default="available"
-    )
+    USERNAME_FIELD = "email"  # login with email
+    REQUIRED_FIELDS = ["first_name", "last_name", "user_type"]
 
     def __str__(self):
-        return f"{self.doctor.name} at {self.time}"
+        return f"{self.first_name} {self.last_name} ({self.email})"
 
-
-# -----------------------------
-# Appointment Table
-# -----------------------------
-class Appointment(models.Model):
-    patient = models.ForeignKey(PatientFull, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(DoctorFull, on_delete=models.CASCADE)
-    time = models.TimeField()
-    status = models.CharField(
-        max_length=20,
-        choices=[
-            ("upcoming", "Upcoming"),
-            ("completed", "Completed"),
-            ("cancelled", "Cancelled"),
-        ],
-        default="upcoming"
-    )
+    class Meta:
+        db_table = "users"
+class Patient(models.Model):
+    """Patients table with patient_id (PK) and user_id (FK)"""
+    patient_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.patient.name} → {self.doctor.name} at {self.time}"
+        return f"Patient: {self.user_id.first_name} {self.user_id.last_name}"
+
+    class Meta:
+        db_table = "patients"
+
+
+class Doctor(models.Model):
+    """Doctors table with doctor_id (PK), user_id (FK), specialisation, and gender"""
+    GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+    )
+    
+    doctor_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    specialisation = models.CharField(max_length=100)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Dr. {self.user_id.first_name} {self.user_id.last_name} - {self.specialisation}"
+
+    class Meta:
+        db_table = "doctors"

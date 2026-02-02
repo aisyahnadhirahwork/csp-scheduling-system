@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'csp_scheduler.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dev_csp',
+        'NAME': 'csp_v1',
         'USER': 'postgres',
         'PASSWORD': 'Superuser1',
         'HOST': 'localhost',
