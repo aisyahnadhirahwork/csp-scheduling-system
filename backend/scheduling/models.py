@@ -56,6 +56,48 @@ class Patient(models.Model):
         db_table = "patients"
 
 
+class PatientPreference(models.Model):
+    """Patient preferences for appointment requests."""
+    STATUS_CHOICES = (
+        ("pending", "Pending"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
+        ("cancelled", "Cancelled"),
+    )
+
+    GENDER_CHOICES = (
+        ("any", "Any"),
+        ("M", "Male"),
+        ("F", "Female"),
+    )
+
+    TIME_RANGE_CHOICES = (
+        ("MORNING", "09:00–12:00"),
+        ("MIDDAY", "12:00–14:00"),
+        ("AFTERNOON", "14:00–17:00"),
+    )
+
+    preference_id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="preferences")
+
+    request_date = models.DateField()  # patient-selected date
+    preferred_time_range = models.CharField(
+        max_length=20,
+        choices=TIME_RANGE_CHOICES,
+        blank=True,
+        null=True
+    )
+    preferred_specialty = models.CharField(max_length=100, blank=True, null=True)
+    preferred_gender = models.CharField(max_length=5, choices=GENDER_CHOICES, default="any")
+
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "patient_preferences"
+
 class Doctor(models.Model):
     """Doctors table with doctor_id (PK), user_id (FK), specialisation, and gender"""
     GENDER_CHOICES = (

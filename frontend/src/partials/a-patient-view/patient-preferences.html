@@ -178,22 +178,22 @@
   <label
     class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
            hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
-    :class="selected === '9-11' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+    :class="selected === 'MORNING' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
   >
     <input
       type="radio"
       name="time_range"
-      value="9-11"
+      value="MORNING"
       class="sr-only"
-      @change="selected = '9-11'"
+      @change="selected = 'MORNING'"
     />
     <span
       class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
-      :class="selected === '9-11' && 'border-brand-500 bg-brand-500'"
+      :class="selected === 'MORNING' && 'border-brand-500 bg-brand-500'"
     >
       <span
         class="h-2.5 w-2.5 rounded-full bg-white"
-        x-show="selected === '9-11'"
+        x-show="selected === 'MORNING'"
       ></span>
     </span>
     9:00 AM – 11:00 AM
@@ -203,22 +203,22 @@
   <label
     class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
            hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
-    :class="selected === '11-1' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+    :class="selected === 'MIDDAY' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
   >
     <input
       type="radio"
       name="time_range"
-      value="11-1"
+      value="MIDDAY"
       class="sr-only"
-      @change="selected = '11-1'"
+      @change="selected = 'MIDDAY'"
     />
     <span
       class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
-      :class="selected === '11-1' && 'border-brand-500 bg-brand-500'"
+      :class="selected === 'MIDDAY' && 'border-brand-500 bg-brand-500'"
     >
       <span
         class="h-2.5 w-2.5 rounded-full bg-white"
-        x-show="selected === '11-1'"
+        x-show="selected === 'MIDDAY'"
       ></span>
     </span>
     11:00 AM – 1:00 PM
@@ -228,22 +228,22 @@
         <label
           class="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium
                 hover:border-brand-500 dark:border-gray-700 dark:text-gray-400"
-          :class="selected === '2-5' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
+          :class="selected === 'AFTERNOON' && 'border-brand-500 bg-brand-50 dark:bg-white/[0.05]'"
         >
           <input
             type="radio"
             name="time_range"
-            value="2-5"
+            value="AFTERNOON"
             class="sr-only"
-            @change="selected = '2-5'"
+            @change="selected = 'AFTERNOON'"
           />
           <span
             class="flex h-5 w-5 items-center justify-center rounded-full border border-gray-300"
-            :class="selected === '2-5' && 'border-brand-500 bg-brand-500'"
+            :class="selected === 'AFTERNOON' && 'border-brand-500 bg-brand-500'"
           >
             <span
               class="h-2.5 w-2.5 rounded-full bg-white"
-              x-show="selected === '2-5'"
+              x-show="selected === 'AFTERNOON'"
             ></span>
           </span>
           2:00 PM – 5:00 PM
