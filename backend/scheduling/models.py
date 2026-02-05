@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.db.models import Q, F
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -74,3 +75,39 @@ class Doctor(models.Model):
 
     class Meta:
         db_table = "doctors"
+
+class DoctorBlockedSlot(models.Model):
+    blocked_id = models.AutoField(primary_key=True)
+
+    doctor = models.ForeignKey(
+        Doctor,
+        on_delete=models.CASCADE,
+        related_name='blocked_slots'
+    )
+
+    blocked_date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    reason = models.CharField(
+        max_length=50,
+        choices=[
+            ('unavailable', 'Unavailable'),
+            ('off_duty', 'Off-duty'),
+        ]
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'doctor_blocked_slots'
+        ordering = ['blocked_date', 'start_time']
+        constraints = [
+            models.CheckConstraint(
+                check=Q(start_time__lt=F('end_time')),
+                name='start_time_before_end_time'
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.doctor} blocked on {self.blocked_date}"

@@ -19,6 +19,9 @@ Alpine.plugin(persist);
 window.Alpine = Alpine;
 Alpine.start();
 
+// Global variable to store current user
+let currentUser = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      PAGE & AUTH LOGIC
@@ -35,6 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "/index.html";
     return;
   }
+
+  // =========================
+  // FETCH CURRENT USER
+  // =========================
+  (async () => {
+    try {
+      const res = await fetch("/api/current-user/", { credentials: "include" });
+      currentUser = await res.json();
+      console.log("Current user:", currentUser); // Check in console
+    } catch (err) {
+      console.error("Failed to fetch current user:", err);
+    }
+  })();
 
   /* =========================
      DATE LIMIT (TODAY → FUTURE)
@@ -100,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const res = await fetch("/api/login/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({ email, password }),
         });
 
@@ -107,9 +124,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!res.ok) throw new Error(data.error || "Login failed");
 
         localStorage.setItem("user_type", data.user_type);
-        localStorage.setItem("username", data.username);
+        localStorage.setItem("user_id", data.user_id);
         localStorage.setItem("first_name", data.first_name);
+        localStorage.setItem("last_name", data.last_name);
         localStorage.setItem("email", data.email);
+
+        // Verify session by fetching current user
+        const currentUserRes = await fetch("/api/current-user/", { credentials: "include" });
+        const currentUser = await currentUserRes.json();
+        
+        if (currentUserRes.ok) {
+          console.log("✅ Session confirmed:", currentUser);
+        } else {
+          console.warn("⚠️ Session not confirmed:", currentUser);
+        }
 
         window.location.href = "/index.html";
       } catch (err) {
@@ -133,16 +161,103 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "/signin.html";
   });
 
+  document.getElementById("availability-form")
+    .addEventListener("submit", async function (e) {
+
+      e.preventDefault();
+
+      const data = {
+        doctor_id: currentUser.doctor_id, // pass the doctor ID
+        date: document.getElementById("availability-date").value,
+        start_time: document.getElementById("start-time").value,
+        end_time: document.getElementById("end-time").value,
+        reason: document.querySelector("select").value,
+      };
+
+      const response = await fetch("/api/doctor/blocked-slots/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        credentials: "include",
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Availability saved ✅");
+      } else {
+        alert(result.error || "Something went wrong ❌");
+      }
+    });
+
+  // =========================
+  // LOAD DOCTOR'S BLOCKED SLOTS
+  // =========================
+  const loadBlockedSlots = async () => {
+    try {
+      const res = await fetch("/api/doctor/blocked-slots/list/", { credentials: "include" });
+      const slots = await res.json();
+
+      const tbody = document.getElementById("blocked-slots-table");
+      if (!tbody) return; // Table not on this page
+
+      tbody.innerHTML = ""; // Clear existing rows
+
+      if (!res.ok) {
+        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-4 text-center text-gray-500">Error loading slots</td></tr>`;
+        return;
+      }
+
+      if (slots.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-4 text-center text-gray-500">No blocked slots</td></tr>`;
+        return;
+      }
+
+      slots.forEach(slot => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="px-5 py-4 sm:px-6">
+            <p class="text-gray-800 text-theme-sm dark:text-white/90">${slot.date}</p>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <p class="text-gray-500 text-theme-sm dark:text-gray-400">${slot.start_time}</p>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <p class="text-gray-500 text-theme-sm dark:text-gray-400">${slot.end_time}</p>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <span class="rounded-full bg-warning-50 px-2 py-0.5 text-theme-xs font-medium text-warning-700 dark:bg-warning-500/15 dark:text-warning-400">
+              ${slot.reason}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      console.error("Failed to load blocked slots:", err);
+    }
+  };
+
+  // Load slots when page loads
+  loadBlockedSlots();
+
   /* =========================
      FILL USER INFO
   ========================= */
-  const usernameInput = document.querySelector('input[name="username"]');
+  const userIdInput = document.querySelector('input[name="user_id"]');
   const userTypeInput = document.querySelector('input[name="user_type"]');
   const fnameInput = document.querySelector('input[name="first_name"]');
+  const lnameInput = document.querySelector('input[name="last_name"]');
+  const emailInput = document.querySelector('input[name="email"]');
 
-  if (usernameInput) usernameInput.value = localStorage.getItem("username") || "";
+  if (userIdInput) userIdInput.value = localStorage.getItem("user_id") || "";
   if (userTypeInput) userTypeInput.value = localStorage.getItem("user_type") || "";
   if (fnameInput) fnameInput.value = localStorage.getItem("first_name") || "";
+  if (lnameInput) lnameInput.value = localStorage.getItem("last_name") || "";
+  if (emailInput) emailInput.value = localStorage.getItem("email") || "";
 
   /* =========================
      DASHBOARD INIT
@@ -175,3 +290,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 });
+
+// CSRF helper
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}

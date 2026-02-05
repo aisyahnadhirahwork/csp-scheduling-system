@@ -6,4 +6,7 @@ urlpatterns = [
     path('api/register/', views.register_api, name='api_register'),
     path('api/login/', views.signin_api, name='api_login'),
     path('api/doctors/', views.get_doctors_api, name='api_doctors'),
+    path('api/doctor/blocked-slots/', views.create_blocked_slot, name='create_blocked_slot'),
+    path('api/doctor/blocked-slots/list/', views.get_doctor_blocked_slots, name='get_doctor_blocked_slots'),
+    path('api/current-user/', views.current_user_api, name='api_current_user'), 
 ]

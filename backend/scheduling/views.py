@@ -1,8 +1,10 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Patient, Doctor
+from .models import User, Patient, Doctor, DoctorBlockedSlot
 from django.db.models import Prefetch
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 
 
 @csrf_exempt
@@ -110,6 +112,7 @@ def signin_api(request):
         
         # Verify password
         if user.check_password(password):
+            login(request, user)  # <-- THIS MAKES request.user AUTHENTICATED
             return JsonResponse({
                 "success": True,
                 "user_id": user.user_id,
@@ -161,3 +164,92 @@ def get_doctors_api(request):
     
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+    
+@csrf_exempt
+def create_blocked_slot(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid method"}, status=405)
+    
+    try:
+        data = json.loads(request.body)
+    except Exception as e:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    
+    # Get doctor from authenticated user or from doctor_id
+    if request.user.is_authenticated:
+        try:
+            doctor = Doctor.objects.get(user_id=request.user)
+        except Doctor.DoesNotExist:
+            return JsonResponse({"error": "User is not a doctor"}, status=403)
+    else:
+        doctor_id = data.get("doctor_id")
+        if not doctor_id:
+            return JsonResponse({"error": "No doctor_id provided"}, status=400)
+        try:
+            doctor = Doctor.objects.get(doctor_id=doctor_id)
+        except Doctor.DoesNotExist:
+            return JsonResponse({"error": "Doctor not found"}, status=404)
+    
+    try:
+        DoctorBlockedSlot.objects.create(
+            doctor=doctor,
+            blocked_date=data["date"],
+            start_time=data["start_time"],
+            end_time=data["end_time"],
+            reason=data["reason"],
+        )
+        return JsonResponse({"message": "Blocked slot created"}, status=201)
+    except KeyError as e:
+        return JsonResponse({"error": f"Missing field: {str(e)}"}, status=400)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+@csrf_exempt
+def current_user_api(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Not authenticated"}, status=401)
+    
+    user = request.user
+    doctor_id = None
+    
+    try:
+        doctor = Doctor.objects.get(user_id=user)
+        doctor_id = doctor.doctor_id
+    except Doctor.DoesNotExist:
+        pass
+    
+    return JsonResponse({
+        "id": user.user_id,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+        "user_type": user.user_type,
+        "doctor_id": doctor_id,
+    })
+
+@csrf_exempt
+def get_doctor_blocked_slots(request):
+    """Get blocked slots for the logged-in doctor"""
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Not authenticated"}, status=401)
+    
+    try:
+        doctor = Doctor.objects.get(user_id=request.user)
+    except Doctor.DoesNotExist:
+        return JsonResponse({"error": "User is not a doctor"}, status=403)
+    
+    blocked_slots = DoctorBlockedSlot.objects.filter(
+        doctor=doctor
+    ).order_by('-blocked_date')
+    
+    slots_data = []
+    for slot in blocked_slots:
+        slots_data.append({
+            "id": slot.blocked_id,
+            "date": slot.blocked_date.isoformat(),
+            "start_time": str(slot.start_time),
+            "end_time": str(slot.end_time),
+            "reason": slot.reason,
+        })
+    
+    return JsonResponse(slots_data, safe=False, status=200)
