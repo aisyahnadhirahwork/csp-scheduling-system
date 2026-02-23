@@ -1,7 +1,8 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Patient, Doctor, DoctorBlockedSlot
+from .models import User, Patient, Doctor, DoctorBlockedSlot, PatientPreference
+from django.shortcuts import redirect
 from django.db.models import Prefetch
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -226,6 +227,74 @@ def current_user_api(request):
         "user_type": user.user_type,
         "doctor_id": doctor_id,
     })
+
+
+# ---------------------------------------------------------------------------
+# patient preference endpoints
+# ---------------------------------------------------------------------------
+
+@csrf_exempt
+def patient_preferences_api(request):
+    """Create/list patient preferences.
+
+    POST: save a new request (used by front‑end form).
+    GET: return all preferences for the logged‑in patient (unused for now).
+    """
+    if not request.user.is_authenticated or request.user.user_type != "patient":
+        return JsonResponse({"error": "Authentication required as patient"}, status=401)
+
+    try:
+        patient = Patient.objects.get(user_id=request.user)
+    except Patient.DoesNotExist:
+        return JsonResponse({"error": "Patient record not found"}, status=404)
+
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+        except Exception:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+        # pull fields with sensible defaults
+        pref_specialty = (data.get("preferred_specialty") or "").strip() or None
+        pref_gender = (data.get("preferred_gender") or "any").strip() or "any"
+        pref_time = (data.get("preferred_time_range") or "").strip()
+        if pref_time == "any":
+            pref_time = ""
+        req_date = data.get("request_date") or None
+
+        # basic validation: specialty is mandatory
+        if not pref_specialty:
+            return JsonResponse({"error": "preferred_specialty is required"}, status=400)
+
+        try:
+            pref = PatientPreference.objects.create(
+                patient=patient,
+                request_date=req_date,
+                preferred_time_range=pref_time,
+                preferred_specialty=pref_specialty,
+                preferred_gender=pref_gender,
+            )
+            return JsonResponse({"message": "Preference saved", "preference_id": pref.preference_id}, status=201)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    elif request.method == "GET":
+        prefs = PatientPreference.objects.filter(patient=patient).order_by("-created_at")
+        out = []
+        for p in prefs:
+            out.append({
+                "id": p.preference_id,
+                "request_date": p.request_date.isoformat(),
+                "preferred_time_range": p.preferred_time_range,
+                "preferred_specialty": p.preferred_specialty,
+                "preferred_gender": p.preferred_gender,
+                "status": p.status,
+                "created_at": p.created_at.isoformat(),
+            })
+        return JsonResponse(out, safe=False)
+
+    else:
+        return JsonResponse({"error": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def get_doctor_blocked_slots(request):

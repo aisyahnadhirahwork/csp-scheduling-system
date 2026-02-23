@@ -193,6 +193,67 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+  /* =========================
+   PATIENT PREFERENCES FORM
+  ========================= */
+  const patientForm = document.getElementById("patient-preferences-form");
+  if (patientForm) {
+    patientForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const csrftoken = getCookie("csrftoken");
+
+      const preferredSpecialtyEl = patientForm.querySelector('select[name="preferred_specialty"]');
+      const preferredGenderEl = patientForm.querySelector('select[name="preferred_gender"]');
+      const preferredTimeEl = patientForm.querySelector('input[name="preferred_time_range"]:checked');
+      const requestDateEl = patientForm.querySelector('input[name="request_date"]');
+
+      const data = {
+        preferred_specialty: preferredSpecialtyEl ? preferredSpecialtyEl.value : "",
+        preferred_gender: preferredGenderEl && preferredGenderEl.value ? preferredGenderEl.value : "any",
+        preferred_time_range: preferredTimeEl ? preferredTimeEl.value : "",
+        request_date: requestDateEl ? requestDateEl.value : null
+      };
+
+      console.log('patient prefs data', data);
+
+      // Basic validation: only specialty is mandatory
+      if (!data.preferred_specialty) {
+        Swal.fire({icon:'warning', title:'Missing field', text:'Please select a specialty'});
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/patient/preferences/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken
+          },
+          credentials: "include",
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          Swal.fire({icon:'success', title:'Saved', text:'Preferences saved successfully!'});
+          patientForm.reset();
+          // Reset Alpine.js selected class for radio buttons
+          const radios = patientForm.querySelectorAll('input[name="preferred_time_range"]');
+          radios.forEach(r => r.checked = false);
+          if (Alpine) Alpine.store("selected", ""); // optional if using Alpine store
+        } else {
+          Swal.fire({icon:'error', title:'Error', text: result.error || 'Something went wrong'});
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire({icon:'error', title:'Failure', text:'Failed to save preferences'});
+      }
+    });
+  }
+
+
   // =========================
   // LOAD DOCTOR'S BLOCKED SLOTS
   // =========================

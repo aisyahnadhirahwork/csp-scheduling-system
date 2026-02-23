@@ -80,7 +80,7 @@ class PatientPreference(models.Model):
     preference_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="preferences")
 
-    request_date = models.DateField()  # patient-selected date
+    request_date = models.DateField(null=True, blank=True)  # patient-selected date (optional)
     preferred_time_range = models.CharField(
         max_length=20,
         choices=TIME_RANGE_CHOICES,
