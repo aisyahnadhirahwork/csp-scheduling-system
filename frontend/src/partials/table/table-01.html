@@ -8,15 +8,17 @@
       <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
         Matching Results
       </h3>
-       <div class="rounded-xl border border-success-500 bg-success-50 p-4 dark:border-success-500/30 dark:bg-success-500/15">
-          <h4 class="mb-1 text-sm font-semibold text-gray-800 dark:text-white/90">
-            Perfect Match Found!
-          </h4>
+       <template x-if="$store.matches && $store.matches.length">
+         <div class="rounded-xl border border-success-500 bg-success-50 p-4 dark:border-success-500/30 dark:bg-success-500/15">
+            <h4 class="mb-1 text-sm font-semibold text-gray-800 dark:text-white/90">
+              Matching Results (x<span x-text="$store.matches.length"></span>)
+            </h4>
 
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Found a perfect match for your scheduling preferences.
-          </p>
-      </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Here are the top matches for your preferences.
+            </p>
+        </div>
+       </template>
     </div>
 
     <div class="flex items-center gap-3">
@@ -98,7 +100,7 @@
               <p
                 class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
               >
-                Time
+                Date &amp; Time
               </p>
             </div>
           </th>
@@ -126,16 +128,36 @@
 
       <tbody class="divide-y divide-gray-100 dark:divide-gray-800"
               x-data="{
-                doctors: [],
-                async loadDoctors() {
-                    const res = await fetch('http://127.0.0.1:8000/api/doctors/');
-                    this.doctors = await res.json();
-                }
-            }"
-            x-init="loadDoctors()"
+                  async selectDoctor(doc) {
+                      try {
+                          const res = await fetch('/api/appointments/', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              credentials: 'include',
+                              body: JSON.stringify({
+                                  doctor_id: doc.doctor_id,
+                                  slot_start: doc.slot.start,
+                                  slot_end: doc.slot.end,
+                                  penalty: doc.penalty,
+                              })
+                          });
+                          const data = await res.json();
+                          if (res.ok) {
+                              Swal.fire('Scheduled', 'Appointment created', 'success');
+                              // optionally refresh matches or clear
+                              if (Alpine) Alpine.store('matches', []);
+                          } else {
+                              Swal.fire('Error', data.error || 'Failed to book', 'error');
+                          }
+                      } catch (e) {
+                          console.error(e);
+                          Swal.fire('Error', 'Request failed', 'error');
+                      }
+                  }
+              }"
         >
-        <template x-for="doctor in doctors" :key="doctor.id">
-        <tr>
+        <template x-for="(doctor, idx) in ($store.matches || [])" :key="(doctor && doctor.doctor_id ? doctor.doctor_id + '-' + idx : idx)">
+        <tr x-show="$store.matches && $store.matches.length > 0">
           <td class="py-3">
             <div class="flex items-center">
               <div class="flex items-center gap-3">
@@ -163,10 +185,21 @@
             </div>
           </td>
           <td class="py-3">
-            <div class="flex items-center">
+            <div class="flex flex-col">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400"
-                x-text="doctor.slots.join(' - ')">
+                x-text="doctor.slot.start
+                         ? (new Date(doctor.slot.start).toLocaleString([], {dateStyle:'short', timeStyle:'short'}) +
+                            ' – ' +
+                            new Date(doctor.slot.end).toLocaleString([], {dateStyle:'short', timeStyle:'short'}))
+                         : 'TBD'">
               </p>
+              <!-- <template x-if="doctor.available_slots && doctor.available_slots.length">
+                 <ul class="text-xs text-gray-400 mt-1">
+                   <template x-for="(s, idx2) in doctor.available_slots" :key="s.start ?? idx2">
+                     <li x-text="new Date(s.start).toLocaleString([], {dateStyle:'short', timeStyle:'short'})"></li>
+                   </template>
+                 </ul>
+              </template> -->
             </div>
           </td>
           <td class="py-3">
@@ -197,12 +230,20 @@
               </p> -->
               <button
                   class="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600"
+                  @click.prevent="selectDoctor(doctor)"
                 >
                   Select
               </button>
             </div>
           </td>
         </tr>
+        </template>
+        <template x-if="$store.matches && $store.matches.length === 0">
+          <tr>
+            <td colspan="5" class="px-5 py-4 text-center text-gray-500">
+              No doctors match your preferences. Try broadening the filters.
+            </td>
+          </tr>
         </template>
       </tbody>
     </table>

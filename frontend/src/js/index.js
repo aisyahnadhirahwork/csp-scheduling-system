@@ -17,6 +17,11 @@ import "./components/image-resize";
 
 Alpine.plugin(persist);
 window.Alpine = Alpine;
+// create the matches store immediately so templates can read it even if
+// someone accidentally registers their init handler too late
+if (!Alpine.store || !Alpine.store('matches')) {
+  Alpine.store('matches', []);
+}
 Alpine.start();
 
 // Global variable to store current user
@@ -196,6 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
    PATIENT PREFERENCES FORM
   ========================= */
+  // Alpine store for match results will be initialized when Alpine starts
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('matches', []);
+  });
+
   const patientForm = document.getElementById("patient-preferences-form");
   if (patientForm) {
     patientForm.addEventListener("submit", async (e) => {
@@ -207,24 +217,37 @@ document.addEventListener("DOMContentLoaded", () => {
       const preferredGenderEl = patientForm.querySelector('select[name="preferred_gender"]');
       const preferredTimeEl = patientForm.querySelector('input[name="preferred_time_range"]:checked');
       const requestDateEl = patientForm.querySelector('input[name="request_date"]');
+      const sessionLengthEl = patientForm.querySelector('input[name="session_length"]:checked');
 
       const data = {
         preferred_specialty: preferredSpecialtyEl ? preferredSpecialtyEl.value : "",
         preferred_gender: preferredGenderEl && preferredGenderEl.value ? preferredGenderEl.value : "any",
         preferred_time_range: preferredTimeEl ? preferredTimeEl.value : "",
-        request_date: requestDateEl ? requestDateEl.value : null
+        request_date: requestDateEl ? requestDateEl.value : null,
+        session_length: sessionLengthEl ? parseInt(sessionLengthEl.value, 10) : 60
       };
 
       console.log('patient prefs data', data);
 
-      // Basic validation: only specialty is mandatory
+      // Basic validation: specialty and date are required for meaningful results
       if (!data.preferred_specialty) {
         Swal.fire({icon:'warning', title:'Missing field', text:'Please select a specialty'});
         return;
       }
+      if (!data.request_date) {
+        Swal.fire({icon:'warning', title:'Missing date', text:'Please choose a preferred date'});
+        return;
+      }
 
       try {
-        const response = await fetch("/api/patient/preferences/", {
+        // show loading popup while solver runs on server
+      let loadingSwal = Swal.fire({
+        title: 'Finding matches...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      const response = await fetch("/api/patient/preferences/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -235,9 +258,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = await response.json();
+        console.log('preferences API result:', result);
+        if (result.matches) {
+          result.matches.forEach(d => console.log('avail slots', d.doctor_id, d.available_slots));
+        }
+        Swal.close();
 
         if (response.ok) {
           Swal.fire({icon:'success', title:'Saved', text:'Preferences saved successfully!'});
+          // update match store if present
+          if (Alpine) {
+            let arr = [];
+            if (Array.isArray(result.matches)) {
+              // filter out null/undefined entries just in case
+              arr = result.matches.filter(d => d != null);
+            } else {
+              console.warn('expected array of matches but got', result.matches);
+            }
+            console.log('updating Alpine store matches to', arr);
+            Alpine.store('matches', arr);
+          }
           patientForm.reset();
           // Reset Alpine.js selected class for radio buttons
           const radios = patientForm.querySelectorAll('input[name="preferred_time_range"]');
@@ -248,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (err) {
         console.error(err);
+        Swal.close();
         Swal.fire({icon:'error', title:'Failure', text:'Failed to save preferences'});
       }
     });

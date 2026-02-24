@@ -89,6 +89,7 @@ class PatientPreference(models.Model):
     )
     preferred_specialty = models.CharField(max_length=100, blank=True, null=True)
     preferred_gender = models.CharField(max_length=5, choices=GENDER_CHOICES, default="any")
+    session_length_minutes = models.IntegerField(default=60, help_text="Length of desired session in minutes")
 
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
 
@@ -117,6 +118,28 @@ class Doctor(models.Model):
 
     class Meta:
         db_table = "doctors"
+
+
+class Appointment(models.Model):
+    """An actual booking linking a patient to a doctor at a fixed time."""
+    STATUS_CHOICES = (
+        ("Upcoming", "Upcoming"),
+        ("Completed", "Completed"),
+        ("Cancelled", "Cancelled"),
+    )
+
+    appointment_id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    slot_start = models.DateTimeField()
+    slot_end = models.DateTimeField()
+    penalty = models.IntegerField(null=True, blank=True, help_text="Solver penalty score for this assignment")
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="Upcoming")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "appointments"
+        unique_together = ("doctor", "slot_start", "slot_end")
 
 class DoctorBlockedSlot(models.Model):
     blocked_id = models.AutoField(primary_key=True)
