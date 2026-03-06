@@ -269,6 +269,14 @@ document.addEventListener("DOMContentLoaded", () => {
           // update match store if present
           if (Alpine) {
             let arr = [];
+            Alpine.store('latestPreference', data);
+            if (!Alpine.store || !Alpine.store('matches')) {
+                Alpine.store('matches', []);
+              }
+
+              if (!Alpine.store || !Alpine.store('latestPreference')) {
+                Alpine.store('latestPreference', null);
+              }
             if (Array.isArray(result.matches)) {
               // filter out null/undefined entries just in case
               arr = result.matches.filter(d => d != null);
@@ -278,6 +286,9 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('updating Alpine store matches to', arr);
             Alpine.store('matches', arr);
           }
+          document.querySelector("#matching-results")?.scrollIntoView({
+            behavior: "smooth"
+          });
           patientForm.reset();
           // Reset Alpine.js selected class for radio buttons
           const radios = patientForm.querySelectorAll('input[name="preferred_time_range"]');

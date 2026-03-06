@@ -294,6 +294,7 @@
           <div >
             <input
               type="date"
+              id="request_date"
               name="request_date"
               class="rounded border-gray-300 px-3 py-2 w-full"
               onclick="this.showPicker()"
@@ -327,3 +328,7 @@
       </div>
     </form>
 </div>
+<script>
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("request_date").setAttribute("min", today);
+</script>

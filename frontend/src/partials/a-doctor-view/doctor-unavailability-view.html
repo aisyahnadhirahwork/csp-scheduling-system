@@ -1,54 +1,73 @@
-<div
-  class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
->
-  <div class="max-w-full overflow-x-auto">
-    <table class="min-w-full">
-      <!-- table header start -->
-      <thead>
-        <tr class="border-b border-gray-100 dark:border-gray-800">
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                Date
-              </p>
-            </div>
+<div class="rounded-2xl border border-gray-200 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900 overflow-hidden">
+
+  <!-- Gradient Header -->
+  <div class="px-6 py-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 text-white">
+    <h2 class="text-lg font-semibold">
+      Blocked Time Slots
+    </h2>
+    <p class="text-sm text-white/80">
+      Manage unavailable booking times
+    </p>
+  </div>
+
+  <!-- Scrollable Table Container -->
+  <div class="max-h-[350px] overflow-y-auto overflow-x-auto">
+
+    <table class="w-full">
+
+      <!-- Sticky Header -->
+      <thead class="sticky top-0 bg-gray-50 dark:bg-gray-800 z-10">
+        <tr>
+
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Date
           </th>
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                Start Time 
-              </p>
-            </div>
+
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Start Time
           </th>
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                End Time
-              </p>
-            </div>
+
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            End Time
           </th>
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                Reason
-              </p>
-            </div>
+
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Reason
           </th>
+
         </tr>
       </thead>
-      <!-- table header end -->
-      <!-- table body start -->
+
+      <!-- Table Body -->
       <tbody id="blocked-slots-table" class="divide-y divide-gray-100 dark:divide-gray-800">
-        <!-- Rows will be populated by JavaScript -->
+
+        <!-- Example Row -->
+        <!--
+        <tr class="hover:bg-indigo-50 dark:hover:bg-gray-800/60 transition duration-200">
+          <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+            12 Mar 2026
+          </td>
+
+          <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+            09:00
+          </td>
+
+          <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+            11:00
+          </td>
+
+          <td class="px-6 py-4 text-sm">
+            <span class="px-3 py-1 text-xs font-medium rounded-full bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-300">
+              Meeting
+            </span>
+          </td>
+        </tr>
+        -->
+
       </tbody>
+
     </table>
+
   </div>
+
 </div>

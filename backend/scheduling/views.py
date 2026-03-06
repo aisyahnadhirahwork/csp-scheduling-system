@@ -446,7 +446,8 @@ def appointments_api(request):
         for a in appts:
             data.append({
                 "appointment_id": a.appointment_id,
-                "name": f"{a.doctor.user_id.first_name} {a.doctor.user_id.last_name}" if hasattr(a, 'doctor') else "",
+                "patient_name": f"{a.patient.user_id.first_name} {a.patient.user_id.last_name}",
+                "doctor_name": f"{a.doctor.user_id.first_name} {a.doctor.user_id.last_name}",
                 "status": a.status,
                 "slot_start": a.slot_start.isoformat(),
                 "slot_end": a.slot_end.isoformat(),
