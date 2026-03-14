@@ -10,12 +10,173 @@
 
   <!-- Spinner style -->
   <style>
+    :root {
+      --bg-a: #e7f1ff;
+      --bg-b: #dff7ef;
+      --bg-c: #f8fbff;
+      --card-border: rgba(255, 255, 255, 0.45);
+      --card-shadow: 0 20px 50px rgba(19, 42, 79, 0.16);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --ink: #0f172a;
+      --muted: #5f6b7f;
+      --particle: rgba(37, 99, 235, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.2), transparent 35%),
+        radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.16), transparent 35%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b) 52%, var(--bg-c));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    .particle-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), var(--particle));
+      opacity: 0.35;
+      filter: blur(0.2px);
+      animation: drift var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      left: var(--x);
+      top: var(--y);
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      25% {
+        transform: translate3d(16px, -26px, 0) scale(1.03);
+      }
+      50% {
+        transform: translate3d(-20px, -54px, 0) scale(0.96);
+      }
+      75% {
+        transform: translate3d(13px, -30px, 0) scale(1.04);
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    .login-wrap {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-title {
+      margin: 0 0 6px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .login-subtitle {
+      margin: 0 0 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1f2a3d;
+    }
+
+    .input {
+      width: 100%;
+      border: 1px solid #d6deea;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 11px 12px;
+      border-radius: 10px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    .input:focus {
+      border-color: rgba(37, 99, 235, 0.65);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .btn-primary {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+      margin-top: 2px;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .signup-copy {
+      margin: 18px 0 0;
+      font-size: 0.9rem;
+      color: #344054;
+      text-align: center;
+    }
+
+    .signup-copy a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-copy a:hover {
+      text-decoration: underline;
+    }
+
     #spinner {
       display: none;
       width: 30px;
       height: 30px;
       border: 4px solid rgba(0,0,0,0.1);
-      border-left-color: #4f46e5;
+      border-left-color: var(--accent);
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 15px auto;
@@ -24,40 +185,53 @@
       to { transform: rotate(360deg); }
     }
     #error-msg {
-      color: red;
+      color: #dc2626;
       text-align: center;
       margin-top: 10px;
       font-size: 14px;
     }
+
+    @media (max-width: 520px) {
+      .login-wrap {
+        padding: 22px;
+        border-radius: 16px;
+      }
+      .login-title {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body>
 
-  <div class="w-full max-w-md bg-white p-6 rounded shadow">
-    <h1 class="text-2xl font-bold mb-4 text-center">Sign In</h1>
+  <div id="particleLayer" class="particle-layer" aria-hidden="true"></div>
+
+  <div class="login-wrap">
+    <h1 class="login-title">Sign In</h1>
+    <p class="login-subtitle">Manage your doctor appointments with ease</p>
 
     <form id="signinForm">
       <!-- Email -->
       <div class="mb-4">
-        <label class="block mb-1">Email</label>
+        <label>Email</label>
         <input
           type="email"
           id="email"
           required
-          class="w-full border px-3 py-2 rounded"
+          class="input"
           placeholder="test@test.com"
         />
       </div>
 
       <!-- Password -->
       <div class="mb-4">
-        <label class="block mb-1">Password</label>
+        <label>Password</label>
         <input
           type="password"
           id="password"
           required
-          class="w-full border px-3 py-2 rounded"
+          class="input"
           placeholder="••••••••"
         />
       </div>
@@ -66,19 +240,17 @@
       <button
         type="button"
         id="loginBtn"
-        class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+        class="btn-primary"
       >
         Sign In
       </button>
 
-      <div class="mt-5">
-        <p
-          class="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start"
-        >
+      <div>
+        <p class="signup-copy">
           Belum ada akaun?
           <a
             href="/signup.html"
-            class="text-brand-500 hover:text-brand-600 dark:text-brand-400"
+            class=""
             >Sign Up</a
           >
         </p>
@@ -93,6 +265,24 @@
   <!-- LOGIN SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const layer = document.getElementById("particleLayer");
+      if (layer) {
+        const count = 28;
+        for (let i = 0; i < count; i += 1) {
+          const p = document.createElement("span");
+          p.className = "particle";
+          const size = 3 + Math.random() * 7;
+          const duration = 18 + Math.random() * 24;
+          const delay = -(Math.random() * duration);
+          p.style.setProperty("--size", `${size}px`);
+          p.style.setProperty("--dur", `${duration}s`);
+          p.style.setProperty("--delay", `${delay}s`);
+          p.style.setProperty("--x", `${Math.random() * 100}%`);
+          p.style.setProperty("--y", `${Math.random() * 100}%`);
+          layer.appendChild(p);
+        }
+      }
+
       const form = document.getElementById("signinForm");
       const loginBtn = document.getElementById("loginBtn");
       const spinner = document.getElementById("spinner");

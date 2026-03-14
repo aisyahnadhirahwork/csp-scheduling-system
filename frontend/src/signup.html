@@ -5,8 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up | TailAdmin</title>
   <style>
+    :root {
+      --bg-a: #e7f1ff;
+      --bg-b: #dff7ef;
+      --bg-c: #f8fbff;
+      --card-border: rgba(255, 255, 255, 0.45);
+      --card-shadow: 0 20px 50px rgba(19, 42, 79, 0.16);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --particle: rgba(37, 99, 235, 0.28);
+    }
+
     * { transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+    * { box-sizing: border-box; }
     input, select, textarea { transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.2), transparent 35%),
+        radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.16), transparent 35%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b) 52%, var(--bg-c));
+      overflow: hidden;
+      position: relative;
+    }
+
+    .particle-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), var(--particle));
+      opacity: 0.35;
+      animation: drift var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      left: var(--x);
+      top: var(--y);
+    }
+
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      25% { transform: translate3d(16px, -26px, 0) scale(1.03); }
+      50% { transform: translate3d(-20px, -54px, 0) scale(0.96); }
+      75% { transform: translate3d(13px, -30px, 0) scale(1.04); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    .auth-shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 980px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
     input:focus, select:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); outline: none; }
     input::placeholder { color: #9ca3af; }
     .input-icon { position: relative; }
@@ -40,6 +114,23 @@
     .fade-in { animation: fadeIn 0.5s ease-in; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .field-group { animation: fadeIn 0.5s ease-in; }
+
+    @media (max-width: 1024px) {
+      .auth-card {
+        max-width: 720px;
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .auth-shell {
+        padding: 14px;
+      }
+      .auth-card {
+        border-radius: 16px;
+        padding: 18px;
+      }
+    }
   </style>
 </head>
 
@@ -51,11 +142,13 @@
   }"
   x-init="$watch('darkMode', v => localStorage.setItem('darkMode', JSON.stringify(v)))"
   :class="{ 'dark': darkMode }"
-  class="bg-gray-100 dark:bg-gray-900"
+  class=""
 >
 
-<div class="relative min-h-screen flex items-center justify-center p-6 bg-gray-100 dark:bg-gray-900">
-  <div class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col lg:flex-row gap-12">
+<div id="particleLayer" class="particle-layer" aria-hidden="true"></div>
+
+<div class="auth-shell">
+  <div class="auth-card flex flex-col lg:flex-row gap-12">
 
   <!-- FORM -->
     <div class="flex flex-col flex-1 max-w-md mx-auto">
@@ -242,6 +335,26 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const layer = document.getElementById("particleLayer")
+  if (layer) {
+    const count = 28
+    for (let i = 0; i < count; i += 1) {
+      const p = document.createElement("span")
+      p.className = "particle"
+      const size = 3 + Math.random() * 7
+      const duration = 18 + Math.random() * 24
+      const delay = -(Math.random() * duration)
+      p.style.setProperty("--size", `${size}px`)
+      p.style.setProperty("--dur", `${duration}s`)
+      p.style.setProperty("--delay", `${delay}s`)
+      p.style.setProperty("--x", `${Math.random() * 100}%`)
+      p.style.setProperty("--y", `${Math.random() * 100}%`)
+      layer.appendChild(p)
+    }
+  }
+})
+
 document.getElementById("signupForm").addEventListener("submit", async e => {
   e.preventDefault()
   const f = e.target
