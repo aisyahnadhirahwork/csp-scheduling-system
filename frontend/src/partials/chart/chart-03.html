@@ -1,6 +1,6 @@
 <div
-    x-data="{
-    selected: 'scheduled',
+  x-data="{
+    selected: 'Upcoming',
     patients: [],
     async loadPatients() {
       const res = await fetch('/api/appointments');
@@ -8,9 +8,9 @@
     }
   }"
   x-cloak
-  class="rounded-2xl border border-gray-200 bg-white px-5 pt-5 pb-5 sm:px-6 sm:pt-6 dark:border-gray-800 dark:bg-white/[0.03]"
+  class="rounded-2xl border border-gray-200 bg-white px-5 pb-5 pt-5 shadow-sm dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6"
 >
-  <div class="mb-6 flex flex-col gap-5 sm:flex-row sm:justify-between">
+  <div class="mb-6 flex flex-col gap-5 border-b border-gray-100 pb-5 dark:border-gray-800 sm:flex-row sm:items-center sm:justify-between">
     <div class="w-full">
       <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
         Appointments
@@ -21,35 +21,33 @@
     </div>
 
     <div class="flex w-full items-start gap-3 sm:justify-end">
-      <div
-        class="inline-flex w-fit items-center gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900"
-      >
+      <div class="inline-flex w-fit items-center gap-1 rounded-xl border border-gray-200 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900">
         <button
-          @click="selected = 'scheduled'"
-          :class="selected === 'scheduled'
-            ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800'
+          @click="selected = 'Upcoming'"
+          :class="selected === 'Upcoming'
+            ? 'bg-white text-gray-900 shadow-theme-xs dark:bg-gray-800 dark:text-white'
             : 'text-gray-500 dark:text-gray-400'"
-          class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
+          class="text-theme-sm rounded-lg px-3 py-2 font-medium transition hover:text-gray-900 dark:hover:text-white"
         >
           Upcoming
         </button>
 
         <button
-          @click="selected = 'completed'"
-          :class="selected === 'completed'
-            ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800'
+          @click="selected = 'Completed'"
+          :class="selected === 'Completed'
+            ? 'bg-white text-gray-900 shadow-theme-xs dark:bg-gray-800 dark:text-white'
             : 'text-gray-500 dark:text-gray-400'"
-          class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
+          class="text-theme-sm rounded-lg px-3 py-2 font-medium transition hover:text-gray-900 dark:hover:text-white"
         >
           Completed
         </button>
 
         <button
-          @click="selected = 'cancelled'"
-          :class="selected === 'cancelled'
-            ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800'
+          @click="selected = 'Cancelled'"
+          :class="selected === 'Cancelled'
+            ? 'bg-white text-gray-900 shadow-theme-xs dark:bg-gray-800 dark:text-white'
             : 'text-gray-500 dark:text-gray-400'"
-          class="text-theme-sm rounded-md px-3 py-2 font-medium hover:text-gray-900 dark:hover:text-white"
+          class="text-theme-sm rounded-lg px-3 py-2 font-medium transition hover:text-gray-900 dark:hover:text-white"
         >
           Cancelled
         </button>
@@ -57,136 +55,137 @@
     </div>
   </div>
 
-<div
-x-data="{
-appointments: [],
+  <div
+    x-data="{
+      appointments: [],
 
-async loadAppointments(){
-    const res = await fetch('/api/appointments/',{
-        credentials:'include'
-    })
-    this.appointments = await res.json()
-},
+      async loadAppointments(){
+        const res = await fetch('/api/appointments/',{
+          credentials:'include'
+        })
+        this.appointments = await res.json()
+      },
 
-async updateStatus(id,status){
-    await fetch(`/api/appointments/${id}/status`,{
-        method:'PATCH',
-        headers:{'Content-Type':'application/json'},
-        credentials:'include',
-        body: JSON.stringify({status:status})
-    })
-    this.loadAppointments()
-},
+      async updateStatus(id,status){
+        await fetch(`/api/appointments/${id}/status/`,{
+          method:'PATCH',
+          headers:{'Content-Type':'application/json'},
+          credentials:'include',
+          body: JSON.stringify({status:status})
+        })
+        this.loadAppointments()
+      },
 
-formatTime(start,end){
-    const s = new Date(start)
-    const e = new Date(end)
+      formatTime(start,end){
+        const s = new Date(start)
+        const e = new Date(end)
 
-    return s.toLocaleString([],{
-        dateStyle:'medium',
-        timeStyle:'short'
-    }) + ' - ' +
-    e.toLocaleTimeString([],{
-        timeStyle:'short'
-    })
-}
-}"
-x-init="loadAppointments()"
->
-    <div class="min-w-[700px] p-4 text-sm text-gray-700 dark:text-gray-300">
+        return s.toLocaleString([], {
+          dateStyle:'medium',
+          timeStyle:'short'
+        }) + ' - ' +
+        e.toLocaleTimeString([], {
+          timeStyle:'short'
+        })
+      }
+    }"
+    x-init="loadAppointments()"
+  >
+    <div class="rounded-xl border border-gray-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3 text-sm text-gray-700 dark:border-gray-800 dark:from-white/[0.04] dark:to-white/[0.01] dark:text-gray-300">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-sm font-semibold text-gray-800 dark:text-white/90">Appointments Overview</p>
+          <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Manage current appointment requests and status updates from one place.</p>
+        </div>
+        <div class="inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-gray-700 shadow-sm dark:bg-gray-800 dark:text-gray-300">
+          System View
+        </div>
+      </div>
+    </div>
 
-      <div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+    <div class="min-w-[700px] pt-4 text-sm text-gray-700 dark:text-gray-300">
+      <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-white/[0.03]">
         <div class="max-w-full overflow-x-auto">
           <table class="min-w-full">
             <thead>
-            <tr class="border-b border-gray-100 dark:border-gray-800">
-            <th class="px-5 py-3 sm:px-6">Patient</th>
-            <th class="px-5 py-3 sm:px-6">Reason</th>
-            <th class="px-5 py-3 sm:px-6">Time</th>
-            <th class="px-5 py-3 sm:px-6">Status</th>
-            <th class="px-5 py-3 sm:px-6">Actions</th>
-            </tr>
+              <tr class="border-b border-gray-100 bg-gray-50/80 dark:border-gray-800 dark:bg-white/[0.02]">
+                <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Patient</th>
+                <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Reason</th>
+                <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Time</th>
+                <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Status</th>
+                <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Actions</th>
+              </tr>
             </thead>
 
             <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-            <template x-for="appt in appointments" :key="appt.appointment_id">
+              <template x-for="appt in appointments.filter(a => a.status === selected)" :key="appt.appointment_id">
+                <tr class="transition hover:bg-gray-50/70 dark:hover:bg-white/[0.02]">
+                  <td class="px-5 py-4 sm:px-6">
+                    <div class="flex items-center gap-3">
+                      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700 dark:bg-brand-500/20 dark:text-brand-300">
+                        <span x-text="(appt.patient_name || '?').charAt(0)"></span>
+                      </div>
+                      <span class="font-medium text-gray-800 dark:text-white/90" x-text="appt.patient_name"></span>
+                    </div>
+                  </td>
 
-            <tr>
+                  <td class="px-5 py-4 sm:px-6">
+                    <span class="inline-flex items-center justify-center rounded-full bg-brand-500 px-2.5 py-1 text-xs font-medium text-white">
+                      General Consultation
+                    </span>
+                  </td>
 
-            <td class="px-5 py-4 text-center">
-            <span x-text="appt.patient_name"></span>
-            </td>
+                  <td class="px-5 py-4 sm:px-6">
+                    <span class="text-gray-700 dark:text-gray-300" x-text="formatTime(appt.slot_start, appt.slot_end)"></span>
+                  </td>
 
-            <td class="px-5 py-4 text-center">
-            <span class="inline-flex items-center justify-center rounded-full bg-brand-500 px-2.5 py-0.5 text-sm font-medium text-white">
-            General Consultation
-            </span>
-            </td>
+                  <td class="px-5 py-4 sm:px-6">
+                    <span
+                      x-show="appt.status==='Upcoming'"
+                      class="inline-flex rounded-full bg-warning-500 px-3 py-1 text-xs text-white">
+                      Upcoming
+                    </span>
 
-            <td class="px-5 py-4 text-center">
-            <span x-text="formatTime(appt.slot_start, appt.slot_end)"></span>
-            </td>
+                    <span
+                      x-show="appt.status==='Completed'"
+                      class="inline-flex rounded-full bg-success-500 px-3 py-1 text-white text-xs">
+                      Completed
+                    </span>
 
-            <td class="px-5 py-4 text-center">
+                    <span
+                      x-show="appt.status==='Cancelled'"
+                      class="inline-flex rounded-full bg-error-500 px-3 py-1 text-white text-xs">
+                      Cancelled
+                    </span>
+                  </td>
 
-            <span
-            x-show="appt.status==='scheduled'"
-            class="inline-flex rounded-full bg-warning-500 px-3 py-1 text-white text-xs">
-            Upcoming
-            </span>
-
-            <span
-            x-show="appt.status==='completed'"
-            class="inline-flex rounded-full bg-success-500 px-3 py-1 text-white text-xs">
-            Completed
-            </span>
-
-            <span
-            x-show="appt.status==='cancelled'"
-            class="inline-flex rounded-full bg-error-500 px-3 py-1 text-white text-xs">
-            Cancelled
-            </span>
-
-            </td>
-
-            <td class="px-5 py-4 text-center">
-
-            <div class="flex justify-center gap-2">
-
-            <button
-            class="rounded-lg bg-green-500 px-3 py-1 text-xs font-medium text-white hover:bg-green-600 transition">
-            Complete
-            </button>
-
-            <button
-            class="rounded-lg bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600 transition">
-            Cancel
-            </button>
-
-            </div>
-
-            </td>
-
-            </tr>
-
-            </template>
+                  <td class="px-5 py-4 sm:px-6">
+                    <div class="flex flex-wrap gap-2">
+                      <template x-if="appt.status === 'Upcoming'">
+                        <div class="flex flex-wrap gap-2">
+                          <button
+                            @click="updateStatus(appt.appointment_id, 'Completed')"
+                            class="rounded-lg bg-green-500 px-3 py-2 text-xs font-medium text-white transition hover:bg-green-600">
+                            Complete
+                          </button>
+                          <button
+                            @click="updateStatus(appt.appointment_id, 'Cancelled')"
+                            class="rounded-lg bg-red-500 px-3 py-2 text-xs font-medium text-white transition hover:bg-red-600">
+                            Cancel
+                          </button>
+                        </div>
+                      </template>
+                      <template x-if="appt.status !== 'Upcoming'">
+                        <span class="text-xs text-gray-400 dark:text-gray-500">No actions</span>
+                      </template>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
-            </table>
+          </table>
         </div>
       </div>
     </div>
   </div>
-
-  <div x-show="selected === 'completed'" x-transition.opacity>
-    <div class="min-w-[700px] p-4 text-sm text-gray-700 dark:text-gray-300">
-      Completed appointments table goes here
-    </div>
-  </div>
-
-  <div x-show="selected === 'cancelled'" x-transition.opacity>
-    <div class="min-w-[700px] p-4 text-sm text-gray-700 dark:text-gray-300">
-      Cancelled appointments table goes here
-    </div>
-  </div>
-
 </div>

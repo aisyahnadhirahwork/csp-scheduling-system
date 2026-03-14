@@ -131,10 +131,12 @@ class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    preference = models.ForeignKey(PatientPreference, on_delete=models.SET_NULL, null=True, blank=True)
     slot_start = models.DateTimeField()
     slot_end = models.DateTimeField()
     penalty = models.IntegerField(null=True, blank=True, help_text="Solver penalty score for this assignment")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="Upcoming")
+    reschedule_count = models.IntegerField(default=0, help_text="Number of times this appointment has been rescheduled")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

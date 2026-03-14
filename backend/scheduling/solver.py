@@ -15,7 +15,7 @@ from ortools.sat.python import cp_model
 
 from django.db.models import Q
 
-from .models import Doctor, DoctorBlockedSlot, PatientPreference
+from .models import Appointment, Doctor, DoctorBlockedSlot, PatientPreference
 
 
 def get_doctor_available_slots(doctor, date, session_length=timedelta(hours=1)):
@@ -63,6 +63,25 @@ def get_doctor_available_hour_indices(doctor, date):
             # if the one‑hour slot overlaps the blocked interval, drop it
             if not (slot_end <= blk_start or slot_start >= blk_end):
                 indices.remove(idx)
+
+    # remove slots that already have an active appointment (Upcoming)
+    day_start = datetime.combine(date, time(9, 0))
+    day_end = datetime.combine(date, time(17, 0))
+    booked = Appointment.objects.filter(
+        doctor=doctor,
+        status="Upcoming",
+        slot_start__gte=day_start,
+        slot_start__lt=day_end,
+    )
+    for appt in booked:
+        appt_start = appt.slot_start.hour + appt.slot_start.minute / 60.0
+        appt_end = appt.slot_end.hour + appt.slot_end.minute / 60.0
+        for idx in list(indices):
+            slot_start = 9 + idx
+            slot_end = slot_start + 1
+            if not (slot_end <= appt_start or slot_start >= appt_end):
+                indices.remove(idx)
+
     return indices
 
 

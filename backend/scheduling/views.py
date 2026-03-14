@@ -451,6 +451,8 @@ def appointments_api(request):
                 "status": a.status,
                 "slot_start": a.slot_start.isoformat(),
                 "slot_end": a.slot_end.isoformat(),
+                "reschedule_count": a.reschedule_count,
+                "preference_id": a.preference_id,
             })
         return JsonResponse(data, safe=False, status=200)
 
@@ -470,12 +472,21 @@ def appointments_api(request):
         slot_start = data.get("slot_start")
         slot_end = data.get("slot_end")
         penalty = data.get("penalty")
+        preference_id = data.get("preference_id")
         if not (doctor_id and slot_start and slot_end):
             return JsonResponse({"error": "doctor_id, slot_start, slot_end required"}, status=400)
         try:
             doctor = Doctor.objects.get(doctor_id=doctor_id)
         except Doctor.DoesNotExist:
             return JsonResponse({"error": "Doctor not found"}, status=404)
+
+        preference = None
+        if preference_id:
+            try:
+                preference = PatientPreference.objects.get(preference_id=preference_id, patient=patient)
+            except PatientPreference.DoesNotExist:
+                pass
+
         try:
             appt = Appointment.objects.create(
                 patient=patient,
@@ -483,9 +494,225 @@ def appointments_api(request):
                 slot_start=slot_start,
                 slot_end=slot_end,
                 penalty=penalty,
+                preference=preference,
             )
             return JsonResponse({"message": "Appointment created", "appointment_id": appt.appointment_id}, status=201)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
     else:
         return JsonResponse({"error": "Method not allowed"}, status=405)
+
+
+@csrf_exempt
+def cancel_appointment_api(request, appointment_id):
+    """Cancel an appointment by setting its status to Cancelled."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication required"}, status=401)
+
+    if request.method != "POST":
+        return JsonResponse({"error": "POST only"}, status=405)
+
+    try:
+        appt = Appointment.objects.get(appointment_id=appointment_id)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"error": "Appointment not found"}, status=404)
+
+    # Ensure the logged-in user owns this appointment (patient check)
+    try:
+        patient = Patient.objects.get(user_id=request.user)
+    except Patient.DoesNotExist:
+        return JsonResponse({"error": "User is not a patient"}, status=403)
+
+    if appt.patient_id != patient.patient_id:
+        return JsonResponse({"error": "Not authorized to cancel this appointment"}, status=403)
+
+    if appt.status == "Cancelled":
+        return JsonResponse({"error": "Appointment is already cancelled"}, status=400)
+
+    appt.status = "Cancelled"
+    appt.save()
+
+    return JsonResponse({"message": "Appointment cancelled successfully"}, status=200)
+
+
+@csrf_exempt
+def update_appointment_status_api(request, appointment_id):
+    """Update appointment status (doctor only)."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication required"}, status=401)
+
+    if request.method != "PATCH":
+        return JsonResponse({"error": "PATCH only"}, status=405)
+
+    try:
+        doctor = Doctor.objects.get(user_id=request.user)
+    except Doctor.DoesNotExist:
+        return JsonResponse({"error": "User is not a doctor"}, status=403)
+
+    try:
+        appt = Appointment.objects.get(appointment_id=appointment_id)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"error": "Appointment not found"}, status=404)
+
+    if appt.doctor_id != doctor.doctor_id:
+        return JsonResponse({"error": "Not authorized to update this appointment"}, status=403)
+
+    try:
+        data = json.loads(request.body)
+    except Exception:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    new_status = data.get("status")
+    if new_status not in ("Upcoming", "Completed", "Cancelled"):
+        return JsonResponse({"error": "Invalid status. Must be Upcoming, Completed, or Cancelled"}, status=400)
+
+    appt.status = new_status
+    appt.save()
+
+    return JsonResponse({"message": "Status updated successfully"}, status=200)
+
+
+@csrf_exempt
+def reschedule_search_api(request, appointment_id):
+    """Search for reschedule options using the appointment's original preferences."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication required"}, status=401)
+
+    if request.method != "GET":
+        return JsonResponse({"error": "GET only"}, status=405)
+
+    try:
+        patient = Patient.objects.get(user_id=request.user)
+    except Patient.DoesNotExist:
+        return JsonResponse({"error": "User is not a patient"}, status=403)
+
+    try:
+        appt = Appointment.objects.get(appointment_id=appointment_id)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"error": "Appointment not found"}, status=404)
+
+    if appt.patient_id != patient.patient_id:
+        return JsonResponse({"error": "Not authorized"}, status=403)
+
+    if appt.status != "Upcoming":
+        return JsonResponse({"error": "Only upcoming appointments can be rescheduled"}, status=400)
+
+    if appt.reschedule_count >= 1:
+        return JsonResponse({"error": "This appointment has already been rescheduled once. No further reschedules allowed."}, status=400)
+
+    pref = appt.preference
+    if not pref:
+        # Build a temporary preference from the appointment's current data
+        doctor = appt.doctor
+        slot_hour = appt.slot_start.hour
+        if slot_hour < 12:
+            time_range = "MORNING"
+        elif slot_hour < 14:
+            time_range = "MIDDAY"
+        else:
+            time_range = "AFTERNOON"
+        pref = PatientPreference(
+            patient=patient,
+            preferred_specialty=doctor.specialisation,
+            preferred_gender="any",
+            preferred_time_range=time_range,
+            session_length_minutes=int((appt.slot_end - appt.slot_start).total_seconds() / 60),
+        )
+
+    from .solver import rank_doctors_for_preference, get_doctor_available_hour_indices
+
+    session_len = pref.session_length_minutes or 60
+
+    # Use tomorrow as the search start date so we find future slots
+    search_date = (datetime.now() + timedelta(days=1)).date()
+    # Temporarily override the preference request_date for the search
+    original_date = pref.request_date
+    pref.request_date = search_date
+
+    try:
+        raw_matches = rank_doctors_for_preference(pref, limit=5, session_length=timedelta(minutes=session_len))
+    finally:
+        # Restore original date (don't save)
+        pref.request_date = original_date
+
+    matches = []
+    for doc, slot, penalty in raw_matches:
+        matches.append({
+            "doctor_id": doc.doctor_id,
+            "name": f"{doc.user_id.first_name} {doc.user_id.last_name}",
+            "specialty": doc.specialisation,
+            "gender": doc.gender,
+            "slot": {
+                "start": slot[0].isoformat() if slot[0] else None,
+                "end": slot[1].isoformat() if slot[1] else None,
+            },
+            "penalty": penalty,
+        })
+
+    return JsonResponse({"matches": matches}, status=200)
+
+
+@csrf_exempt
+def reschedule_confirm_api(request, appointment_id):
+    """Confirm a reschedule: update the appointment with the new doctor/slot."""
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication required"}, status=401)
+
+    if request.method != "POST":
+        return JsonResponse({"error": "POST only"}, status=405)
+
+    try:
+        patient = Patient.objects.get(user_id=request.user)
+    except Patient.DoesNotExist:
+        return JsonResponse({"error": "User is not a patient"}, status=403)
+
+    try:
+        appt = Appointment.objects.get(appointment_id=appointment_id)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"error": "Appointment not found"}, status=404)
+
+    if appt.patient_id != patient.patient_id:
+        return JsonResponse({"error": "Not authorized"}, status=403)
+
+    if appt.status != "Upcoming":
+        return JsonResponse({"error": "Only upcoming appointments can be rescheduled"}, status=400)
+
+    if appt.reschedule_count >= 1:
+        return JsonResponse({"error": "This appointment has already been rescheduled once. No further reschedules allowed."}, status=400)
+
+    try:
+        data = json.loads(request.body)
+    except Exception:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    doctor_id = data.get("doctor_id")
+    slot_start = data.get("slot_start")
+    slot_end = data.get("slot_end")
+    penalty = data.get("penalty")
+
+    if not (doctor_id and slot_start and slot_end):
+        return JsonResponse({"error": "doctor_id, slot_start, slot_end required"}, status=400)
+
+    try:
+        doctor = Doctor.objects.get(doctor_id=doctor_id)
+    except Doctor.DoesNotExist:
+        return JsonResponse({"error": "Doctor not found"}, status=404)
+
+    # Check that the new slot is not already booked
+    conflict = Appointment.objects.filter(
+        doctor=doctor,
+        slot_start=slot_start,
+        slot_end=slot_end,
+        status="Upcoming",
+    ).exclude(appointment_id=appt.appointment_id).exists()
+    if conflict:
+        return JsonResponse({"error": "This slot is already booked"}, status=409)
+
+    appt.doctor = doctor
+    appt.slot_start = slot_start
+    appt.slot_end = slot_end
+    appt.penalty = penalty
+    appt.reschedule_count += 1
+    appt.save()
+
+    return JsonResponse({"message": "Appointment rescheduled successfully"}, status=200)

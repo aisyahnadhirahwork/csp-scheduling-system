@@ -5,6 +5,116 @@
             first_name: localStorage.getItem('first_name') || '',
             last_name: localStorage.getItem('last_name') || '',
             user_type: localStorage.getItem('user_type') || ''
+        },
+        upcomingAppointments: [],
+        loadingUpcoming: true,
+        appointmentError: '',
+        async init() {
+            await this.fetchUpcomingAppointments();
+        },
+        async fetchUpcomingAppointments() {
+            this.loadingUpcoming = true;
+            this.appointmentError = '';
+            try {
+                const res = await fetch('/api/appointments/', { credentials: 'include' });
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.error || 'Failed to load appointments');
+                }
+
+                this.upcomingAppointments = (Array.isArray(data) ? data : []).filter((appt) =>
+                    (appt.status || '').toLowerCase() === 'upcoming'
+                );
+            } catch (error) {
+                console.error('Failed to fetch appointments:', error);
+                this.appointmentError = error.message || 'Could not load appointments';
+                this.upcomingAppointments = [];
+            } finally {
+                this.loadingUpcoming = false;
+            }
+        },
+        formatDate(value) {
+            if (!value) return '-';
+            const dt = new Date(value);
+            if (Number.isNaN(dt.getTime())) return '-';
+            return dt.toLocaleDateString([], { dateStyle: 'medium' });
+        },
+        formatTime(value) {
+            if (!value) return '-';
+            const dt = new Date(value);
+            if (Number.isNaN(dt.getTime())) return '-';
+            return dt.toLocaleTimeString([], { timeStyle: 'short' });
+        },
+        async cancelAppointment(appointmentId) {
+            if (!confirm('Are you sure you want to cancel this appointment?')) return;
+            try {
+                const res = await fetch(`/api/appointments/${appointmentId}/cancel/`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to cancel appointment');
+                await this.fetchUpcomingAppointments();
+            } catch (error) {
+                console.error('Cancel failed:', error);
+                alert(error.message || 'Could not cancel the appointment');
+            }
+        },
+        rescheduleApptId: null,
+        rescheduleMatches: [],
+        rescheduleLoading: false,
+        rescheduleError: '',
+        async searchReschedule(appointmentId) {
+            this.rescheduleApptId = appointmentId;
+            this.rescheduleMatches = [];
+            this.rescheduleLoading = true;
+            this.rescheduleError = '';
+            try {
+                const res = await fetch(`/api/appointments/${appointmentId}/reschedule/search/`, {
+                    credentials: 'include'
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to find reschedule options');
+                this.rescheduleMatches = data.matches || [];
+                if (this.rescheduleMatches.length === 0) {
+                    this.rescheduleError = 'No available slots found for rescheduling.';
+                }
+            } catch (error) {
+                console.error('Reschedule search failed:', error);
+                this.rescheduleError = error.message || 'Could not search for reschedule options';
+            } finally {
+                this.rescheduleLoading = false;
+            }
+        },
+        async confirmReschedule(match) {
+            if (!confirm(`Reschedule to Dr. ${match.name} on ${this.formatDate(match.slot.start)} at ${this.formatTime(match.slot.start)}?`)) return;
+            try {
+                const res = await fetch(`/api/appointments/${this.rescheduleApptId}/reschedule/confirm/`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        doctor_id: match.doctor_id,
+                        slot_start: match.slot.start,
+                        slot_end: match.slot.end,
+                        penalty: match.penalty
+                    })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to confirm reschedule');
+                this.rescheduleApptId = null;
+                this.rescheduleMatches = [];
+                await this.fetchUpcomingAppointments();
+            } catch (error) {
+                console.error('Reschedule confirm failed:', error);
+                alert(error.message || 'Could not reschedule the appointment');
+            }
+        },
+        cancelReschedule() {
+            this.rescheduleApptId = null;
+            this.rescheduleMatches = [];
+            this.rescheduleError = '';
         }
     }">
     <div
@@ -19,56 +129,168 @@
             </p>
         </div>
     </div>
-    <div
-        class="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between"
-        >
-       <div class="mt-5 flex items-end justify-between">
-            <div class="grid grid-cols-1 gap-5 sm:grid-cols-6">
-                    <div class="sm:col-span-1">
-                      <label
-                        class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                      >
-                        First Name<span class="text-error-500"></span>
-                      </label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        readonly
-                        x-model="patient.first_name"
-                        class="dark:bg-gray-900 h-11 w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800
-                        cursor-default"
-                      />
+    <div class="mt-3 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div class="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-5 shadow-sm dark:border-gray-800 dark:from-white/[0.03] dark:to-white/[0.01]">
+            <div class="mb-5 flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-sm font-semibold text-brand-700 dark:bg-brand-500/20 dark:text-brand-300">
+                        PI
                     </div>
-                    <div class="sm:col-span-1">
-                      <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        placeholder="Last Name"
-                        readonly
-                        x-model="patient.last_name"
-                        class="dark:bg-gray-900 h-11 w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800 cursor-default"
-                      />
+                    <div>
+                        <h4 class="text-base font-semibold text-gray-800 dark:text-white/90">Patient Profile</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Your account details used for booking</p>
                     </div>
-                    <div class="sm:col-span-1">
-                      <label
-                        class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                      >
-                        User Type<span class="text-error-500"></span>
-                      </label>
-                      <input
-                        type="text"
-                        name="user_type"
-                        placeholder="User Type"
-                        readonly
-                        x-model="patient.user_type"
-                        class="dark:bg-gray-900 h-11 w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800
-                        cursor-default"
-                      />
+                </div>
+                <span class="rounded-full bg-success-50 px-2.5 py-1 text-xs font-medium text-success-700 dark:bg-success-500/15 dark:text-success-400">
+                    Active
+                </span>
+            </div>
+
+            <div class="mb-4 rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900/40">
+                <p class="text-xs uppercase tracking-wide text-gray-400">Display Name</p>
+                <p class="mt-1 text-sm font-semibold text-gray-800 dark:text-white/90" x-text="`${patient.first_name || '-'} ${patient.last_name || ''}`.trim() || '-'"></p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+                <div class="rounded-xl border border-gray-200 bg-white px-3 py-2.5 dark:border-gray-800 dark:bg-gray-900/40">
+                    <p class="text-xs uppercase tracking-wide text-gray-400">First Name</p>
+                    <p class="mt-1 text-sm font-medium text-gray-800 dark:text-white/90" x-text="patient.first_name || '-'" ></p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white px-3 py-2.5 dark:border-gray-800 dark:bg-gray-900/40">
+                    <p class="text-xs uppercase tracking-wide text-gray-400">Last Name</p>
+                    <p class="mt-1 text-sm font-medium text-gray-800 dark:text-white/90" x-text="patient.last_name || '-'" ></p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white px-3 py-2.5 dark:border-gray-800 dark:bg-gray-900/40">
+                    <p class="text-xs uppercase tracking-wide text-gray-400">Role</p>
+                    <p class="mt-1 text-sm font-medium capitalize text-gray-800 dark:text-white/90" x-text="patient.user_type || '-'" ></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-5 shadow-sm dark:border-gray-800 dark:from-white/[0.03] dark:to-white/[0.01]">
+            <div class="mb-5 flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-sm font-semibold text-brand-700 dark:bg-brand-500/20 dark:text-brand-300">
+                        AP
                     </div>
-                  </div>
+                    <div>
+                        <h4 class="text-base font-semibold text-gray-800 dark:text-white/90">Upcoming Appointment</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">All upcoming appointments for your account</p>
+                    </div>
+                </div>
+                <span class="rounded-full bg-warning-50 px-2.5 py-1 text-xs font-medium text-warning-700 dark:bg-warning-500/15 dark:text-warning-400" x-text="`${upcomingAppointments.length} Upcoming`"></span>
+            </div>
+
+            <div class="max-h-[460px] overflow-y-auto pr-1">
+                <template x-if="loadingUpcoming">
+                    <div class="rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900/40 dark:text-gray-400">
+                        Loading appointments...
+                    </div>
+                </template>
+
+                <template x-if="!loadingUpcoming && appointmentError">
+                    <div class="rounded-xl border border-error-200 bg-error-50 p-4 text-sm text-error-700 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-300" x-text="appointmentError"></div>
+                </template>
+
+                <template x-if="!loadingUpcoming && !appointmentError && upcomingAppointments.length === 0">
+                    <div class="rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900/40 dark:text-gray-400">
+                        No upcoming appointments found.
+                    </div>
+                </template>
+
+                <div class="space-y-3" x-show="!loadingUpcoming && !appointmentError && upcomingAppointments.length > 0" x-cloak>
+                    <template x-for="appt in upcomingAppointments" :key="appt.appointment_id">
+                        <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900/40">
+                            <div class="mb-3 flex items-center justify-between">
+                                <p class="text-xs font-semibold uppercase tracking-wide text-gray-400" x-text="`Appointment #${appt.appointment_id}`"></p>
+                                <span class="rounded-full bg-success-50 px-2.5 py-1 text-xs font-medium text-success-700 dark:bg-success-500/15 dark:text-success-400" x-text="appt.status"></span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between border-b border-gray-100 pb-2 dark:border-gray-800">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Doctor</span>
+                                    <span class="text-sm font-semibold text-gray-800 dark:text-white/90" x-text="appt.doctor_name || '-'" ></span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-gray-100 pb-2 dark:border-gray-800">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Patient</span>
+                                    <span class="text-sm font-semibold text-gray-800 dark:text-white/90" x-text="appt.patient_name || '-'" ></span>
+                                </div>
+                                <div class="flex items-center justify-between border-b border-gray-100 pb-2 dark:border-gray-800">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Date</span>
+                                    <span class="text-sm font-semibold text-gray-800 dark:text-white/90" x-text="formatDate(appt.slot_start)"></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Time</span>
+                                    <span class="text-sm font-semibold text-gray-800 dark:text-white/90" x-text="`${formatTime(appt.slot_start)} - ${formatTime(appt.slot_end)}`"></span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center justify-end gap-2">
+                                <button
+                                    type="button"
+                                    x-show="appt.reschedule_count < 1"
+                                    @click="searchReschedule(appt.appointment_id)"
+                                    :disabled="rescheduleLoading && rescheduleApptId === appt.appointment_id"
+                                    class="inline-flex items-center justify-center rounded-lg bg-warning-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-warning-600 focus:outline-hidden focus:ring-3 focus:ring-warning-500/20 disabled:opacity-50"
+                                >
+                                    <span x-show="!(rescheduleLoading && rescheduleApptId === appt.appointment_id)">Reschedule</span>
+                                    <span x-show="rescheduleLoading && rescheduleApptId === appt.appointment_id">Searching...</span>
+                                </button>
+                                <span
+                                    x-show="appt.reschedule_count >= 1"
+                                    class="text-xs text-gray-400 dark:text-gray-500 italic"
+                                >Already rescheduled</span>
+                                <button
+                                    type="button"
+                                    @click="cancelAppointment(appt.appointment_id)"
+                                    class="inline-flex items-center justify-center rounded-lg bg-error-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-error-600 focus:outline-hidden focus:ring-3 focus:ring-error-500/20"
+                                >
+                                    Cancel Appointment
+                                </button>
+                            </div>
+
+                            <!-- Reschedule results panel -->
+                            <template x-if="rescheduleApptId === appt.appointment_id && !rescheduleLoading">
+                                <div class="mt-4 rounded-xl border border-warning-200 bg-warning-50 p-4 dark:border-warning-500/30 dark:bg-warning-500/10">
+                                    <div class="mb-3 flex items-center justify-between">
+                                        <h5 class="text-sm font-semibold text-gray-800 dark:text-white/90">Reschedule Options</h5>
+                                        <button
+                                            type="button"
+                                            @click="cancelReschedule()"
+                                            class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                        >&times; Close</button>
+                                    </div>
+
+                                    <template x-if="rescheduleError">
+                                        <p class="text-sm text-error-600 dark:text-error-400" x-text="rescheduleError"></p>
+                                    </template>
+
+                                    <template x-if="!rescheduleError && rescheduleMatches.length > 0">
+                                        <div class="space-y-2">
+                                            <template x-for="(match, idx) in rescheduleMatches" :key="idx">
+                                                <div class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900/40">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-gray-800 dark:text-white/90" x-text="`Dr. ${match.name}`"></p>
+                                                        <p class="text-xs text-gray-500 dark:text-gray-400" x-text="`${match.specialty} | ${formatDate(match.slot.start)} | ${formatTime(match.slot.start)} - ${formatTime(match.slot.end)}`"></p>
+                                                        <p class="text-xs text-gray-400 dark:text-gray-500" x-text="`Penalty: ${match.penalty}`"></p>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        @click="confirmReschedule(match)"
+                                                        class="inline-flex items-center justify-center rounded-lg bg-brand-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-brand-600"
+                                                    >
+                                                        Confirm Reschedule
+                                                    </button>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -270,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (Alpine) {
             let arr = [];
             Alpine.store('latestPreference', data);
+            Alpine.store('preferenceId', result.preference_id || null);
             if (!Alpine.store || !Alpine.store('matches')) {
                 Alpine.store('matches', []);
               }
@@ -320,31 +321,76 @@ document.addEventListener("DOMContentLoaded", () => {
       tbody.innerHTML = ""; // Clear existing rows
 
       if (!res.ok) {
-        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-4 text-center text-gray-500">Error loading slots</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="rounded-xl border border-error-200 bg-error-50 px-5 py-6 text-center text-sm text-error-700 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-300">Error loading slots</td></tr>`;
         return;
       }
 
       if (slots.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-4 text-center text-gray-500">No blocked slots</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="rounded-xl border border-gray-200 bg-gray-50 px-5 py-8 text-center dark:border-gray-800 dark:bg-white/[0.03]"><p class="text-sm font-medium text-gray-700 dark:text-gray-300">No blocked slots yet.</p><p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Blocked times you create will appear here for quick review.</p></td></tr>`;
         return;
       }
 
+      const formatSlotDate = (value) => {
+        if (!value) return "-";
+        const date = new Date(`${value}T00:00:00`);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleDateString([], {
+          weekday: "short",
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      };
+
+      const formatSlotTime = (value) => {
+        if (!value) return "-";
+        const [hours, minutes] = value.split(":");
+        if (hours === undefined || minutes === undefined) return value;
+        const date = new Date();
+        date.setHours(Number(hours), Number(minutes), 0, 0);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
+      };
+
+      const formatReasonLabel = (value) => {
+        if (!value) return "Unavailable";
+        return value
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (char) => char.toUpperCase());
+      };
+
       slots.forEach(slot => {
         const row = document.createElement("tr");
+        const formattedDate = formatSlotDate(slot.date);
+        const formattedStartTime = formatSlotTime(slot.start_time);
+        const formattedEndTime = formatSlotTime(slot.end_time);
+        const formattedReason = formatReasonLabel(slot.reason);
+        const durationText = formattedStartTime !== "-" && formattedEndTime !== "-"
+          ? `${formattedStartTime} - ${formattedEndTime}`
+          : "Time not available";
+
         row.innerHTML = `
-          <td class="px-5 py-4 sm:px-6">
-            <p class="text-gray-800 text-theme-sm dark:text-white/90">${slot.date}</p>
+          <td class="rounded-l-xl border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
+            <p class="text-theme-sm font-semibold text-gray-800 dark:text-white/90">${formattedDate}</p>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Blocked booking window</p>
           </td>
-          <td class="px-5 py-4 sm:px-6">
-            <p class="text-gray-500 text-theme-sm dark:text-gray-400">${slot.start_time}</p>
+          <td class="border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
+            <p class="text-[11px] font-medium uppercase tracking-wide text-gray-400">Starts</p>
+            <p class="mt-1 text-theme-sm font-medium text-gray-700 dark:text-gray-300">${formattedStartTime}</p>
           </td>
-          <td class="px-5 py-4 sm:px-6">
-            <p class="text-gray-500 text-theme-sm dark:text-gray-400">${slot.end_time}</p>
+          <td class="border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
+            <p class="text-[11px] font-medium uppercase tracking-wide text-gray-400">Ends</p>
+            <p class="mt-1 text-theme-sm font-medium text-gray-700 dark:text-gray-300">${formattedEndTime}</p>
           </td>
-          <td class="px-5 py-4 sm:px-6">
-            <span class="rounded-full bg-warning-50 px-2 py-0.5 text-theme-xs font-medium text-warning-700 dark:bg-warning-500/15 dark:text-warning-400">
-              ${slot.reason}
+          <td class="rounded-r-xl border border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
+            <span class="rounded-full bg-warning-50 px-2.5 py-1 text-theme-xs font-medium text-warning-700 dark:bg-warning-500/15 dark:text-warning-400">
+              ${formattedReason}
             </span>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">${durationText}</p>
           </td>
         `;
         tbody.appendChild(row);

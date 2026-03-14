@@ -11,4 +11,8 @@ urlpatterns = [
     path('api/appointments/', views.appointments_api, name='api_appointments'),
     path('api/current-user/', views.current_user_api, name='api_current_user'),
     path('api/patient/preferences/', views.patient_preferences_api, name='api_patient_preferences'),
+    path('api/appointments/<int:appointment_id>/cancel/', views.cancel_appointment_api, name='api_cancel_appointment'),
+    path('api/appointments/<int:appointment_id>/status/', views.update_appointment_status_api, name='api_update_appointment_status'),
+    path('api/appointments/<int:appointment_id>/reschedule/search/', views.reschedule_search_api, name='api_reschedule_search'),
+    path('api/appointments/<int:appointment_id>/reschedule/confirm/', views.reschedule_confirm_api, name='api_reschedule_confirm'),
 ]
