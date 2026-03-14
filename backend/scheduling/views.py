@@ -121,7 +121,8 @@ def signin_api(request):
                 "email": user.email,
                 "user_type": user.user_type,
                 "first_name": user.first_name,
-                "last_name": user.last_name
+                "last_name": user.last_name,
+                "specialty": Doctor.objects.filter(user_id=user).values_list('specialisation', flat=True).first() or ""
             }, status=200)
         else:
             return JsonResponse({

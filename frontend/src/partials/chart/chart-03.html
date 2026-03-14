@@ -1,6 +1,8 @@
 <div
   x-data="{
     selected: 'Upcoming',
+    doctorName: (localStorage.getItem('first_name') || '') + ' ' + (localStorage.getItem('last_name') || ''),
+    doctorSpecialty: localStorage.getItem('specialty') || '',
     patients: [],
     async loadPatients() {
       const res = await fetch('/api/appointments');
@@ -16,7 +18,8 @@
         Appointments
       </h3>
       <p class="text-theme-sm mt-1 text-gray-500 dark:text-gray-400">
-        Manage all appointments for Dr Demo
+        Dr <span x-text="doctorName"></span>
+        <span x-show="doctorSpecialty" x-text="'(' + doctorSpecialty + ')'"></span>
       </p>
     </div>
 

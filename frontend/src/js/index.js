@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("first_name", data.first_name);
         localStorage.setItem("last_name", data.last_name);
         localStorage.setItem("email", data.email);
+        localStorage.setItem("specialty", data.specialty || "");
 
         // Verify session by fetching current user
         const currentUserRes = await fetch("/api/current-user/", { credentials: "include" });
@@ -166,8 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "/signin.html";
   });
 
-  document.getElementById("availability-form")
-    .addEventListener("submit", async function (e) {
+  const availForm = document.getElementById("availability-form");
+  if (availForm) {
+    availForm.addEventListener("submit", async function (e) {
 
       e.preventDefault();
 
@@ -197,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(result.error || "Something went wrong ❌");
       }
     });
+  }
 
   /* =========================
    PATIENT PREFERENCES FORM
