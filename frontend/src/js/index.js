@@ -194,9 +194,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert("Availability saved ✅");
+        let msg = "Blocked slot saved successfully!";
+        if (result.cancelled_appointments > 0) {
+          msg += `\n\n⚠️ ${result.cancelled_appointments} clashing appointment(s) were automatically cancelled.`;
+        }
+        Swal.fire({ icon: 'success', title: 'Saved', text: msg });
       } else {
-        alert(result.error || "Something went wrong ❌");
+        Swal.fire({ icon: 'error', title: 'Error', text: result.error || 'Something went wrong' });
       }
     });
   }

@@ -194,14 +194,34 @@ def create_blocked_slot(request):
             return JsonResponse({"error": "Doctor not found"}, status=404)
     
     try:
+        blocked_date = data["date"]
+        start_time = data["start_time"]
+        end_time = data["end_time"]
+
         DoctorBlockedSlot.objects.create(
             doctor=doctor,
-            blocked_date=data["date"],
-            start_time=data["start_time"],
-            end_time=data["end_time"],
+            blocked_date=blocked_date,
+            start_time=start_time,
+            end_time=end_time,
             reason=data["reason"],
         )
-        return JsonResponse({"message": "Blocked slot created"}, status=201)
+
+        # Auto-cancel any Upcoming appointments that clash with the new block
+        blk_start = datetime.strptime(f"{blocked_date} {start_time}", "%Y-%m-%d %H:%M")
+        blk_end = datetime.strptime(f"{blocked_date} {end_time}", "%Y-%m-%d %H:%M")
+
+        clashing = Appointment.objects.filter(
+            doctor=doctor,
+            status="Upcoming",
+            slot_start__lt=blk_end,
+            slot_end__gt=blk_start,
+        )
+        cancelled_count = clashing.update(status="Cancelled")
+
+        return JsonResponse({
+            "message": "Blocked slot created",
+            "cancelled_appointments": cancelled_count,
+        }, status=201)
     except KeyError as e:
         return JsonResponse({"error": f"Missing field: {str(e)}"}, status=400)
     except Exception as e:
