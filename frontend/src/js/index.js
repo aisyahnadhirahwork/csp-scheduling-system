@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const userType = localStorage.getItem("user_type");
 
   if ((page === "" || page === "index.html") && !userType) {
-    window.location.href = "/signin.html";
+    window.location.href = "/auth.html";
     return;
   }
 
-  if (page === "signin.html" && userType) {
+  if (page === "auth.html" && userType) {
     window.location.href = "/index.html";
     return;
   }
@@ -100,59 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      SIGNIN PAGE LOGIC
   ========================= */
-  if (page === "signin.html") {
-    const form = document.getElementById("signinForm");
-    const loginBtn = document.getElementById("loginBtn");
-    const spinner = document.getElementById("spinner");
-    const errorMsg = document.getElementById("error-msg");
-
-    if (!form || !loginBtn) return;
-
-    form.addEventListener("submit", (e) => e.preventDefault());
-
-    loginBtn.addEventListener("click", async () => {
-      const email = document.getElementById("email")?.value;
-      const password = document.getElementById("password")?.value;
-
-      spinner.style.display = "block";
-      errorMsg.textContent = "";
-
-      try {
-        const res = await fetch("/api/login/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ email, password }),
-        });
-
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Login failed");
-
-        localStorage.setItem("user_type", data.user_type);
-        localStorage.setItem("user_id", data.user_id);
-        localStorage.setItem("first_name", data.first_name);
-        localStorage.setItem("last_name", data.last_name);
-        localStorage.setItem("email", data.email);
-        localStorage.setItem("specialty", data.specialty || "");
-
-        // Verify session by fetching current user
-        const currentUserRes = await fetch("/api/current-user/", { credentials: "include" });
-        const currentUser = await currentUserRes.json();
-        
-        if (currentUserRes.ok) {
-          console.log("✅ Session confirmed:", currentUser);
-        } else {
-          console.warn("⚠️ Session not confirmed:", currentUser);
-        }
-
-        window.location.href = "/index.html";
-      } catch (err) {
-        errorMsg.textContent = err.message;
-      } finally {
-        spinner.style.display = "none";
-      }
-    });
-
+  // auth.html handles its own login via inline script
+  if (page === "auth.html") {
     return;
   }
 
@@ -164,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!btn) return;
 
     localStorage.clear();
-    window.location.href = "/signin.html";
+    window.location.href = "/auth.html";
   });
 
   const availForm = document.getElementById("availability-form");

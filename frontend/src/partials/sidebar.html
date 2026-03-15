@@ -7,23 +7,18 @@
     :class="sidebarToggle ? 'justify-center' : 'justify-between'"
     class="flex items-center gap-2 pt-8 sidebar-header pb-7"
   >
-    <!-- <a href="index.html">
+    <a href="index.html">
       <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
-        <img class="dark:hidden" src="./images/logo/logo.svg" alt="Logo" />
-        <img
-          class="hidden dark:block"
-          src="./images/logo/logo-dark.svg"
-          alt="Logo"
-        />
+        <img src="./images/logo/logo_icon.png" alt="Logo" class="h-8 w-auto object-contain" />
       </span>
 
       <img
-        class="logo-icon"
+        class="logo-icon h-8 w-8 object-contain"
         :class="sidebarToggle ? 'lg:block' : 'hidden'"
-        src="./images/logo/logo-icon.svg"
+        src="./images/logo/logo_icon.png"
         alt="Logo"
       />
-    </a> -->
+    </a>
   </div>
   <!-- SIDEBAR HEADER -->
 
@@ -136,7 +131,7 @@
           <!-- Menu Item Dashboard -->
 
           <!-- Menu Item Doctor Schedule -->
-          <li>
+          <li x-show="localStorage.getItem('user_type') === 'doctor'">
             <a
               href="doctor-schedule.html"
               class="menu-item group"
@@ -667,7 +662,7 @@
               >
                 <li>
                   <a
-                    href="signin.html"
+                    href="auth.html"
                     class="menu-dropdown-item group"
                     :class="page === 'signin' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
                   >
@@ -676,7 +671,7 @@
                 </li>
                 <li>
                   <a
-                    href="signup.html"
+                    href="auth.html"
                     class="menu-dropdown-item group"
                     :class="page === 'signup' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
                   >
