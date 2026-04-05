@@ -29,16 +29,20 @@
 
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
-      <!-- ===== Sidebar Start ===== -->
-      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar Start (doctors only) ===== -->
+      <div class="sidebar-wrapper doctor-view">
+        <include src="./partials/sidebar.html"></include>
+      </div>
       <!-- ===== Sidebar End ===== -->
 
       <!-- ===== Content Area Start ===== -->
       <div
         class="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto"
       >
-        <!-- Small Device Overlay Start -->
-        <include src="./partials/overlay.html" />
+        <!-- Small Device Overlay Start (doctors only) -->
+        <div class="doctor-view">
+          <include src="./partials/overlay.html" />
+        </div>
         <!-- Small Device Overlay End -->
 
         <!-- ===== Header Start ===== -->
