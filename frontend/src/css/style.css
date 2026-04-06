@@ -194,15 +194,15 @@ layer(base);
 }
 
 @utility menu-item {
-  @apply text-theme-sm relative flex items-center gap-3 rounded-lg px-3 py-2 font-medium;
+  @apply text-theme-sm relative flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium transition-all duration-200;
 }
 
 @utility menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-gradient-to-r from-brand-500/15 to-brand-400/5 text-brand-600 shadow-sm shadow-brand-500/5 dark:from-brand-400/15 dark:to-brand-400/5 dark:text-brand-400;
 }
 
 @utility menu-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300;
+  @apply text-gray-600 hover:bg-gray-500/5 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-200;
 }
 
 @utility menu-item-icon-active {
@@ -210,7 +210,7 @@ layer(base);
 }
 
 @utility menu-item-icon-inactive {
-  @apply fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300;
+  @apply fill-gray-400 group-hover:fill-gray-600 dark:fill-gray-500 dark:group-hover:fill-gray-300;
 }
 
 @utility menu-item-arrow {
@@ -226,15 +226,15 @@ layer(base);
 }
 
 @utility menu-dropdown-item {
-  @apply text-theme-sm relative flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium;
+  @apply text-theme-sm relative flex items-center gap-3 rounded-lg px-3 py-2 font-medium transition-all duration-150;
 }
 
 @utility menu-dropdown-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400;
 }
 
 @utility menu-dropdown-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
+  @apply text-gray-500 hover:bg-gray-500/5 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-200;
 }
 
 @utility menu-dropdown-badge {
@@ -278,7 +278,21 @@ layer(base);
 
 @layer base {
   body {
-    @apply font-outfit relative z-1 bg-gray-50 text-base font-normal;
+    @apply font-outfit relative z-1 text-base font-normal;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.2), transparent 35%),
+      radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.16), transparent 35%),
+      linear-gradient(140deg, #e7f1ff, #dff7ef 52%, #f8fbff);
+    background-attachment: fixed;
+  }
+
+  .dark body,
+  body.dark {
+    background:
+      radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.12), transparent 35%),
+      radial-gradient(circle at 82% 18%, rgba(16, 185, 129, 0.08), transparent 35%),
+      linear-gradient(140deg, #0f172a, #1e293b 52%, #0f172a);
+    background-attachment: fixed;
   }
 }
 

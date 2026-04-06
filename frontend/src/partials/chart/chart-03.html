@@ -129,24 +129,72 @@
     }"
     x-init="loadAppointments()"
   >
-    <div class="rounded-xl border border-gray-200 bg-gradient-to-r from-brand-50 to-white px-4 py-3 text-sm text-gray-700 dark:border-gray-800 dark:from-white/[0.04] dark:to-white/[0.01] dark:text-gray-300">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p class="text-sm font-semibold text-gray-800 dark:text-white/90">Appointments Overview</p>
-          <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Manage current appointment requests and status updates from one place.</p>
+    <!-- Stats Dashboard -->
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <!-- Total -->
+      <div
+        class="group relative overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 transition-all duration-200 hover:shadow-md dark:border-gray-800 dark:from-white/[0.04] dark:to-white/[0.02]">
+        <div class="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-brand-500/5 transition-transform duration-300 group-hover:scale-150 dark:bg-brand-500/10"></div>
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-100 dark:bg-brand-500/20">
+          <svg class="h-5 w-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
         </div>
-        <div class="inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-gray-700 shadow-sm dark:bg-gray-800 dark:text-gray-300">
-          System View
+        <p class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" x-text="appointments.length">0</p>
+        <p class="text-[11px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Total</p>
+      </div>
+
+      <!-- Upcoming -->
+      <div
+        @click="selected = 'Upcoming'"
+        class="group relative cursor-pointer overflow-hidden rounded-xl border p-4 transition-all duration-200 hover:shadow-md"
+        :class="selected === 'Upcoming'
+          ? 'border-warning-300 bg-gradient-to-br from-warning-50 to-white ring-1 ring-warning-200 dark:border-warning-500/40 dark:from-warning-500/10 dark:to-white/[0.02] dark:ring-warning-500/20'
+          : 'border-gray-200 bg-gradient-to-br from-white to-warning-50/30 dark:border-gray-800 dark:from-white/[0.04] dark:to-warning-500/5'">
+        <div class="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-warning-500/5 transition-transform duration-300 group-hover:scale-150 dark:bg-warning-500/10"></div>
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-warning-100 dark:bg-warning-500/20">
+          <svg class="h-5 w-5 text-warning-600 dark:text-warning-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </div>
+        <p class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" x-text="appointments.filter(a => a.status === 'Upcoming').length">0</p>
+        <p class="text-[11px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Upcoming</p>
+      </div>
+
+      <!-- Completed -->
+      <div
+        @click="selected = 'Completed'"
+        class="group relative cursor-pointer overflow-hidden rounded-xl border p-4 transition-all duration-200 hover:shadow-md"
+        :class="selected === 'Completed'
+          ? 'border-success-300 bg-gradient-to-br from-success-50 to-white ring-1 ring-success-200 dark:border-success-500/40 dark:from-success-500/10 dark:to-white/[0.02] dark:ring-success-500/20'
+          : 'border-gray-200 bg-gradient-to-br from-white to-success-50/30 dark:border-gray-800 dark:from-white/[0.04] dark:to-success-500/5'">
+        <div class="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-success-500/5 transition-transform duration-300 group-hover:scale-150 dark:bg-success-500/10"></div>
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-success-100 dark:bg-success-500/20">
+          <svg class="h-5 w-5 text-success-600 dark:text-success-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <p class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" x-text="appointments.filter(a => a.status === 'Completed').length">0</p>
+        <p class="text-[11px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Completed</p>
+      </div>
+
+      <!-- Cancelled -->
+      <div
+        @click="selected = 'Cancelled'"
+        class="group relative cursor-pointer overflow-hidden rounded-xl border p-4 transition-all duration-200 hover:shadow-md"
+        :class="selected === 'Cancelled'
+          ? 'border-error-300 bg-gradient-to-br from-error-50 to-white ring-1 ring-error-200 dark:border-error-500/40 dark:from-error-500/10 dark:to-white/[0.02] dark:ring-error-500/20'
+          : 'border-gray-200 bg-gradient-to-br from-white to-error-50/30 dark:border-gray-800 dark:from-white/[0.04] dark:to-error-500/5'">
+        <div class="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-error-500/5 transition-transform duration-300 group-hover:scale-150 dark:bg-error-500/10"></div>
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-error-100 dark:bg-error-500/20">
+          <svg class="h-5 w-5 text-error-600 dark:text-error-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <p class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" x-text="appointments.filter(a => a.status === 'Cancelled').length">0</p>
+        <p class="text-[11px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Cancelled</p>
       </div>
     </div>
 
     <div class="pt-4 text-sm text-gray-700 dark:text-gray-300">
       <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-white/[0.03]">
+        <div class="h-1 bg-gradient-to-r from-brand-400 via-brand-500 to-brand-600"></div>
         <div class="max-h-[500px] overflow-auto">
           <table class="min-w-full">
             <thead class="sticky top-0 z-10">
-              <tr class="border-b border-gray-100 bg-gray-50/80 dark:border-gray-800 dark:bg-white/[0.02]">
+              <tr class="border-b border-gray-100 bg-gray-50/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
                 <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Patient</th>
                 <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Reason</th>
                 <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:px-6">Time</th>
@@ -157,7 +205,7 @@
 
             <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
               <template x-for="appt in appointments.filter(a => a.status === selected).sort((a, b) => sortOrder === 'newest' ? new Date(b.slot_start) - new Date(a.slot_start) : new Date(a.slot_start) - new Date(b.slot_start))" :key="appt.appointment_id">
-                <tr class="transition hover:bg-gray-50/70 dark:hover:bg-white/[0.02]">
+                <tr class="transition-colors duration-150 hover:bg-brand-50/40 dark:hover:bg-white/[0.03]">
                   <td class="px-5 py-4 sm:px-6">
                     <div class="flex items-center gap-3">
                       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700 dark:bg-brand-500/20 dark:text-brand-300">
@@ -180,19 +228,22 @@
                   <td class="px-5 py-4 sm:px-6">
                     <span
                       x-show="appt.status==='Upcoming'"
-                      class="inline-flex rounded-full bg-warning-500 px-3 py-1 text-xs text-white">
+                      class="inline-flex items-center gap-1.5 rounded-full border border-warning-200 bg-warning-50 px-3 py-1 text-xs font-medium text-warning-700 dark:border-warning-500/30 dark:bg-warning-500/10 dark:text-warning-400">
+                      <span class="h-1.5 w-1.5 rounded-full bg-warning-500 animate-pulse"></span>
                       Upcoming
                     </span>
 
                     <span
                       x-show="appt.status==='Completed'"
-                      class="inline-flex rounded-full bg-success-500 px-3 py-1 text-white text-xs">
+                      class="inline-flex items-center gap-1.5 rounded-full border border-success-200 bg-success-50 px-3 py-1 text-xs font-medium text-success-700 dark:border-success-500/30 dark:bg-success-500/10 dark:text-success-400">
+                      <span class="h-1.5 w-1.5 rounded-full bg-success-500"></span>
                       Completed
                     </span>
 
                     <span
                       x-show="appt.status==='Cancelled'"
-                      class="inline-flex rounded-full bg-error-500 px-3 py-1 text-white text-xs">
+                      class="inline-flex items-center gap-1.5 rounded-full border border-error-200 bg-error-50 px-3 py-1 text-xs font-medium text-error-700 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-400">
+                      <span class="h-1.5 w-1.5 rounded-full bg-error-500"></span>
                       Cancelled
                     </span>
                   </td>
