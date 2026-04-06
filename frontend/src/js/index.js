@@ -277,12 +277,12 @@ document.addEventListener("DOMContentLoaded", () => {
       tbody.innerHTML = ""; // Clear existing rows
 
       if (!res.ok) {
-        tbody.innerHTML = `<tr><td colspan="4" class="rounded-xl border border-error-200 bg-error-50 px-5 py-6 text-center text-sm text-error-700 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-300">Error loading slots</td></tr>`;
+        tbody.innerHTML = `<div class="flex flex-col items-center justify-center py-10 text-center"><p class="text-sm font-medium text-error-600 dark:text-error-400">Error loading slots</p></div>`;
         return;
       }
 
       if (slots.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" class="rounded-xl border border-gray-200 bg-gray-50 px-5 py-8 text-center dark:border-gray-800 dark:bg-white/[0.03]"><p class="text-sm font-medium text-gray-700 dark:text-gray-300">No blocked slots yet.</p><p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Blocked times you create will appear here for quick review.</p></td></tr>`;
+        tbody.innerHTML = `<div class="flex flex-col items-center justify-center py-12 text-center"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 5V10L13.3333 11.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="1.5"/></svg></div><p class="mt-3 text-sm font-medium text-gray-600 dark:text-gray-300">No blocked slots yet</p><p class="mt-1 text-xs text-gray-400 dark:text-gray-500">Blocked times you create will appear here.</p></div>`;
         return;
       }
 
@@ -320,34 +320,31 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       slots.forEach(slot => {
-        const row = document.createElement("tr");
+        const row = document.createElement("div");
         const formattedDate = formatSlotDate(slot.date);
         const formattedStartTime = formatSlotTime(slot.start_time);
         const formattedEndTime = formatSlotTime(slot.end_time);
         const formattedReason = formatReasonLabel(slot.reason);
-        const durationText = formattedStartTime !== "-" && formattedEndTime !== "-"
-          ? `${formattedStartTime} - ${formattedEndTime}`
-          : "Time not available";
 
+        row.className = "group relative grid grid-cols-[1.2fr_0.8fr_0.8fr_1fr] items-center gap-3 rounded-xl border border-gray-200/70 bg-white px-4 py-3 transition-all hover:border-error-200 hover:shadow-md hover:shadow-error-500/5 dark:border-gray-800/50 dark:bg-white/[0.02] dark:hover:border-error-500/30";
         row.innerHTML = `
-          <td class="rounded-l-xl border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-            <p class="text-theme-sm font-semibold text-gray-800 dark:text-white/90">${formattedDate}</p>
-            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Blocked booking window</p>
-          </td>
-          <td class="border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-            <p class="text-[11px] font-medium uppercase tracking-wide text-gray-400">Starts</p>
-            <p class="mt-1 text-theme-sm font-medium text-gray-700 dark:text-gray-300">${formattedStartTime}</p>
-          </td>
-          <td class="border border-r-0 border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-            <p class="text-[11px] font-medium uppercase tracking-wide text-gray-400">Ends</p>
-            <p class="mt-1 text-theme-sm font-medium text-gray-700 dark:text-gray-300">${formattedEndTime}</p>
-          </td>
-          <td class="rounded-r-xl border border-gray-200 bg-gray-50 px-5 py-4 align-top dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-            <span class="rounded-full bg-warning-50 px-2.5 py-1 text-theme-xs font-medium text-warning-700 dark:bg-warning-500/15 dark:text-warning-400">
+          <div class="absolute inset-y-2 left-0 w-[3px] rounded-full bg-gradient-to-b from-error-400 to-error-300 opacity-0 transition-opacity group-hover:opacity-100 dark:from-error-500 dark:to-error-400"></div>
+          <div>
+            <p class="text-sm font-semibold text-gray-800 dark:text-white/90">${formattedDate}</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-success-400"></span>
+            <span class="text-sm font-medium tabular-nums text-gray-700 dark:text-gray-300">${formattedStartTime}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-error-400"></span>
+            <span class="text-sm font-medium tabular-nums text-gray-700 dark:text-gray-300">${formattedEndTime}</span>
+          </div>
+          <div>
+            <span class="inline-flex items-center rounded-full border border-error-200/60 bg-error-50/80 px-2.5 py-0.5 text-[11px] font-medium text-error-600 dark:border-error-500/20 dark:bg-error-500/10 dark:text-error-400">
               ${formattedReason}
             </span>
-            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">${durationText}</p>
-          </td>
+          </div>
         `;
         tbody.appendChild(row);
       });
