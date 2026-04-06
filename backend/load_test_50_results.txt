@@ -1,0 +1,182 @@
+
+======================================================================
+  CSP SCHEDULING LOAD TEST
+  Patients to generate : 50
+  Doctors available    : 5
+======================================================================
+
+  Doctor Roster:
+    - Dr Aisyah Hasrin  | general  | Gender: F
+    - Dr Siti Sarah  | cardiology  | Gender: F
+    - Dr John John  | general  | Gender: M
+    - Dr Justin Bieber  | pediatrics  | Gender: M
+    - Dr Abraham John  | cardiology  | Gender: M
+
+----------------------------------------------------------------------
+  STEP 1: Creating fake patients and preferences...
+  Created 50 patients with preferences.
+
+----------------------------------------------------------------------
+  STEP 2: Running CSP solver with penalty calculation...
+  [  1/50] MATCHED  Lynn Spencer            penalty= 0     65.4ms  2026-03-19 09:00 - 09:30
+  [  2/50] MATCHED  Amber Gray              penalty=10     38.7ms  2026-03-19 14:00 - 15:00
+  [  3/50] MATCHED  Kevin Frank             penalty= 0     27.3ms  2026-03-18 09:00 - 10:00
+  [  4/50] MATCHED  Ralph Daniels           penalty=10     27.9ms  2026-03-20 14:00 - 15:00
+  [  5/50] MATCHED  Alex Lee                penalty=10     25.5ms  2026-03-17 14:00 - 15:00
+  [  6/50] MATCHED  Kyle Jones              penalty= 0     27.1ms  2026-03-20 11:00 - 12:00
+  [  7/50] MATCHED  Susan Carey             penalty= 0     25.6ms  2026-03-18 14:00 - 14:30
+  [  8/50] MATCHED  Donna Martin            penalty= 0     30.1ms  2026-03-19 11:00 - 11:30
+  [  9/50] MATCHED  Matthew Moore           penalty= 0     25.6ms  2026-03-20 12:00 - 13:00
+  [ 10/50] MATCHED  Rebecca Townsend        penalty=10     27.9ms  2026-03-19 09:00 - 10:00
+  [ 11/50] MATCHED  James Wiley             penalty= 0     27.5ms  2026-03-20 09:00 - 09:30
+  [ 12/50] MATCHED  Ronald Hernandez        penalty=10     27.6ms  2026-03-16 14:00 - 14:30
+  [ 13/50] MATCHED  Kimberly Collier        penalty=10     26.9ms  2026-03-18 15:00 - 16:00
+  [ 14/50] MATCHED  Mark Osborne            penalty= 0     27.5ms  2026-03-19 15:00 - 15:30
+  [ 15/50] MATCHED  Crystal Williams        penalty= 0     26.6ms  2026-03-19 11:00 - 11:30
+  [ 16/50] MATCHED  Joshua Torres           penalty= 0     28.1ms  2026-03-18 11:00 - 11:30
+  [ 17/50] MATCHED  Dawn Anderson           penalty= 0     27.7ms  2026-03-16 14:00 - 14:30
+  [ 18/50] MATCHED  Heidi Morales           penalty= 0     24.7ms  2026-03-17 11:00 - 11:30
+  [ 19/50] MATCHED  Lori Roberts            penalty= 0     26.8ms  2026-03-16 11:00 - 12:00
+  [ 20/50] MATCHED  Elizabeth James         penalty=10     26.9ms  2026-03-17 12:00 - 12:30
+  [ 21/50] MATCHED  Miranda White           penalty=10     28.9ms  2026-03-20 11:00 - 11:30
+  [ 22/50] MATCHED  David Thomas            penalty=10     26.5ms  2026-03-18 09:00 - 10:00
+  [ 23/50] MATCHED  David Reed              penalty= 0     27.1ms  2026-03-17 14:00 - 14:30
+  [ 24/50] MATCHED  William Lamb            penalty= 0     27.1ms  2026-03-19 11:00 - 11:30
+  [ 25/50] MATCHED  Richard Singh           penalty= 0     27.9ms  2026-03-20 11:00 - 12:00
+  [ 26/50] MATCHED  Cindy Long              penalty= 0     29.8ms  2026-03-18 14:00 - 15:00
+  [ 27/50] MATCHED  Hayley Stanley          penalty=10     40.9ms  2026-03-18 12:00 - 12:30
+  [ 28/50] MATCHED  Sydney Edwards          penalty= 0     29.0ms  2026-03-20 09:00 - 09:30
+  [ 29/50] MATCHED  Dominique Cruz          penalty= 0     26.9ms  2026-03-16 11:00 - 11:30
+  [ 30/50] MATCHED  Valerie King            penalty= 0     26.6ms  2026-03-20 14:00 - 15:00
+  [ 31/50] MATCHED  Sandra Lopez            penalty= 0     27.8ms  2026-03-16 09:00 - 09:30
+  [ 32/50] MATCHED  Jill Cole               penalty= 0     28.2ms  2026-03-20 11:00 - 12:00
+  [ 33/50] MATCHED  Kathleen Estes          penalty= 0     27.3ms  2026-03-17 11:00 - 12:00
+  [ 34/50] MATCHED  Gina Gilbert            penalty= 0     26.9ms  2026-03-17 14:00 - 14:30
+  [ 35/50] MATCHED  Eric Stephens           penalty= 0     27.7ms  2026-03-19 14:00 - 15:00
+  [ 36/50] MATCHED  Steven Pitts            penalty= 0     22.3ms  2026-03-18 14:00 - 15:00
+  [ 37/50] MATCHED  Alison Irwin            penalty= 0     24.3ms  2026-03-16 15:00 - 15:30
+  [ 38/50] MATCHED  Christopher Hawkins     penalty= 0     16.8ms  2026-03-20 14:00 - 15:00
+  [ 39/50] MATCHED  Michael Richmond        penalty= 0     24.3ms  2026-03-19 09:00 - 10:00
+  [ 40/50] MATCHED  Allen Horton            penalty= 0     21.6ms  2026-03-20 09:00 - 09:30
+  [ 41/50] MATCHED  Alexandra Robles        penalty= 0     24.9ms  2026-03-19 12:00 - 13:00
+  [ 42/50] MATCHED  Derek Bradley           penalty= 0     20.2ms  2026-03-19 15:00 - 16:00
+  [ 43/50] MATCHED  Samuel Chavez           penalty= 0     25.8ms  2026-03-19 09:00 - 09:30
+  [ 44/50] MATCHED  Colleen Shaw            penalty= 0     21.2ms  2026-03-19 16:00 - 17:00
+  [ 45/50] MATCHED  Beth Wilson             penalty= 0     26.6ms  2026-03-17 09:00 - 09:30
+  [ 46/50] MATCHED  Steven Love             penalty= 0     19.9ms  2026-03-20 14:00 - 14:30
+  [ 47/50] MATCHED  Stephanie Rodriguez     penalty= 0     26.4ms  2026-03-19 14:00 - 15:00
+  [ 48/50] MATCHED  Joann Waller            penalty=10     32.5ms  2026-03-19 12:00 - 13:00
+  [ 49/50] MATCHED  Jennifer Li             penalty=10     27.9ms  2026-03-19 16:00 - 16:30
+  [ 50/50] MATCHED  Robert Moore            penalty= 0     18.4ms  2026-03-20 12:00 - 12:30
+
+======================================================================
+  PENALTY CALCULATION BREAKDOWN
+======================================================================
+  #    Patient              Doctor                 Spec  Gen Time Total  Details
+  ----------------------------------------------------------------------------------------------------
+  1    Lynn Spencer         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  2    Amber Gray           Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  3    Kevin Frank          Dr John John              0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  4    Ralph Daniels        Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  5    Alex Lee             Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  6    Kyle Jones           Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  7    Susan Carey          Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  8    Donna Martin         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  9    Matthew Moore        Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  10   Rebecca Townsend     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  11   James Wiley          Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  12   Ronald Hernandez     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  13   Kimberly Collier     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  14   Mark Osborne         Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  15   Crystal Williams     Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  16   Joshua Torres        Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  17   Dawn Anderson        Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  18   Heidi Morales        Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  19   Lori Roberts         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  20   Elizabeth James      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  21   Miranda White        Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  22   David Thomas         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  23   David Reed           Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  24   William Lamb         Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  25   Richard Singh        Dr John John              0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  26   Cindy Long           Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  27   Hayley Stanley       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  28   Sydney Edwards       Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  29   Dominique Cruz       Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  30   Valerie King         Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  31   Sandra Lopez         Dr John John              0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  32   Jill Cole            Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  33   Kathleen Estes       Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  34   Gina Gilbert         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  35   Eric Stephens        Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  36   Steven Pitts         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  37   Alison Irwin         Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  38   Christopher Hawkins  Dr John John              0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  39   Michael Richmond     Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  40   Allen Horton         Dr Abraham John           0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  41   Alexandra Robles     Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  42   Derek Bradley        Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  43   Samuel Chavez        Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  44   Colleen Shaw         Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+  45   Beth Wilson          Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  46   Steven Love          Dr Justin Bieber          0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  47   Stephanie Rodriguez  Dr Siti Sarah             0    0    0     0  specialty(exact match): 0 | gender(any): 0 | time(in window): 0
+  48   Joann Waller         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(exact match): 0 | time(in window): 0
+  49   Jennifer Li          Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=pediatrics, got=general): +10 | gender(any): 0 | time(in window): 0
+  50   Robert Moore         Dr Aisyah Hasrin          0    0    0     0  specialty(exact match): 0 | gender(exact match): 0 | time(in window): 0
+
+======================================================================
+  RESULTS SUMMARY
+======================================================================
+  Total patients tested     : 50
+  Successfully allocated    : 50
+  Failed to get appointment : 0
+  Allocation success rate   : 100.0%
+
+  --------------------------------------------------
+  PENALTY STATISTICS
+  --------------------------------------------------
+  Perfect matches (pen=0)   : 38
+  Imperfect matches (pen>0) : 12
+  Avg penalty per match     : 2.40
+  Max penalty               : 10
+  Total penalty (all)       : 120
+    - Specialty mismatches  : 120  (12 patients)
+    - Gender mismatches     : 0  (0 patients)
+    - Time-range mismatches : 0  (0 patients)
+
+  --------------------------------------------------
+  SOLVER PERFORMANCE
+  --------------------------------------------------
+  Total solver time         : 1373.4ms
+  Avg matching time         : 27.5ms
+  Min matching time         : 16.8ms
+  Max matching time         : 65.4ms
+  Doctors in system         : 5
+
+  --------------------------------------------------
+  BREAKDOWN BY DATE
+  --------------------------------------------------
+    Mon 2026-03-16 : 6 matched, 0 failed  (of 6)  avg_penalty=1.7
+    Tue 2026-03-17 : 8 matched, 0 failed  (of 8)  avg_penalty=3.8
+    Wed 2026-03-18 : 8 matched, 0 failed  (of 8)  avg_penalty=3.8
+    Thu 2026-03-19 : 15 matched, 0 failed  (of 15)  avg_penalty=2.0
+    Fri 2026-03-20 : 13 matched, 0 failed  (of 13)  avg_penalty=1.5
+
+  --------------------------------------------------
+  BREAKDOWN BY SPECIALTY
+  --------------------------------------------------
+    general        : 12/12 matched  avg_penalty=0.0
+    cardiology     : 17/17 matched  avg_penalty=0.0
+    pediatrics     : 21/21 matched  avg_penalty=5.7
+
+  --------------------------------------------------
+  BREAKDOWN BY TIME PREFERENCE
+  --------------------------------------------------
+    MORNING        : 11/11 matched  avg_penalty=1.8
+    MIDDAY         : 18/18 matched  avg_penalty=2.2
+    AFTERNOON      : 21/21 matched  avg_penalty=2.9
+
+======================================================================
+  Tip: Run with --cleanup to remove test data afterwards.
+       python manage.py load_test_50 --cleanup
