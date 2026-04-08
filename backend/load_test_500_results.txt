@@ -1,0 +1,1135 @@
+
+======================================================================
+  CSP SCHEDULING LOAD TEST
+  Patients to generate : 500
+  Doctors available    : 50
+======================================================================
+
+  Doctor Roster:
+    - Dr Danielle Johnson  | Cardiology  | Gender: M
+    - Dr Donald Garcia  | Orthopedics  | Gender: M
+    - Dr Robert Johnson  | Orthopedics  | Gender: M
+    - Dr Carolyn Hoffman  | Cardiology  | Gender: F
+    - Dr Shane Ramirez  | Dermatology  | Gender: M
+    - Dr Matthew Moore  | General  | Gender: M
+    - Dr Noah Howard  | General  | Gender: F
+    - Dr Jessica Herrera  | Orthopedics  | Gender: M
+    - Dr Kelly Fuller  | General  | Gender: M
+    - Dr Brandon Perez  | Cardiology  | Gender: M
+    - Dr Michelle James  | Cardiology  | Gender: F
+    - Dr Mitchell Clark  | Orthopedics  | Gender: M
+    - Dr Cynthia Ferguson  | Dermatology  | Gender: M
+    - Dr Noah Mayo  | Pediatrics  | Gender: M
+    - Dr Megan Parsons  | Pediatrics  | Gender: M
+    - Dr Richard Jones  | Cardiology  | Gender: F
+    - Dr Diana Foster  | Cardiology  | Gender: F
+    - Dr Joseph Wright  | Orthopedics  | Gender: F
+    - Dr Ross Silva  | Cardiology  | Gender: M
+    - Dr William Davis  | Cardiology  | Gender: M
+    - Dr Courtney Conner  | Dermatology  | Gender: M
+    - Dr Patrick Ferrell  | Orthopedics  | Gender: F
+    - Dr Michelle Smith  | Orthopedics  | Gender: M
+    - Dr Karen Mack  | Pediatrics  | Gender: M
+    - Dr Ryan Chavez  | Orthopedics  | Gender: F
+    - Dr Kathleen Romero  | Orthopedics  | Gender: F
+    - Dr Chelsea Hernandez  | Orthopedics  | Gender: M
+    - Dr Mario Smith  | Cardiology  | Gender: F
+    - Dr Brian Humphrey  | Dermatology  | Gender: M
+    - Dr Lisa Spence  | Cardiology  | Gender: M
+    - Dr Donna Arroyo  | Orthopedics  | Gender: F
+    - Dr Monique Henderson  | Pediatrics  | Gender: M
+    - Dr Raymond Powers  | Orthopedics  | Gender: F
+    - Dr Shannon Wright  | General  | Gender: F
+    - Dr Brianna Hall  | General  | Gender: M
+    - Dr Jean Brown  | Pediatrics  | Gender: M
+    - Dr Chad Young  | Cardiology  | Gender: F
+    - Dr Amber Cummings  | Cardiology  | Gender: F
+    - Dr Kristen Aguirre  | General  | Gender: M
+    - Dr Donna Gomez  | General  | Gender: F
+    - Dr Emily Joyce  | Dermatology  | Gender: M
+    - Dr Jessica Mcbride  | Cardiology  | Gender: M
+    - Dr James West  | Pediatrics  | Gender: M
+    - Dr Steven Baxter  | Orthopedics  | Gender: F
+    - Dr Corey Pearson  | General  | Gender: M
+    - Dr Sara Allison  | Dermatology  | Gender: F
+    - Dr Timothy Hancock  | Dermatology  | Gender: M
+    - Dr Aaron Myers  | Dermatology  | Gender: F
+    - Dr Heather Cross  | Cardiology  | Gender: F
+    - Dr James Robinson  | Pediatrics  | Gender: M
+
+----------------------------------------------------------------------
+  STEP 1: Creating fake patients and preferences...
+  Created 500 patients with preferences.
+
+----------------------------------------------------------------------
+  STEP 2: Running CSP solver with penalty calculation...
+  [  1/500] MATCHED  Mary Baird              penalty= 0    138.7ms  2026-04-16 14:00 - 14:30
+  [  2/500] MATCHED  Sandra Romero           penalty= 0     72.0ms  2026-04-08 11:00 - 12:00
+  [  3/500] MATCHED  Lori Campbell           penalty= 0     84.7ms  2026-04-20 14:00 - 15:00
+  [  4/500] MATCHED  Amanda Reed             penalty= 0     74.5ms  2026-04-17 11:00 - 11:30
+  [  5/500] MATCHED  Tina Allen              penalty= 0     48.7ms  2026-04-10 11:00 - 12:00
+  [  6/500] MATCHED  Janet Shepherd          penalty= 0     42.9ms  2026-04-09 11:00 - 12:00
+  [  7/500] MATCHED  Molly Sawyer            penalty= 0     74.8ms  2026-04-08 14:00 - 14:30
+  [  8/500] MATCHED  Robert Pena             penalty= 0     67.8ms  2026-04-08 11:00 - 12:00
+  [  9/500] MATCHED  Debra Christian         penalty=10     76.1ms  2026-04-17 11:00 - 12:00
+  [ 10/500] MATCHED  Monique Johnson         penalty= 0     74.2ms  2026-04-10 14:00 - 14:30
+  [ 11/500] MATCHED  Ryan Garcia             penalty= 0     94.6ms  2026-04-08 12:00 - 13:00
+  [ 12/500] MATCHED  Rebecca Williams        penalty= 0     67.6ms  2026-04-13 11:00 - 11:30
+  [ 13/500] MATCHED  John Jenkins            penalty= 0     91.2ms  2026-04-09 09:00 - 10:00
+  [ 14/500] MATCHED  Christine Allen         penalty= 0     67.5ms  2026-04-09 09:00 - 10:00
+  [ 15/500] MATCHED  Steve Estrada           penalty= 0     91.6ms  2026-04-13 16:00 - 16:30
+  [ 16/500] MATCHED  Scott Reed              penalty= 0     75.3ms  2026-04-13 14:00 - 15:00
+  [ 17/500] MATCHED  Stephen Turner          penalty= 0     96.0ms  2026-04-16 09:00 - 10:00
+  [ 18/500] MATCHED  Bailey Haney            penalty= 0     80.1ms  2026-04-07 14:00 - 14:30
+  [ 19/500] MATCHED  Ashlee Jennings         penalty= 0     75.0ms  2026-04-07 15:00 - 15:30
+  [ 20/500] MATCHED  Catherine Gomez         penalty=10     86.0ms  2026-04-10 14:00 - 14:30
+  [ 21/500] MATCHED  Courtney Berger         penalty= 0     74.8ms  2026-04-07 11:00 - 12:00
+  [ 22/500] MATCHED  Jessica Davis           penalty= 0     75.4ms  2026-04-14 14:00 - 14:30
+  [ 23/500] MATCHED  David Ryan              penalty= 0     68.0ms  2026-04-17 14:00 - 15:00
+  [ 24/500] MATCHED  Robin Raymond           penalty= 0     68.2ms  2026-04-14 09:00 - 09:30
+  [ 25/500] MATCHED  Karen Perez             penalty= 0     81.8ms  2026-04-15 14:00 - 15:00
+  [ 26/500] MATCHED  Alexander Herrera       penalty=10     84.2ms  2026-04-14 14:00 - 15:00
+  [ 27/500] MATCHED  Lynn Bentley            penalty= 0     42.3ms  2026-04-10 11:00 - 12:00
+  [ 28/500] MATCHED  Rose Walker             penalty=10     92.5ms  2026-04-16 14:00 - 15:00
+  [ 29/500] MATCHED  Darryl Williams         penalty= 0     41.7ms  2026-04-13 11:00 - 11:30
+  [ 30/500] MATCHED  Paige Taylor            penalty= 0     88.8ms  2026-04-14 14:00 - 14:30
+  [ 31/500] MATCHED  Nicole Pena             penalty= 0     77.3ms  2026-04-20 11:00 - 12:00
+  [ 32/500] MATCHED  Jeff Wallace            penalty=10     75.2ms  2026-04-14 09:00 - 10:00
+  [ 33/500] MATCHED  Bruce Hill              penalty= 0    102.3ms  2026-04-16 09:00 - 09:30
+  [ 34/500] MATCHED  Brent Cook              penalty= 0     43.4ms  2026-04-20 09:00 - 09:30
+  [ 35/500] MATCHED  Brenda Li               penalty= 0     91.7ms  2026-04-14 09:00 - 10:00
+  [ 36/500] MATCHED  Michele Thomas          penalty= 0     92.5ms  2026-04-17 11:00 - 11:30
+  [ 37/500] MATCHED  David Howard            penalty= 0     46.5ms  2026-04-20 12:00 - 13:00
+  [ 38/500] MATCHED  Brian Harmon            penalty= 0     43.6ms  2026-04-08 14:00 - 15:00
+  [ 39/500] MATCHED  Kimberly Palmer         penalty= 0    101.3ms  2026-04-16 14:00 - 14:30
+  [ 40/500] MATCHED  Jessica Kerr            penalty= 0     74.7ms  2026-04-17 11:00 - 11:30
+  [ 41/500] MATCHED  Bruce Mendoza           penalty= 0     57.7ms  2026-04-15 14:00 - 15:00
+  [ 42/500] MATCHED  Charles Miller          penalty= 0    107.3ms  2026-04-09 10:00 - 11:00
+  [ 43/500] MATCHED  Oscar Harper            penalty= 0     90.4ms  2026-04-16 14:00 - 14:30
+  [ 44/500] MATCHED  Laura Wilson            penalty= 0    106.5ms  2026-04-17 14:00 - 15:00
+  [ 45/500] MATCHED  Pamela Gutierrez        penalty= 0     50.3ms  2026-04-15 11:00 - 12:00
+  [ 46/500] MATCHED  Larry Scott             penalty= 0     43.9ms  2026-04-16 09:00 - 09:30
+  [ 47/500] MATCHED  Ryan Garner             penalty= 0     42.9ms  2026-04-09 14:00 - 15:00
+  [ 48/500] MATCHED  Elizabeth Jenkins       penalty= 0     43.9ms  2026-04-15 15:00 - 16:00
+  [ 49/500] MATCHED  Michael Lane            penalty= 0     75.8ms  2026-04-09 14:00 - 14:30
+  [ 50/500] MATCHED  Michael Hawkins         penalty= 0     98.1ms  2026-04-13 14:00 - 14:30
+  [ 51/500] MATCHED  Chelsea Barrett         penalty= 0     99.8ms  2026-04-13 09:00 - 10:00
+  [ 52/500] MATCHED  Sandra Bell             penalty= 0     70.2ms  2026-04-09 15:00 - 15:30
+  [ 53/500] MATCHED  Joyce Bonilla           penalty= 0     75.2ms  2026-04-17 09:00 - 10:00
+  [ 54/500] MATCHED  Matthew Wood            penalty= 0     91.8ms  2026-04-14 15:00 - 15:30
+  [ 55/500] MATCHED  Eric Webster            penalty= 0     64.7ms  2026-04-08 11:00 - 12:00
+  [ 56/500] MATCHED  Todd Ramos              penalty= 0     50.9ms  2026-04-10 14:00 - 15:00
+  [ 57/500] MATCHED  Daniel Gregory          penalty= 0     86.1ms  2026-04-16 14:00 - 14:30
+  [ 58/500] MATCHED  Randall Greene          penalty= 0    101.9ms  2026-04-10 11:00 - 12:00
+  [ 59/500] MATCHED  Keith Wilson            penalty= 0     91.1ms  2026-04-15 09:00 - 09:30
+  [ 60/500] MATCHED  Vincent Whitaker        penalty= 0     43.4ms  2026-04-08 11:00 - 11:30
+  [ 61/500] MATCHED  Steve Miller            penalty= 0     91.7ms  2026-04-20 12:00 - 13:00
+  [ 62/500] MATCHED  Keith Sullivan          penalty= 0     73.5ms  2026-04-09 14:00 - 15:00
+  [ 63/500] MATCHED  Christopher Richard     penalty= 0     69.4ms  2026-04-15 14:00 - 14:30
+  [ 64/500] MATCHED  Randy Collins           penalty= 0     99.7ms  2026-04-10 12:00 - 12:30
+  [ 65/500] MATCHED  Alyssa Lee              penalty= 0    106.1ms  2026-04-14 14:00 - 14:30
+  [ 66/500] MATCHED  Dwayne Gonzalez         penalty= 0     43.0ms  2026-04-09 14:00 - 15:00
+  [ 67/500] MATCHED  Steven Elliott          penalty= 0     89.1ms  2026-04-16 14:00 - 15:00
+  [ 68/500] MATCHED  Michelle Burton         penalty= 0     67.4ms  2026-04-16 09:00 - 10:00
+  [ 69/500] MATCHED  Laura Vargas            penalty= 0     76.1ms  2026-04-17 09:00 - 10:00
+  [ 70/500] MATCHED  Benjamin Wood           penalty= 0     43.0ms  2026-04-08 14:00 - 15:00
+  [ 71/500] MATCHED  Steven Spencer          penalty= 0     92.1ms  2026-04-07 11:00 - 11:30
+  [ 72/500] MATCHED  Marc Alvarez            penalty= 0     43.5ms  2026-04-07 11:00 - 11:30
+  [ 73/500] MATCHED  William Thompson        penalty= 0     84.2ms  2026-04-16 11:00 - 11:30
+  [ 74/500] MATCHED  Michael Hardin          penalty= 0     81.3ms  2026-04-15 11:00 - 12:00
+  [ 75/500] MATCHED  Cameron Davis           penalty=10     83.8ms  2026-04-15 11:00 - 11:30
+  [ 76/500] MATCHED  Mathew Aguilar          penalty= 0     74.9ms  2026-04-14 11:00 - 11:30
+  [ 77/500] MATCHED  Kyle Bennett            penalty= 0     91.0ms  2026-04-09 14:00 - 15:00
+  [ 78/500] MATCHED  William Smith           penalty= 0     75.4ms  2026-04-09 09:00 - 09:30
+  [ 79/500] MATCHED  Jeremy Taylor           penalty= 0     91.6ms  2026-04-13 09:00 - 09:30
+  [ 80/500] MATCHED  Ebony Walter            penalty= 0     80.0ms  2026-04-09 16:00 - 16:30
+  [ 81/500] MATCHED  Henry Schwartz          penalty= 0     76.2ms  2026-04-09 14:00 - 15:00
+  [ 82/500] MATCHED  Michael Ball            penalty= 0     75.5ms  2026-04-20 11:00 - 11:30
+  [ 83/500] MATCHED  Kyle Stokes             penalty= 0     81.5ms  2026-04-10 11:00 - 12:00
+  [ 84/500] MATCHED  Kayla Strickland        penalty= 0    108.7ms  2026-04-17 12:00 - 12:30
+  [ 85/500] MATCHED  Monique Williams        penalty= 0     42.6ms  2026-04-14 14:00 - 14:30
+  [ 86/500] MATCHED  Justin Hines            penalty= 0     99.3ms  2026-04-16 15:00 - 15:30
+  [ 87/500] MATCHED  Stacey Walker           penalty= 0     75.8ms  2026-04-14 10:00 - 11:00
+  [ 88/500] MATCHED  Wayne Young             penalty= 0     43.1ms  2026-04-14 10:00 - 10:30
+  [ 89/500] MATCHED  Mary Santos             penalty= 0     68.8ms  2026-04-09 10:00 - 10:30
+  [ 90/500] MATCHED  Katherine Harrison      penalty= 0     45.9ms  2026-04-07 09:00 - 09:30
+  [ 91/500] MATCHED  Mary Dunn               penalty= 0     75.0ms  2026-04-20 15:00 - 16:00
+  [ 92/500] MATCHED  John Martinez           penalty= 0     91.6ms  2026-04-15 14:00 - 14:30
+  [ 93/500] MATCHED  Daniel Stein            penalty= 0     85.7ms  2026-04-17 09:00 - 09:30
+  [ 94/500] MATCHED  Jennifer Carter         penalty= 0     99.7ms  2026-04-20 11:00 - 12:00
+  [ 95/500] MATCHED  Jacob Barnett           penalty= 0     84.8ms  2026-04-14 09:00 - 09:30
+  [ 96/500] MATCHED  Peter Harrison          penalty=10     71.0ms  2026-04-15 12:00 - 12:30
+  [ 97/500] MATCHED  Michael Jones           penalty= 0     74.8ms  2026-04-08 14:00 - 14:30
+  [ 98/500] MATCHED  Michael Morgan          penalty= 0     75.6ms  2026-04-09 15:00 - 16:00
+  [ 99/500] MATCHED  Crystal Cain            penalty= 0     76.0ms  2026-04-16 09:00 - 09:30
+  [100/500] MATCHED  Kylie Blackwell         penalty= 0     68.6ms  2026-04-13 15:00 - 16:00
+  [101/500] MATCHED  Jon Mullins             penalty= 0     43.5ms  2026-04-13 11:00 - 12:00
+  [102/500] MATCHED  Joshua Lloyd            penalty= 0     68.5ms  2026-04-15 14:00 - 15:00
+  [103/500] MATCHED  Terri Crawford          penalty= 0     91.0ms  2026-04-14 14:00 - 15:00
+  [104/500] MATCHED  Christian Morrison      penalty= 0     74.7ms  2026-04-17 11:00 - 11:30
+  [105/500] MATCHED  Mark Phillips           penalty= 0     80.4ms  2026-04-20 16:00 - 17:00
+  [106/500] MATCHED  Michael Williams        penalty=10     77.1ms  2026-04-20 11:00 - 11:30
+  [107/500] MATCHED  Charles Walsh           penalty= 0     90.3ms  2026-04-17 15:00 - 15:30
+  [108/500] MATCHED  Melinda Gregory         penalty= 0     52.4ms  2026-04-07 10:00 - 11:00
+  [109/500] MATCHED  Michael Herring         penalty= 0     75.4ms  2026-04-20 09:00 - 10:00
+  [110/500] MATCHED  Scott Jones             penalty= 0     68.2ms  2026-04-17 12:00 - 13:00
+  [111/500] MATCHED  John Wilson             penalty= 0     78.9ms  2026-04-09 11:00 - 11:30
+  [112/500] MATCHED  Jose Green              penalty=10     81.2ms  2026-04-10 15:00 - 16:00
+  [113/500] MATCHED  James Taylor            penalty= 0     77.4ms  2026-04-16 10:00 - 11:00
+  [114/500] MATCHED  Elizabeth Mckinney      penalty= 0     71.7ms  2026-04-17 12:00 - 12:30
+  [115/500] MATCHED  Laura Hicks             penalty= 0     89.7ms  2026-04-10 09:00 - 09:30
+  [116/500] MATCHED  Michael Armstrong       penalty= 0     93.7ms  2026-04-17 09:00 - 09:30
+  [117/500] MATCHED  Kyle Key                penalty= 0     76.3ms  2026-04-16 14:00 - 14:30
+  [118/500] MATCHED  David Stewart           penalty= 0     84.9ms  2026-04-16 11:00 - 11:30
+  [119/500] MATCHED  Natalie Deleon          penalty= 0     92.1ms  2026-04-20 09:00 - 09:30
+  [120/500] MATCHED  Marie Holmes            penalty=10     71.9ms  2026-04-09 09:00 - 09:30
+  [121/500] MATCHED  Michael Everett         penalty= 0    107.2ms  2026-04-08 11:00 - 12:00
+  [122/500] MATCHED  David Turner            penalty= 0    107.3ms  2026-04-08 14:00 - 14:30
+  [123/500] MATCHED  George Weber            penalty= 0     42.4ms  2026-04-14 14:00 - 14:30
+  [124/500] MATCHED  Brandon May             penalty= 0    108.3ms  2026-04-13 14:00 - 15:00
+  [125/500] MATCHED  Christine Johnson       penalty= 0     83.1ms  2026-04-17 11:00 - 11:30
+  [126/500] MATCHED  Linda Cohen             penalty= 0     42.5ms  2026-04-16 10:00 - 11:00
+  [127/500] MATCHED  Robert Marshall         penalty=10     76.5ms  2026-04-20 09:00 - 10:00
+  [128/500] MATCHED  Jessica Valencia        penalty= 0     83.3ms  2026-04-09 11:00 - 11:30
+  [129/500] MATCHED  Luis Owens              penalty= 0     98.9ms  2026-04-16 10:00 - 10:30
+  [130/500] MATCHED  Kelly Cruz              penalty= 0     98.7ms  2026-04-15 10:00 - 11:00
+  [131/500] MATCHED  James Moore             penalty= 0     73.9ms  2026-04-16 11:00 - 11:30
+  [132/500] MATCHED  Christopher Long        penalty= 0     92.4ms  2026-04-10 09:00 - 09:30
+  [133/500] MATCHED  Brent Simpson           penalty= 0     90.4ms  2026-04-16 12:00 - 12:30
+  [134/500] MATCHED  Ryan Khan               penalty= 0     70.8ms  2026-04-14 11:00 - 12:00
+  [135/500] MATCHED  Brett Hoffman           penalty= 0     41.8ms  2026-04-17 11:00 - 12:00
+  [136/500] MATCHED  Kathy Ramirez           penalty= 0     91.4ms  2026-04-20 10:00 - 11:00
+  [137/500] MATCHED  Nathaniel Hatfield      penalty= 0    100.2ms  2026-04-14 09:00 - 10:00
+  [138/500] MATCHED  Vincent Williams        penalty= 0     90.4ms  2026-04-14 11:00 - 11:30
+  [139/500] MATCHED  Catherine Robertson     penalty= 0     90.8ms  2026-04-20 11:00 - 12:00
+  [140/500] MATCHED  Brittney Romero         penalty= 0     86.4ms  2026-04-17 11:00 - 12:00
+  [141/500] MATCHED  Lisa Richardson         penalty= 0     86.6ms  2026-04-08 11:00 - 11:30
+  [142/500] MATCHED  Candice Baker           penalty= 0    106.5ms  2026-04-20 14:00 - 14:30
+  [143/500] MATCHED  Brandy Jackson          penalty= 0    102.3ms  2026-04-20 12:00 - 12:30
+  [144/500] MATCHED  Anthony Vaughan         penalty= 0     70.4ms  2026-04-10 09:00 - 10:00
+  [145/500] MATCHED  Edward Vaughn           penalty= 0     75.1ms  2026-04-17 14:00 - 14:30
+  [146/500] MATCHED  Janice Stone            penalty= 0     87.8ms  2026-04-14 14:00 - 15:00
+  [147/500] MATCHED  Lee Thompson            penalty=10    140.0ms  2026-04-14 15:00 - 16:00
+  [148/500] MATCHED  Chelsea Lee             penalty= 0    125.0ms  2026-04-13 14:00 - 15:00
+  [149/500] MATCHED  Kellie Bush             penalty= 0    199.7ms  2026-04-16 11:00 - 12:00
+  [150/500] MATCHED  Keith Berry             penalty= 0    108.6ms  2026-04-15 11:00 - 12:00
+  [151/500] MATCHED  Bobby Moses             penalty=10    123.1ms  2026-04-14 11:00 - 12:00
+  [152/500] MATCHED  Jason Clayton           penalty= 0     74.2ms  2026-04-17 15:00 - 15:30
+  [153/500] MATCHED  Christina Matthews      penalty= 0     93.1ms  2026-04-07 14:00 - 14:30
+  [154/500] MATCHED  Brian Gutierrez         penalty= 0    106.6ms  2026-04-16 10:00 - 10:30
+  [155/500] MATCHED  Richard Donovan         penalty= 0    108.7ms  2026-04-16 16:00 - 17:00
+  [156/500] MATCHED  Justin Brown            penalty= 0     89.5ms  2026-04-20 09:00 - 09:30
+  [157/500] MATCHED  Robin Thompson          penalty= 0     74.6ms  2026-04-07 12:00 - 13:00
+  [158/500] MATCHED  Nancy Smith             penalty= 0     74.9ms  2026-04-20 09:00 - 10:00
+  [159/500] MATCHED  Veronica Daniels        penalty= 0     91.6ms  2026-04-09 15:00 - 15:30
+  [160/500] MATCHED  Lisa Rivera             penalty=10     92.2ms  2026-04-16 15:00 - 15:30
+  [161/500] MATCHED  Alexis Rogers           penalty= 0    106.1ms  2026-04-20 14:00 - 15:00
+  [162/500] MATCHED  Margaret Robertson      penalty= 0     74.2ms  2026-04-15 16:00 - 16:30
+  [163/500] MATCHED  Thomas Boyle            penalty= 0    153.6ms  2026-04-13 11:00 - 12:00
+  [164/500] MATCHED  Stephanie Turner        penalty=10     76.2ms  2026-04-20 10:00 - 11:00
+  [165/500] MATCHED  Heather Brown           penalty= 0    106.3ms  2026-04-16 11:00 - 12:00
+  [166/500] MATCHED  Hannah Fowler           penalty= 0    104.6ms  2026-04-14 15:00 - 15:30
+  [167/500] MATCHED  Timothy Gibson          penalty= 0     90.7ms  2026-04-14 12:00 - 12:30
+  [168/500] MATCHED  Kathleen Becker         penalty= 0     73.8ms  2026-04-08 14:00 - 15:00
+  [169/500] MATCHED  Christian Elliott       penalty= 0    106.7ms  2026-04-17 14:00 - 14:30
+  [170/500] MATCHED  Franklin Bond           penalty= 0    106.6ms  2026-04-08 15:00 - 16:00
+  [171/500] MATCHED  Christopher Dixon       penalty= 0     91.1ms  2026-04-16 09:00 - 10:00
+  [172/500] MATCHED  Anne Hansen             penalty= 0     59.1ms  2026-04-13 14:00 - 15:00
+  [173/500] MATCHED  Lisa Reese              penalty= 0     74.9ms  2026-04-08 09:00 - 09:30
+  [174/500] MATCHED  Amber Brown             penalty= 0     92.0ms  2026-04-16 10:00 - 10:30
+  [175/500] MATCHED  Kayla Cannon            penalty= 0    104.8ms  2026-04-15 11:00 - 12:00
+  [176/500] MATCHED  Nicholas Vega           penalty= 0     89.4ms  2026-04-17 10:00 - 10:30
+  [177/500] MATCHED  Victoria Long           penalty= 0     42.8ms  2026-04-10 09:00 - 10:00
+  [178/500] MATCHED  Emily Stephens          penalty= 0    107.9ms  2026-04-15 09:00 - 10:00
+  [179/500] MATCHED  Eric Lopez              penalty= 0     75.1ms  2026-04-08 09:00 - 09:30
+  [180/500] MATCHED  John Jones              penalty= 0     91.6ms  2026-04-07 12:00 - 12:30
+  [181/500] MATCHED  John Williams           penalty= 0    106.8ms  2026-04-10 14:00 - 14:30
+  [182/500] MATCHED  William Roberts         penalty= 0     90.9ms  2026-04-20 11:00 - 12:00
+  [183/500] MATCHED  Joel Walter             penalty= 0     74.9ms  2026-04-17 10:00 - 11:00
+  [184/500] MATCHED  Bruce Fry               penalty= 0     75.3ms  2026-04-09 16:00 - 17:00
+  [185/500] MATCHED  Brandon Cooper          penalty=10     90.5ms  2026-04-15 14:00 - 15:00
+  [186/500] MATCHED  Ricky Evans             penalty= 0     91.4ms  2026-04-17 11:00 - 12:00
+  [187/500] MATCHED  Meredith Thomas         penalty= 0     74.3ms  2026-04-07 16:00 - 16:30
+  [188/500] MATCHED  Paul Scott              penalty= 0    106.6ms  2026-04-08 12:00 - 12:30
+  [189/500] MATCHED  Brett Bennett           penalty= 0     73.1ms  2026-04-20 09:00 - 09:30
+  [190/500] MATCHED  Timothy Booth           penalty= 0    106.4ms  2026-04-13 10:00 - 10:30
+  [191/500] MATCHED  Julie Webster           penalty= 0    106.8ms  2026-04-20 15:00 - 15:30
+  [192/500] MATCHED  Andrea Rowe             penalty= 0     74.5ms  2026-04-16 15:00 - 16:00
+  [193/500] MATCHED  Michael Andrade         penalty= 0     75.8ms  2026-04-08 15:00 - 15:30
+  [194/500] MATCHED  Nathan Gutierrez        penalty= 0    107.8ms  2026-04-10 15:00 - 16:00
+  [195/500] MATCHED  Angela Silva            penalty= 0    107.3ms  2026-04-15 11:00 - 12:00
+  [196/500] MATCHED  Jerry Hudson            penalty= 0     73.9ms  2026-04-16 16:00 - 17:00
+  [197/500] MATCHED  Tammy May               penalty= 0     73.7ms  2026-04-16 09:00 - 09:30
+  [198/500] MATCHED  Jennifer Freeman        penalty= 0     58.0ms  2026-04-07 14:00 - 14:30
+  [199/500] MATCHED  Kathy Gutierrez         penalty= 0    131.7ms  2026-04-10 10:00 - 10:30
+  [200/500] MATCHED  William Brooks          penalty= 0     99.9ms  2026-04-20 12:00 - 12:30
+  [201/500] MATCHED  Amanda Jenkins          penalty=10    178.8ms  2026-04-17 14:00 - 15:00
+  [202/500] MATCHED  Andre Li                penalty= 0     69.8ms  2026-04-15 09:00 - 09:30
+  [203/500] MATCHED  John Harvey             penalty= 0    137.3ms  2026-04-14 12:00 - 13:00
+  [204/500] MATCHED  Susan Stevens           penalty= 0     85.7ms  2026-04-10 12:00 - 12:30
+  [205/500] MATCHED  Clayton Gray            penalty= 0     75.5ms  2026-04-16 09:00 - 09:30
+  [206/500] MATCHED  Christopher Bruce       penalty= 0     67.0ms  2026-04-14 15:00 - 15:30
+  [207/500] MATCHED  Jerry Valenzuela        penalty= 0     87.4ms  2026-04-20 12:00 - 12:30
+  [208/500] MATCHED  Gabrielle Ramirez       penalty= 0     58.9ms  2026-04-20 14:00 - 15:00
+  [209/500] MATCHED  Alexis Clark            penalty= 0     73.3ms  2026-04-15 09:00 - 09:30
+  [210/500] MATCHED  Ashley Atkinson         penalty= 0     75.1ms  2026-04-17 12:00 - 12:30
+  [211/500] MATCHED  Krystal Norris          penalty= 0     58.2ms  2026-04-17 16:00 - 16:30
+  [212/500] MATCHED  Samuel Roberson         penalty= 0     59.3ms  2026-04-20 14:00 - 15:00
+  [213/500] MATCHED  Anthony Nelson          penalty=10     78.4ms  2026-04-16 09:00 - 10:00
+  [214/500] MATCHED  Ryan Frazier            penalty= 0    120.7ms  2026-04-15 09:00 - 09:30
+  [215/500] MATCHED  Jennifer Miller         penalty= 0    122.1ms  2026-04-15 14:00 - 15:00
+  [216/500] MATCHED  Levi Rodriguez          penalty= 0    104.5ms  2026-04-13 12:00 - 12:30
+  [217/500] MATCHED  David Lopez             penalty= 0    120.1ms  2026-04-17 14:00 - 14:30
+  [218/500] MATCHED  Anthony Gomez           penalty= 0     90.4ms  2026-04-20 14:00 - 14:30
+  [219/500] MATCHED  Kelly Hughes            penalty= 0     90.8ms  2026-04-17 10:00 - 10:30
+  [220/500] MATCHED  Gina Jackson            penalty= 0     75.4ms  2026-04-13 11:00 - 11:30
+  [221/500] MATCHED  Gary Hill               penalty= 0     73.8ms  2026-04-16 10:00 - 10:30
+  [222/500] MATCHED  Jennifer Simpson        penalty= 0     59.0ms  2026-04-10 12:00 - 13:00
+  [223/500] MATCHED  Adam Foster             penalty= 0     89.6ms  2026-04-15 12:00 - 13:00
+  [224/500] MATCHED  Lisa Villarreal         penalty=10    138.5ms  2026-04-09 11:00 - 11:30
+  [225/500] MATCHED  Timothy Thompson        penalty= 0     89.8ms  2026-04-14 11:00 - 11:30
+  [226/500] MATCHED  Mark Ramirez            penalty= 0    106.3ms  2026-04-14 10:00 - 10:30
+  [227/500] MATCHED  Erin Pierce             penalty= 0    137.6ms  2026-04-16 14:00 - 15:00
+  [228/500] MATCHED  Marie Jones             penalty= 0    104.1ms  2026-04-16 09:00 - 10:00
+  [229/500] MATCHED  Donna Espinoza          penalty= 0    104.5ms  2026-04-08 12:00 - 13:00
+  [230/500] MATCHED  Amanda Mclean           penalty= 0     59.0ms  2026-04-15 14:00 - 14:30
+  [231/500] MATCHED  Daniel Wright           penalty= 0    105.0ms  2026-04-14 09:00 - 10:00
+  [232/500] MATCHED  Tammy Rivera            penalty= 0     58.8ms  2026-04-08 09:00 - 09:30
+  [233/500] MATCHED  William Stone           penalty= 0     89.5ms  2026-04-20 10:00 - 11:00
+  [234/500] MATCHED  Steven Frazier          penalty= 0     89.7ms  2026-04-17 09:00 - 10:00
+  [235/500] MATCHED  Dan Perry               penalty= 0    137.9ms  2026-04-08 14:00 - 15:00
+  [236/500] MATCHED  Matthew Mueller         penalty= 0     88.4ms  2026-04-16 12:00 - 13:00
+  [237/500] MATCHED  Jennifer Chavez         penalty= 0     59.0ms  2026-04-13 09:00 - 10:00
+  [238/500] MATCHED  Deborah Byrd            penalty= 0    121.2ms  2026-04-10 14:00 - 14:30
+  [239/500] MATCHED  Mark Simmons            penalty= 0    135.7ms  2026-04-10 11:00 - 12:00
+  [240/500] MATCHED  Randall Mclaughlin      penalty= 0    103.6ms  2026-04-16 15:00 - 15:30
+  [241/500] MATCHED  Janet Harris            penalty= 0     56.8ms  2026-04-08 15:00 - 15:30
+  [242/500] MATCHED  Michael Gonzalez        penalty= 0     75.6ms  2026-04-13 16:00 - 17:00
+  [243/500] MATCHED  Candice Carr            penalty= 0     75.0ms  2026-04-08 11:00 - 11:30
+  [244/500] MATCHED  Lisa Mccarthy           penalty= 0     43.1ms  2026-04-20 14:00 - 14:30
+  [245/500] MATCHED  Lawrence Allen          penalty= 0     91.4ms  2026-04-09 11:00 - 12:00
+  [246/500] MATCHED  Robert Taylor           penalty= 0     75.8ms  2026-04-15 09:00 - 09:30
+  [247/500] MATCHED  Angela Burns            penalty= 0     91.0ms  2026-04-09 11:00 - 11:30
+  [248/500] MATCHED  Michelle Crane          penalty= 0    105.8ms  2026-04-09 10:00 - 11:00
+  [249/500] MATCHED  Robert Vasquez          penalty= 0    121.1ms  2026-04-16 12:00 - 12:30
+  [250/500] MATCHED  Laura Walker            penalty= 0    108.3ms  2026-04-13 09:00 - 09:30
+  [251/500] MATCHED  Kimberly Cunningham     penalty= 0     72.3ms  2026-04-17 14:00 - 14:30
+  [252/500] MATCHED  Joseph Daniels          penalty= 0    105.7ms  2026-04-17 09:00 - 09:30
+  [253/500] MATCHED  Veronica Garcia         penalty= 0     73.6ms  2026-04-10 11:00 - 12:00
+  [254/500] MATCHED  Michael Montoya         penalty= 0    136.8ms  2026-04-08 09:00 - 10:00
+  [255/500] MATCHED  Michelle Bishop         penalty= 0    160.8ms  2026-04-09 14:00 - 14:30
+  [256/500] MATCHED  Linda Hudson            penalty= 0    163.6ms  2026-04-13 14:00 - 15:00
+  [257/500] MATCHED  Tiffany Carter          penalty= 0     55.1ms  2026-04-13 15:00 - 16:00
+  [258/500] MATCHED  Samantha Riddle         penalty= 0    121.3ms  2026-04-09 15:00 - 15:30
+  [259/500] MATCHED  Jennifer Poole          penalty= 0    136.6ms  2026-04-15 11:00 - 12:00
+  [260/500] MATCHED  Courtney Brooks         penalty= 0    107.1ms  2026-04-08 11:00 - 12:00
+  [261/500] MATCHED  Heather Wiley           penalty= 0    105.7ms  2026-04-16 11:00 - 11:30
+  [262/500] MATCHED  Jessica Ellis           penalty= 0    107.2ms  2026-04-14 10:00 - 10:30
+  [263/500] MATCHED  Tammy Summers           penalty= 0    105.1ms  2026-04-13 11:00 - 11:30
+  [264/500] MATCHED  Ashlee Washington       penalty= 0     58.0ms  2026-04-07 09:00 - 10:00
+  [265/500] MATCHED  Allen Noble             penalty= 0     42.5ms  2026-04-16 12:00 - 12:30
+  [266/500] MATCHED  Wendy Blankenship       penalty= 0     99.2ms  2026-04-13 09:00 - 10:00
+  [267/500] MATCHED  John Watson             penalty= 0    105.2ms  2026-04-09 09:00 - 10:00
+  [268/500] MATCHED  Jessica Fischer         penalty= 0     58.1ms  2026-04-08 15:00 - 15:30
+  [269/500] MATCHED  Thomas Anderson         penalty= 0     91.0ms  2026-04-17 14:00 - 14:30
+  [270/500] MATCHED  Heather Montoya         penalty= 0     59.4ms  2026-04-09 12:00 - 13:00
+  [271/500] MATCHED  Christopher Shaffer     penalty= 0     74.1ms  2026-04-14 12:00 - 13:00
+  [272/500] MATCHED  Kiara Mullins           penalty= 0     91.9ms  2026-04-09 09:00 - 09:30
+  [273/500] MATCHED  Chelsey Martin          penalty= 0    107.3ms  2026-04-10 16:00 - 17:00
+  [274/500] MATCHED  Michelle Miller         penalty= 0     89.7ms  2026-04-09 10:00 - 11:00
+  [275/500] MATCHED  Michael Jordan          penalty= 0     43.2ms  2026-04-10 12:00 - 13:00
+  [276/500] MATCHED  Kimberly Vaughn         penalty= 0    106.6ms  2026-04-13 10:00 - 10:30
+  [277/500] MATCHED  Julie Phillips          penalty= 0     98.9ms  2026-04-10 11:00 - 11:30
+  [278/500] MATCHED  Victor Wheeler          penalty= 0     88.5ms  2026-04-07 11:00 - 12:00
+  [279/500] MATCHED  Michelle Carroll        penalty= 0    106.9ms  2026-04-17 16:00 - 16:30
+  [280/500] MATCHED  Alvin Jones             penalty= 0     42.9ms  2026-04-10 10:00 - 11:00
+  [281/500] MATCHED  Courtney Mason          penalty= 0     76.5ms  2026-04-15 15:00 - 15:30
+  [282/500] MATCHED  Joshua Collins          penalty= 0     91.2ms  2026-04-10 10:00 - 11:00
+  [283/500] MATCHED  Brenda Hines            penalty= 0     74.5ms  2026-04-08 12:00 - 12:30
+  [284/500] MATCHED  Brian Miller            penalty= 0     90.2ms  2026-04-08 12:00 - 12:30
+  [285/500] MATCHED  Kyle Harmon             penalty= 0     43.0ms  2026-04-09 09:00 - 09:30
+  [286/500] MATCHED  Jacqueline Martin       penalty= 0     77.1ms  2026-04-17 14:00 - 15:00
+  [287/500] MATCHED  David Norman            penalty= 0     74.4ms  2026-04-08 09:00 - 10:00
+  [288/500] MATCHED  Alexandria Baker        penalty= 0     74.6ms  2026-04-08 11:00 - 12:00
+  [289/500] MATCHED  Brian Villarreal        penalty= 0     82.9ms  2026-04-14 09:00 - 09:30
+  [290/500] MATCHED  Jeremy Hicks            penalty= 0     43.0ms  2026-04-07 09:00 - 10:00
+  [291/500] MATCHED  Patrick Hernandez       penalty= 0    110.3ms  2026-04-17 15:00 - 16:00
+  [292/500] MATCHED  John Moon               penalty= 0    136.6ms  2026-04-13 10:00 - 10:30
+  [293/500] MATCHED  Wayne Winters           penalty= 0     58.8ms  2026-04-10 15:00 - 15:30
+  [294/500] MATCHED  Natalie Cline           penalty= 0     90.8ms  2026-04-14 09:00 - 09:30
+  [295/500] MATCHED  Miguel Carter           penalty= 0     74.0ms  2026-04-20 09:00 - 10:00
+  [296/500] MATCHED  Whitney Parsons         penalty= 0     90.7ms  2026-04-17 09:00 - 10:00
+  [297/500] MATCHED  Andrew Weaver           penalty= 0     43.7ms  2026-04-07 11:00 - 12:00
+  [298/500] MATCHED  Melinda Acosta          penalty= 0    107.1ms  2026-04-10 14:00 - 15:00
+  [299/500] MATCHED  Susan Kaufman           penalty= 0     42.1ms  2026-04-13 10:00 - 11:00
+  [300/500] MATCHED  Jaclyn Watson           penalty= 0     44.2ms  2026-04-08 16:00 - 16:30
+  [301/500] MATCHED  Dana Foster             penalty= 0     75.2ms  2026-04-20 09:00 - 09:30
+  [302/500] MATCHED  Joel Green              penalty= 0     81.0ms  2026-04-15 15:00 - 16:00
+  [303/500] MATCHED  Joseph Jones            penalty= 0     42.9ms  2026-04-09 15:00 - 15:30
+  [304/500] MATCHED  Frank Owens             penalty= 0     75.7ms  2026-04-08 15:00 - 16:00
+  [305/500] MATCHED  Kyle Baker              penalty=10     75.9ms  2026-04-08 09:00 - 09:30
+  [306/500] MATCHED  Jason Gates             penalty= 0    154.4ms  2026-04-08 15:00 - 16:00
+  [307/500] MATCHED  William Byrd            penalty= 0    105.5ms  2026-04-09 09:00 - 09:30
+  [308/500] MATCHED  Cody Garcia             penalty= 0     45.4ms  2026-04-08 10:00 - 10:30
+  [309/500] MATCHED  James Morales           penalty= 0    105.8ms  2026-04-08 14:00 - 14:30
+  [310/500] MATCHED  Andrew Brown            penalty= 0     42.8ms  2026-04-16 09:00 - 09:30
+  [311/500] MATCHED  Brad Murray             penalty= 0     76.0ms  2026-04-20 11:00 - 11:30
+  [312/500] MATCHED  Patrick Simmons         penalty= 0     75.9ms  2026-04-10 09:00 - 10:00
+  [313/500] MATCHED  Nicole Johnson          penalty= 0     94.3ms  2026-04-20 10:00 - 11:00
+  [314/500] MATCHED  Nicole Mendoza          penalty= 0     90.6ms  2026-04-13 12:00 - 12:30
+  [315/500] MATCHED  Dawn Robles             penalty= 0     75.9ms  2026-04-17 10:00 - 11:00
+  [316/500] MATCHED  Timothy Harrington      penalty= 0     73.8ms  2026-04-20 15:00 - 16:00
+  [317/500] MATCHED  Hector Flores           penalty= 0     44.1ms  2026-04-07 12:00 - 13:00
+  [318/500] MATCHED  Katie Key               penalty= 0     90.0ms  2026-04-08 09:00 - 09:30
+  [319/500] MATCHED  Kathryn Gould           penalty= 0     91.5ms  2026-04-15 12:00 - 12:30
+  [320/500] MATCHED  Brittany Drake          penalty= 0     59.5ms  2026-04-14 16:00 - 17:00
+  [321/500] MATCHED  Stacey Elliott          penalty= 0    138.4ms  2026-04-10 12:00 - 12:30
+  [322/500] MATCHED  Tracy Davis             penalty= 0     41.0ms  2026-04-20 10:00 - 11:00
+  [323/500] MATCHED  Aaron Hardin            penalty= 0     91.3ms  2026-04-09 11:00 - 11:30
+  [324/500] MATCHED  Andrew Willis           penalty= 0     92.1ms  2026-04-08 16:00 - 17:00
+  [325/500] MATCHED  Janet Bates             penalty= 0     82.1ms  2026-04-08 12:00 - 12:30
+  [326/500] MATCHED  Theresa Oconnor         penalty= 0     74.0ms  2026-04-16 14:00 - 15:00
+  [327/500] MATCHED  Jeffrey Chapman         penalty= 0     75.7ms  2026-04-15 12:00 - 12:30
+  [328/500] MATCHED  Jessica Rush            penalty= 0     42.3ms  2026-04-15 14:00 - 15:00
+  [329/500] MATCHED  Samantha Ponce          penalty= 0     76.3ms  2026-04-20 10:00 - 11:00
+  [330/500] MATCHED  Julie Young             penalty= 0     57.7ms  2026-04-09 15:00 - 16:00
+  [331/500] MATCHED  Sean Baker              penalty= 0     77.0ms  2026-04-08 11:00 - 11:30
+  [332/500] MATCHED  Brandon Kim             penalty= 0     73.9ms  2026-04-09 11:00 - 12:00
+  [333/500] MATCHED  Amy Garcia              penalty= 0    107.2ms  2026-04-20 16:00 - 17:00
+  [334/500] MATCHED  Charles Singleton       penalty= 0     75.2ms  2026-04-07 12:00 - 12:30
+  [335/500] MATCHED  Matthew Barron          penalty= 0     57.9ms  2026-04-08 16:00 - 17:00
+  [336/500] MATCHED  Janet Reynolds          penalty= 0    105.5ms  2026-04-09 16:00 - 16:30
+  [337/500] MATCHED  Craig Harris            penalty= 0     90.3ms  2026-04-15 14:00 - 15:00
+  [338/500] MATCHED  Donna Evans             penalty= 0     91.6ms  2026-04-07 11:00 - 12:00
+  [339/500] MATCHED  Eric Ward               penalty= 0     92.4ms  2026-04-08 11:00 - 11:30
+  [340/500] MATCHED  Collin Clark            penalty= 0     75.1ms  2026-04-13 09:00 - 10:00
+  [341/500] MATCHED  Kristen Ruiz            penalty= 0     90.2ms  2026-04-13 09:00 - 09:30
+  [342/500] MATCHED  Nathan James            penalty= 0     75.7ms  2026-04-16 10:00 - 11:00
+  [343/500] MATCHED  Jose Hood               penalty= 0     43.5ms  2026-04-07 10:00 - 11:00
+  [344/500] MATCHED  Lindsey Gutierrez       penalty= 0     43.6ms  2026-04-10 16:00 - 17:00
+  [345/500] MATCHED  Tammy Mcdaniel          penalty= 0     76.3ms  2026-04-20 09:00 - 09:30
+  [346/500] MATCHED  Ralph Nash              penalty= 0     90.4ms  2026-04-17 14:00 - 14:30
+  [347/500] MATCHED  David Todd              penalty= 0    106.9ms  2026-04-09 09:00 - 09:30
+  [348/500] MATCHED  Rodney Mcneil           penalty= 0    122.3ms  2026-04-10 15:00 - 16:00
+  [349/500] MATCHED  Luis Acosta             penalty= 0    138.0ms  2026-04-08 12:00 - 13:00
+  [350/500] MATCHED  Melissa Stone           penalty= 0    103.9ms  2026-04-20 15:00 - 15:30
+  [351/500] MATCHED  Robert Hernandez        penalty= 0     43.8ms  2026-04-20 09:00 - 09:30
+  [352/500] MATCHED  Kristi Dillon           penalty= 0     75.6ms  2026-04-15 11:00 - 12:00
+  [353/500] MATCHED  Ashley Kennedy          penalty= 0    107.4ms  2026-04-13 11:00 - 12:00
+  [354/500] MATCHED  Benjamin Preston        penalty= 0     73.7ms  2026-04-10 10:00 - 11:00
+  [355/500] MATCHED  Andrew Roth             penalty= 0     77.0ms  2026-04-13 12:00 - 12:30
+  [356/500] MATCHED  Teresa Perez            penalty=10     89.7ms  2026-04-16 11:00 - 12:00
+  [357/500] MATCHED  Cassidy Davis           penalty= 0     76.4ms  2026-04-10 11:00 - 12:00
+  [358/500] MATCHED  Lori Robertson          penalty= 0     89.1ms  2026-04-08 11:00 - 11:30
+  [359/500] MATCHED  Kimberly Warren         penalty= 0     90.6ms  2026-04-07 09:00 - 09:30
+  [360/500] MATCHED  John Bryant             penalty= 0     73.9ms  2026-04-10 11:00 - 12:00
+  [361/500] MATCHED  Cynthia Martinez        penalty= 0     75.9ms  2026-04-10 12:00 - 13:00
+  [362/500] MATCHED  Gregory Harrell         penalty= 0    105.9ms  2026-04-17 12:00 - 13:00
+  [363/500] MATCHED  Kaitlyn Barker          penalty= 0     74.4ms  2026-04-07 12:00 - 12:30
+  [364/500] MATCHED  Mercedes Holland        penalty= 0     73.4ms  2026-04-10 11:00 - 11:30
+  [365/500] MATCHED  Michelle Coffey         penalty= 0     89.9ms  2026-04-07 11:00 - 11:30
+  [366/500] MATCHED  Carolyn Smith           penalty= 0     75.4ms  2026-04-20 11:00 - 12:00
+  [367/500] MATCHED  Melissa Stevens         penalty= 0     91.1ms  2026-04-16 12:00 - 13:00
+  [368/500] MATCHED  Breanna Smith           penalty= 0     90.8ms  2026-04-14 14:00 - 15:00
+  [369/500] MATCHED  Kenneth Rodriguez       penalty= 0     75.0ms  2026-04-14 11:00 - 12:00
+  [370/500] MATCHED  Diana Farley            penalty= 0     91.4ms  2026-04-13 09:00 - 09:30
+  [371/500] MATCHED  Rachel Trujillo         penalty=10    107.0ms  2026-04-15 15:00 - 15:30
+  [372/500] MATCHED  Jennifer Rios           penalty= 0     75.4ms  2026-04-13 12:00 - 12:30
+  [373/500] MATCHED  Brandy Cooley           penalty= 0    106.2ms  2026-04-14 14:00 - 15:00
+  [374/500] MATCHED  Rebecca Powers          penalty= 0     91.5ms  2026-04-13 10:00 - 11:00
+  [375/500] MATCHED  Connor Anderson         penalty=10    105.9ms  2026-04-17 09:00 - 09:30
+  [376/500] MATCHED  Jeffrey Walker          penalty= 0    105.8ms  2026-04-15 11:00 - 12:00
+  [377/500] MATCHED  Steven Wilson           penalty= 0    106.5ms  2026-04-20 16:00 - 17:00
+  [378/500] MATCHED  Pamela Mason            penalty= 0     90.1ms  2026-04-15 16:00 - 16:30
+  [379/500] MATCHED  Monica Hernandez        penalty= 0     91.6ms  2026-04-14 11:00 - 11:30
+  [380/500] MATCHED  Leslie Baldwin          penalty= 0    106.7ms  2026-04-16 11:00 - 11:30
+  [381/500] MATCHED  Adam Hill               penalty= 0     74.8ms  2026-04-20 10:00 - 10:30
+  [382/500] MATCHED  Christina Schultz       penalty= 0     74.9ms  2026-04-15 11:00 - 11:30
+  [383/500] MATCHED  Amanda Cross            penalty= 0    106.9ms  2026-04-14 16:00 - 16:30
+  [384/500] MATCHED  Courtney Wright         penalty= 0    106.4ms  2026-04-14 11:00 - 12:00
+  [385/500] MATCHED  Wesley Torres           penalty= 0     74.4ms  2026-04-07 11:00 - 12:00
+  [386/500] MATCHED  Ryan Mcdaniel           penalty= 0     74.5ms  2026-04-14 12:00 - 12:30
+  [387/500] MATCHED  Stacy Hull              penalty= 0    123.5ms  2026-04-10 09:00 - 09:30
+  [388/500] MATCHED  Brittany Jackson        penalty=10    107.3ms  2026-04-07 11:00 - 11:30
+  [389/500] MATCHED  Brittney Williams       penalty= 0     56.3ms  2026-04-07 10:00 - 11:00
+  [390/500] MATCHED  Omar Kelley             penalty= 0     42.6ms  2026-04-09 09:00 - 10:00
+  [391/500] MATCHED  Dorothy Bates           penalty= 0     91.0ms  2026-04-20 14:00 - 14:30
+  [392/500] MATCHED  William Williamson      penalty= 0     74.5ms  2026-04-08 10:00 - 10:30
+  [393/500] MATCHED  Kimberly Decker         penalty= 0     76.0ms  2026-04-14 15:00 - 15:30
+  [394/500] MATCHED  Benjamin Crawford       penalty= 0     90.7ms  2026-04-16 11:00 - 11:30
+  [395/500] MATCHED  Emily Meadows           penalty= 0     42.7ms  2026-04-16 10:00 - 10:30
+  [396/500] MATCHED  Jennifer Garcia         penalty= 0     75.2ms  2026-04-10 12:00 - 13:00
+  [397/500] MATCHED  Brendan Li              penalty= 0     75.8ms  2026-04-13 12:00 - 12:30
+  [398/500] MATCHED  Cody Chang              penalty= 0     90.2ms  2026-04-07 09:00 - 10:00
+  [399/500] MATCHED  Patricia Friedman       penalty= 0     75.7ms  2026-04-08 12:00 - 12:30
+  [400/500] MATCHED  Richard Rivers          penalty= 0     73.1ms  2026-04-15 16:00 - 16:30
+  [401/500] MATCHED  Daniel Horton           penalty= 0     76.4ms  2026-04-09 10:00 - 11:00
+  [402/500] MATCHED  Leah Gregory            penalty=10    122.1ms  2026-04-20 12:00 - 12:30
+  [403/500] MATCHED  Michelle Hobbs          penalty= 0    106.3ms  2026-04-09 12:00 - 13:00
+  [404/500] MATCHED  Scott Brown             penalty= 0     90.5ms  2026-04-14 10:00 - 10:30
+  [405/500] MATCHED  Tiffany Santiago        penalty= 0     90.7ms  2026-04-17 15:00 - 16:00
+  [406/500] MATCHED  Dorothy Wright          penalty= 0     90.7ms  2026-04-15 09:00 - 09:30
+  [407/500] MATCHED  Alexander Michael       penalty= 0     91.2ms  2026-04-16 12:00 - 13:00
+  [408/500] MATCHED  Malik Rivera            penalty= 0    107.2ms  2026-04-07 16:00 - 17:00
+  [409/500] MATCHED  Richard Young           penalty= 0     83.7ms  2026-04-16 16:00 - 17:00
+  [410/500] MATCHED  Sergio Wilson           penalty= 0     89.0ms  2026-04-07 09:00 - 09:30
+  [411/500] MATCHED  Angela Smith            penalty=10     92.7ms  2026-04-20 14:00 - 14:30
+  [412/500] MATCHED  Diamond Bryant          penalty= 0    121.9ms  2026-04-14 09:00 - 10:00
+  [413/500] MATCHED  Ann Harvey              penalty= 0     68.6ms  2026-04-14 16:00 - 16:30
+  [414/500] MATCHED  Katherine Walker        penalty=10    119.7ms  2026-04-14 16:00 - 17:00
+  [415/500] MATCHED  Jacqueline Williams     penalty= 0    105.3ms  2026-04-16 09:00 - 10:00
+  [416/500] MATCHED  Cheryl Lopez            penalty= 0    108.3ms  2026-04-10 12:00 - 13:00
+  [417/500] MATCHED  Daniel Perry            penalty= 0     74.7ms  2026-04-20 09:00 - 09:30
+  [418/500] MATCHED  Tamara Smith            penalty= 0     75.5ms  2026-04-07 14:00 - 15:00
+  [419/500] MATCHED  Sandra Norman           penalty= 0     90.4ms  2026-04-20 09:00 - 10:00
+  [420/500] MATCHED  Diane Obrien            penalty= 0     75.4ms  2026-04-17 12:00 - 12:30
+  [421/500] MATCHED  Joshua Stuart           penalty= 0    108.0ms  2026-04-16 09:00 - 10:00
+  [422/500] MATCHED  Megan Kelley            penalty= 0     90.6ms  2026-04-17 15:00 - 15:30
+  [423/500] MATCHED  Claudia Roberts         penalty= 0     93.1ms  2026-04-09 14:00 - 15:00
+  [424/500] MATCHED  Jennifer Hodges         penalty= 0     91.0ms  2026-04-16 15:00 - 16:00
+  [425/500] MATCHED  Emily English           penalty= 0     44.4ms  2026-04-13 12:00 - 12:30
+  [426/500] MATCHED  Anthony Thomas          penalty= 0     75.9ms  2026-04-07 09:00 - 10:00
+  [427/500] MATCHED  Frances Thomas          penalty= 0    122.6ms  2026-04-13 09:00 - 10:00
+  [428/500] MATCHED  Lisa Garcia             penalty= 0    122.0ms  2026-04-17 10:00 - 10:30
+  [429/500] MATCHED  William Robles          penalty= 0     59.9ms  2026-04-13 16:00 - 17:00
+  [430/500] MATCHED  Robert French           penalty= 0     61.0ms  2026-04-14 15:00 - 16:00
+  [431/500] MATCHED  James Melton            penalty=10     90.8ms  2026-04-10 16:00 - 16:30
+  [432/500] MATCHED  Kimberly Brandt         penalty= 0     41.8ms  2026-04-16 10:00 - 10:30
+  [433/500] MATCHED  Jill Wilson             penalty= 0     91.9ms  2026-04-15 12:00 - 12:30
+  [434/500] MATCHED  Eugene Singleton        penalty= 0     91.7ms  2026-04-14 12:00 - 12:30
+  [435/500] MATCHED  Sarah Carlson           penalty= 0     75.1ms  2026-04-20 16:00 - 17:00
+  [436/500] MATCHED  Charles Zimmerman       penalty= 0     90.7ms  2026-04-10 09:00 - 09:30
+  [437/500] MATCHED  Robert Herrera          penalty= 0    108.0ms  2026-04-14 10:00 - 11:00
+  [438/500] MATCHED  Mark Carter             penalty= 0     76.1ms  2026-04-20 14:00 - 14:30
+  [439/500] MATCHED  Danny Reed              penalty= 0    106.5ms  2026-04-20 15:00 - 16:00
+  [440/500] MATCHED  Patrick Hogan           penalty= 0    122.6ms  2026-04-15 11:00 - 12:00
+  [441/500] MATCHED  Angel Black             penalty= 0    121.2ms  2026-04-17 16:00 - 16:30
+  [442/500] MATCHED  Kenneth Pearson         penalty= 0     42.8ms  2026-04-17 09:00 - 09:30
+  [443/500] MATCHED  Courtney Clark          penalty= 0     76.1ms  2026-04-10 14:00 - 14:30
+  [444/500] MATCHED  Amanda Park             penalty= 0     76.4ms  2026-04-15 15:00 - 15:30
+  [445/500] MATCHED  Andrew Love             penalty= 0     58.0ms  2026-04-08 09:00 - 10:00
+  [446/500] MATCHED  Angela Andrews          penalty= 0     89.3ms  2026-04-13 11:00 - 12:00
+  [447/500] MATCHED  Ryan Smith              penalty= 0     58.9ms  2026-04-08 14:00 - 14:30
+  [448/500] MATCHED  Katelyn Richards        penalty= 0    124.0ms  2026-04-08 12:00 - 13:00
+  [449/500] MATCHED  Kristin Turner          penalty= 0     72.9ms  2026-04-13 12:00 - 12:30
+  [450/500] MATCHED  Thomas Ferguson         penalty=10     76.0ms  2026-04-15 16:00 - 16:30
+  [451/500] MATCHED  Kenneth Eaton           penalty= 0    107.5ms  2026-04-14 09:00 - 09:30
+  [452/500] MATCHED  David Smith             penalty= 0     91.3ms  2026-04-15 15:00 - 16:00
+  [453/500] MATCHED  Jason Figueroa          penalty= 0     77.5ms  2026-04-14 09:00 - 09:30
+  [454/500] MATCHED  Eugene Walker           penalty= 0    138.2ms  2026-04-10 10:00 - 10:30
+  [455/500] MATCHED  Melissa Randolph        penalty= 0    105.9ms  2026-04-16 15:00 - 16:00
+  [456/500] MATCHED  Emily King              penalty= 0     75.8ms  2026-04-20 12:00 - 12:30
+  [457/500] MATCHED  Emily Young             penalty= 0     91.6ms  2026-04-20 09:00 - 10:00
+  [458/500] MATCHED  Shannon Jensen          penalty= 0     93.2ms  2026-04-20 10:00 - 11:00
+  [459/500] MATCHED  Lindsey Benjamin        penalty= 0     91.7ms  2026-04-07 11:00 - 12:00
+  [460/500] MATCHED  Joshua Ward             penalty= 0     75.7ms  2026-04-14 11:00 - 12:00
+  [461/500] MATCHED  Kim Tucker              penalty= 0     92.5ms  2026-04-09 15:00 - 16:00
+  [462/500] MATCHED  Michele Taylor          penalty= 0     42.2ms  2026-04-10 11:00 - 11:30
+  [463/500] MATCHED  Patricia Atkinson       penalty= 0     92.2ms  2026-04-07 15:00 - 15:30
+  [464/500] MATCHED  Rebecca Arnold          penalty= 0    109.1ms  2026-04-17 11:00 - 12:00
+  [465/500] MATCHED  Jeffrey Barton          penalty= 0     75.8ms  2026-04-13 09:00 - 09:30
+  [466/500] MATCHED  Randy Shaw              penalty= 0    123.4ms  2026-04-10 16:00 - 16:30
+  [467/500] MATCHED  Sean White              penalty= 0    105.7ms  2026-04-09 14:00 - 14:30
+  [468/500] MATCHED  Jeffery Freeman         penalty= 0    121.5ms  2026-04-13 11:00 - 11:30
+  [469/500] MATCHED  April Moody             penalty= 0     44.2ms  2026-04-16 11:00 - 12:00
+  [470/500] MATCHED  Dakota Schmitt          penalty=10     93.1ms  2026-04-13 14:00 - 14:30
+  [471/500] MATCHED  Nicholas Gray           penalty= 0     76.0ms  2026-04-08 14:00 - 14:30
+  [472/500] MATCHED  Zachary Gomez           penalty= 0     90.8ms  2026-04-16 12:00 - 12:30
+  [473/500] MATCHED  Scott Hall              penalty= 0     91.0ms  2026-04-13 10:00 - 10:30
+  [474/500] MATCHED  Michael Love            penalty=10     75.3ms  2026-04-10 11:00 - 11:30
+  [475/500] MATCHED  Timothy Mendoza         penalty= 0     74.3ms  2026-04-20 10:00 - 10:30
+  [476/500] MATCHED  Bradley Berry           penalty= 0    107.1ms  2026-04-09 16:00 - 16:30
+  [477/500] MATCHED  Brian Scott             penalty= 0     90.2ms  2026-04-17 11:00 - 11:30
+  [478/500] MATCHED  Natalie Luna            penalty= 0     74.9ms  2026-04-08 10:00 - 11:00
+  [479/500] MATCHED  Michelle Jackson        penalty= 0     92.5ms  2026-04-20 09:00 - 10:00
+  [480/500] MATCHED  Gary Jennings           penalty= 0     74.0ms  2026-04-20 15:00 - 16:00
+  [481/500] MATCHED  Paul Rodriguez          penalty= 0    106.1ms  2026-04-17 14:00 - 14:30
+  [482/500] MATCHED  Gregory Valenzuela      penalty= 0     90.9ms  2026-04-07 16:00 - 16:30
+  [483/500] MATCHED  Timothy Anderson        penalty= 0     74.4ms  2026-04-17 09:00 - 10:00
+  [484/500] MATCHED  Mitchell Williams       penalty= 0     75.2ms  2026-04-15 09:00 - 10:00
+  [485/500] MATCHED  Brianna Figueroa        penalty= 0     75.2ms  2026-04-20 09:00 - 10:00
+  [486/500] MATCHED  Thomas Hall             penalty= 0     89.7ms  2026-04-13 15:00 - 16:00
+  [487/500] MATCHED  Jacob Fletcher          penalty= 0     61.9ms  2026-04-20 15:00 - 15:30
+  [488/500] MATCHED  Nicholas Harris         penalty= 0     41.2ms  2026-04-15 12:00 - 13:00
+  [489/500] MATCHED  Denise King             penalty=10     75.7ms  2026-04-15 16:00 - 17:00
+  [490/500] MATCHED  Victoria Sanders        penalty= 0     90.7ms  2026-04-15 16:00 - 16:30
+  [491/500] MATCHED  Mitchell Peters         penalty=10     76.8ms  2026-04-13 15:00 - 16:00
+  [492/500] MATCHED  Jill Wyatt              penalty= 0    106.1ms  2026-04-08 16:00 - 16:30
+  [493/500] MATCHED  Craig Romero            penalty= 0     43.3ms  2026-04-17 14:00 - 15:00
+  [494/500] MATCHED  Tamara Smith            penalty= 0    124.8ms  2026-04-09 12:00 - 12:30
+  [495/500] MATCHED  Caleb Walker            penalty= 0    103.1ms  2026-04-20 10:00 - 11:00
+  [496/500] MATCHED  Jennifer Harper         penalty= 0     44.1ms  2026-04-16 12:00 - 13:00
+  [497/500] MATCHED  James Bowers            penalty= 0    108.1ms  2026-04-17 16:00 - 16:30
+  [498/500] MATCHED  Emily Ward              penalty= 0     42.2ms  2026-04-07 09:00 - 10:00
+  [499/500] MATCHED  Michael Foster          penalty= 0     43.7ms  2026-04-10 14:00 - 14:30
+  [500/500] MATCHED  Samantha Dunn           penalty= 0     75.1ms  2026-04-17 15:00 - 16:00
+
+======================================================================
+  PENALTY CALCULATION BREAKDOWN
+======================================================================
+  #    Patient              Doctor                 Spec  Gen Time Total  Details
+  ----------------------------------------------------------------------------------------------------
+  1    Mary Baird           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  2    Sandra Romero        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  3    Lori Campbell        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  4    Amanda Reed          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  5    Tina Allen           Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  6    Janet Shepherd       Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  7    Molly Sawyer         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  8    Robert Pena          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  9    Debra Christian      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  10   Monique Johnson      Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  11   Ryan Garcia          Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  12   Rebecca Williams     Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  13   John Jenkins         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  14   Christine Allen      Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  15   Steve Estrada        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  16   Scott Reed           Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  17   Stephen Turner       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  18   Bailey Haney         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  19   Ashlee Jennings      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  20   Catherine Gomez      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  21   Courtney Berger      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  22   Jessica Davis        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  23   David Ryan           Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  24   Robin Raymond        Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  25   Karen Perez          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  26   Alexander Herrera    Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  27   Lynn Bentley         Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  28   Rose Walker          Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  29   Darryl Williams      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  30   Paige Taylor         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  31   Nicole Pena          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  32   Jeff Wallace         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  33   Bruce Hill           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  34   Brent Cook           Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  35   Brenda Li            Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  36   Michele Thomas       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  37   David Howard         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  38   Brian Harmon         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  39   Kimberly Palmer      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  40   Jessica Kerr         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  41   Bruce Mendoza        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  42   Charles Miller       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  43   Oscar Harper         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  44   Laura Wilson         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  45   Pamela Gutierrez     Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  46   Larry Scott          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  47   Ryan Garner          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  48   Elizabeth Jenkins    Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  49   Michael Lane         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  50   Michael Hawkins      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  51   Chelsea Barrett      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  52   Sandra Bell          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  53   Joyce Bonilla        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  54   Matthew Wood         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  55   Eric Webster         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  56   Todd Ramos           Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  57   Daniel Gregory       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  58   Randall Greene       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  59   Keith Wilson         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  60   Vincent Whitaker     Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  61   Steve Miller         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  62   Keith Sullivan       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  63   Christopher Richard  Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  64   Randy Collins        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  65   Alyssa Lee           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  66   Dwayne Gonzalez      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  67   Steven Elliott       Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  68   Michelle Burton      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  69   Laura Vargas         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  70   Benjamin Wood        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  71   Steven Spencer       Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  72   Marc Alvarez         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  73   William Thompson     Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  74   Michael Hardin       Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  75   Cameron Davis        Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  76   Mathew Aguilar       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  77   Kyle Bennett         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  78   William Smith        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  79   Jeremy Taylor        Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  80   Ebony Walter         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  81   Henry Schwartz       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  82   Michael Ball         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  83   Kyle Stokes          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  84   Kayla Strickland     Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  85   Monique Williams     Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  86   Justin Hines         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  87   Stacey Walker        Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  88   Wayne Young          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  89   Mary Santos          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  90   Katherine Harrison   Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  91   Mary Dunn            Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  92   John Martinez        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  93   Daniel Stein         Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  94   Jennifer Carter      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  95   Jacob Barnett        Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  96   Peter Harrison       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  97   Michael Jones        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  98   Michael Morgan       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  99   Crystal Cain         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  100  Kylie Blackwell      Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  101  Jon Mullins          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  102  Joshua Lloyd         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  103  Terri Crawford       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  104  Christian Morrison   Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  105  Mark Phillips        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  106  Michael Williams     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  107  Charles Walsh        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  108  Melinda Gregory      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  109  Michael Herring      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  110  Scott Jones          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  111  John Wilson          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  112  Jose Green           Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  113  James Taylor         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  114  Elizabeth Mckinney   Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  115  Laura Hicks          Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  116  Michael Armstrong    Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  117  Kyle Key             Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  118  David Stewart        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  119  Natalie Deleon       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  120  Marie Holmes         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  121  Michael Everett      Dr Michelle James         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  122  David Turner         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  123  George Weber         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  124  Brandon May          Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  125  Christine Johnson    Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  126  Linda Cohen          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  127  Robert Marshall      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  128  Jessica Valencia     Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  129  Luis Owens           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  130  Kelly Cruz           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  131  James Moore          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  132  Christopher Long     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  133  Brent Simpson        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  134  Ryan Khan            Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  135  Brett Hoffman        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  136  Kathy Ramirez        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  137  Nathaniel Hatfield   Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  138  Vincent Williams     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  139  Catherine Robertson  Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  140  Brittney Romero      Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  141  Lisa Richardson      Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  142  Candice Baker        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  143  Brandy Jackson       Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  144  Anthony Vaughan      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  145  Edward Vaughn        Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  146  Janice Stone         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  147  Lee Thompson         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  148  Chelsea Lee          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  149  Kellie Bush          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  150  Keith Berry          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  151  Bobby Moses          Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  152  Jason Clayton        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  153  Christina Matthews   Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  154  Brian Gutierrez      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  155  Richard Donovan      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  156  Justin Brown         Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  157  Robin Thompson       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  158  Nancy Smith          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  159  Veronica Daniels     Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  160  Lisa Rivera          Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  161  Alexis Rogers        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  162  Margaret Robertson   Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  163  Thomas Boyle         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  164  Stephanie Turner     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  165  Heather Brown        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  166  Hannah Fowler        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  167  Timothy Gibson       Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  168  Kathleen Becker      Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  169  Christian Elliott    Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  170  Franklin Bond        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  171  Christopher Dixon    Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  172  Anne Hansen          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  173  Lisa Reese           Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  174  Amber Brown          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  175  Kayla Cannon         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  176  Nicholas Vega        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  177  Victoria Long        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  178  Emily Stephens       Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  179  Eric Lopez           Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  180  John Jones           Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  181  John Williams        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  182  William Roberts      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  183  Joel Walter          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  184  Bruce Fry            Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  185  Brandon Cooper       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  186  Ricky Evans          Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  187  Meredith Thomas      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  188  Paul Scott           Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  189  Brett Bennett        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  190  Timothy Booth        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  191  Julie Webster        Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  192  Andrea Rowe          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  193  Michael Andrade      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  194  Nathan Gutierrez     Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  195  Angela Silva         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  196  Jerry Hudson         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  197  Tammy May            Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  198  Jennifer Freeman     Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  199  Kathy Gutierrez      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  200  William Brooks       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  201  Amanda Jenkins       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  202  Andre Li             Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  203  John Harvey          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  204  Susan Stevens        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  205  Clayton Gray         Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  206  Christopher Bruce    Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  207  Jerry Valenzuela     Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  208  Gabrielle Ramirez    Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  209  Alexis Clark         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  210  Ashley Atkinson      Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  211  Krystal Norris       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  212  Samuel Roberson      Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  213  Anthony Nelson       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  214  Ryan Frazier         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  215  Jennifer Miller      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  216  Levi Rodriguez       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  217  David Lopez          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  218  Anthony Gomez        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  219  Kelly Hughes         Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  220  Gina Jackson         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  221  Gary Hill            Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  222  Jennifer Simpson     Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  223  Adam Foster          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  224  Lisa Villarreal      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  225  Timothy Thompson     Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  226  Mark Ramirez         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  227  Erin Pierce          Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  228  Marie Jones          Dr Monique Henderson      0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  229  Donna Espinoza       Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  230  Amanda Mclean        Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  231  Daniel Wright        Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  232  Tammy Rivera         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  233  William Stone        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  234  Steven Frazier       Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  235  Dan Perry            Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  236  Matthew Mueller      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  237  Jennifer Chavez      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  238  Deborah Byrd         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  239  Mark Simmons         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  240  Randall Mclaughlin   Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  241  Janet Harris         Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  242  Michael Gonzalez     Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  243  Candice Carr         Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  244  Lisa Mccarthy        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  245  Lawrence Allen       Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  246  Robert Taylor        Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  247  Angela Burns         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  248  Michelle Crane       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  249  Robert Vasquez       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  250  Laura Walker         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  251  Kimberly Cunningham  Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  252  Joseph Daniels       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  253  Veronica Garcia      Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  254  Michael Montoya      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  255  Michelle Bishop      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  256  Linda Hudson         Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  257  Tiffany Carter       Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  258  Samantha Riddle      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  259  Jennifer Poole       Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  260  Courtney Brooks      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  261  Heather Wiley        Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  262  Jessica Ellis        Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  263  Tammy Summers        Dr Karen Mack             0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  264  Ashlee Washington    Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  265  Allen Noble          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  266  Wendy Blankenship    Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  267  John Watson          Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  268  Jessica Fischer      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  269  Thomas Anderson      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  270  Heather Montoya      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  271  Christopher Shaffer  Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  272  Kiara Mullins        Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  273  Chelsey Martin       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  274  Michelle Miller      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  275  Michael Jordan       Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  276  Kimberly Vaughn      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  277  Julie Phillips       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  278  Victor Wheeler       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  279  Michelle Carroll     Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  280  Alvin Jones          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  281  Courtney Mason       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  282  Joshua Collins       Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  283  Brenda Hines         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  284  Brian Miller         Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  285  Kyle Harmon          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  286  Jacqueline Martin    Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  287  David Norman         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  288  Alexandria Baker     Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  289  Brian Villarreal     Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  290  Jeremy Hicks         Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  291  Patrick Hernandez    Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  292  John Moon            Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  293  Wayne Winters        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  294  Natalie Cline        Dr Jessica Herrera        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  295  Miguel Carter        Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  296  Whitney Parsons      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  297  Andrew Weaver        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  298  Melinda Acosta       Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  299  Susan Kaufman        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  300  Jaclyn Watson        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  301  Dana Foster          Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  302  Joel Green           Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  303  Joseph Jones         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  304  Frank Owens          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  305  Kyle Baker           Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  306  Jason Gates          Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  307  William Byrd         Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  308  Cody Garcia          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  309  James Morales        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  310  Andrew Brown         Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  311  Brad Murray          Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  312  Patrick Simmons      Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  313  Nicole Johnson       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  314  Nicole Mendoza       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  315  Dawn Robles          Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  316  Timothy Harrington   Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  317  Hector Flores        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  318  Katie Key            Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  319  Kathryn Gould        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  320  Brittany Drake       Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  321  Stacey Elliott       Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  322  Tracy Davis          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  323  Aaron Hardin         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  324  Andrew Willis        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  325  Janet Bates          Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  326  Theresa Oconnor      Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  327  Jeffrey Chapman      Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  328  Jessica Rush         Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  329  Samantha Ponce       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  330  Julie Young          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  331  Sean Baker           Dr Karen Mack             0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  332  Brandon Kim          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  333  Amy Garcia           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  334  Charles Singleton    Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  335  Matthew Barron       Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  336  Janet Reynolds       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  337  Craig Harris         Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  338  Donna Evans          Dr Patrick Ferrell        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  339  Eric Ward            Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  340  Collin Clark         Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  341  Kristen Ruiz         Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  342  Nathan James         Dr Monique Henderson      0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  343  Jose Hood            Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  344  Lindsey Gutierrez    Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  345  Tammy Mcdaniel       Dr Courtney Conner        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  346  Ralph Nash           Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  347  David Todd           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  348  Rodney Mcneil        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  349  Luis Acosta          Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  350  Melissa Stone        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  351  Robert Hernandez     Dr Shannon Wright         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  352  Kristi Dillon        Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  353  Ashley Kennedy       Dr Michelle James         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  354  Benjamin Preston     Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  355  Andrew Roth          Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  356  Teresa Perez         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  357  Cassidy Davis        Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  358  Lori Robertson       Dr Jessica Herrera        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  359  Kimberly Warren      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  360  John Bryant          Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  361  Cynthia Martinez     Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  362  Gregory Harrell      Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  363  Kaitlyn Barker       Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  364  Mercedes Holland     Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  365  Michelle Coffey      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  366  Carolyn Smith        Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  367  Melissa Stevens      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  368  Breanna Smith        Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  369  Kenneth Rodriguez    Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  370  Diana Farley         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  371  Rachel Trujillo      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  372  Jennifer Rios        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  373  Brandy Cooley        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  374  Rebecca Powers       Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  375  Connor Anderson      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  376  Jeffrey Walker       Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  377  Steven Wilson        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  378  Pamela Mason         Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  379  Monica Hernandez     Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  380  Leslie Baldwin       Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  381  Adam Hill            Dr Courtney Conner        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  382  Christina Schultz    Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  383  Amanda Cross         Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  384  Courtney Wright      Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  385  Wesley Torres        Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  386  Ryan Mcdaniel        Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  387  Stacy Hull           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  388  Brittany Jackson     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  389  Brittney Williams    Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  390  Omar Kelley          Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  391  Dorothy Bates        Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  392  William Williamson   Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  393  Kimberly Decker      Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  394  Benjamin Crawford    Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  395  Emily Meadows        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  396  Jennifer Garcia      Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  397  Brendan Li           Dr Karen Mack             0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  398  Cody Chang           Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  399  Patricia Friedman    Dr Karen Mack             0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  400  Richard Rivers       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  401  Daniel Horton        Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  402  Leah Gregory         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  403  Michelle Hobbs       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  404  Scott Brown          Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  405  Tiffany Santiago     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  406  Dorothy Wright       Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  407  Alexander Michael    Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  408  Malik Rivera         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  409  Richard Young        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  410  Sergio Wilson        Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  411  Angela Smith         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  412  Diamond Bryant       Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  413  Ann Harvey           Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  414  Katherine Walker     Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  415  Jacqueline Williams  Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  416  Cheryl Lopez         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  417  Daniel Perry         Dr Brian Humphrey         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  418  Tamara Smith         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  419  Sandra Norman        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  420  Diane Obrien         Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  421  Joshua Stuart        Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  422  Megan Kelley         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  423  Claudia Roberts      Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  424  Jennifer Hodges      Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  425  Emily English        Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  426  Anthony Thomas       Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  427  Frances Thomas       Dr Jessica Herrera        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  428  Lisa Garcia          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  429  William Robles       Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  430  Robert French        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  431  James Melton         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  432  Kimberly Brandt      Dr Kelly Fuller           0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  433  Jill Wilson          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  434  Eugene Singleton     Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  435  Sarah Carlson        Dr Noah Mayo              0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  436  Charles Zimmerman    Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  437  Robert Herrera       Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  438  Mark Carter          Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  439  Danny Reed           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  440  Patrick Hogan        Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  441  Angel Black          Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  442  Kenneth Pearson      Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  443  Courtney Clark       Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  444  Amanda Park          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  445  Andrew Love          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  446  Angela Andrews       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  447  Ryan Smith           Dr Shannon Wright         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  448  Katelyn Richards     Dr Jessica Herrera        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  449  Kristin Turner       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  450  Thomas Ferguson      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  451  Kenneth Eaton        Dr Patrick Ferrell        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  452  David Smith          Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  453  Jason Figueroa       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  454  Eugene Walker        Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  455  Melissa Randolph     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  456  Emily King           Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  457  Emily Young          Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  458  Shannon Jensen       Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  459  Lindsey Benjamin     Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  460  Joshua Ward          Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  461  Kim Tucker           Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  462  Michele Taylor       Dr Shannon Wright         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  463  Patricia Atkinson    Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  464  Rebecca Arnold       Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  465  Jeffrey Barton       Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  466  Randy Shaw           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  467  Sean White           Dr Courtney Conner        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  468  Jeffery Freeman      Dr Brandon Perez          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  469  April Moody          Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  470  Dakota Schmitt       Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  471  Nicholas Gray        Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  472  Zachary Gomez        Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  473  Scott Hall           Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  474  Michael Love         Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  475  Timothy Mendoza      Dr Brian Humphrey         0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  476  Bradley Berry        Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  477  Brian Scott          Dr Joseph Wright          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  478  Natalie Luna         Dr Sara Allison           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  479  Michelle Jackson     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  480  Gary Jennings        Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  481  Paul Rodriguez       Dr Cynthia Ferguson       0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  482  Gregory Valenzuela   Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  483  Timothy Anderson     Dr Aaron Myers            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  484  Mitchell Williams    Dr Shane Ramirez          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  485  Brianna Figueroa     Dr Emily Joyce            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  486  Thomas Hall          Dr Robert Johnson         0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  487  Jacob Fletcher       Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  488  Nicholas Harris      Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  489  Denise King          Dr Noah Howard           10    0    0    10  specialty(wanted=Pediatrics, got=General): +10 | gender(match): 0 | time(in window): 0
+  490  Victoria Sanders     Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  491  Mitchell Peters      Dr Aisyah Hasrin         10    0    0    10  specialty(wanted=Pediatrics, got=general): +10 | gender(match): 0 | time(in window): 0
+  492  Jill Wyatt           Dr Danielle Johnson       0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  493  Craig Romero         Dr Matthew Moore          0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  494  Tamara Smith         Dr Donald Garcia          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  495  Caleb Walker         Dr Emily Joyce            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  496  Jennifer Harper      Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(any): 0 | time(in window): 0
+  497  James Bowers         Dr Carolyn Hoffman        0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  498  Emily Ward           Dr Brianna Hall           0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  499  Michael Foster       Dr Noah Howard            0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+  500  Samantha Dunn        Dr Megan Parsons          0    0    0     0  specialty(match): 0 | gender(match): 0 | time(in window): 0
+
+======================================================================
+  RESULTS SUMMARY
+======================================================================
+  Total patients tested     : 500
+  Successfully allocated    : 500
+  Failed to get appointment : 0
+  Allocation success rate   : 100.0%
+
+  --------------------------------------------------
+  PENALTY STATISTICS
+  --------------------------------------------------
+  Perfect matches (pen=0)   : 467
+  Imperfect matches (pen>0) : 33
+  Avg penalty per match     : 0.66
+  Max penalty               : 10
+  Total penalty (all)       : 330
+    - Specialty mismatches  : 330  (33 patients)
+    - Gender mismatches     : 0  (0 patients)
+    - Time-range mismatches : 0  (0 patients)
+
+  --------------------------------------------------
+  SOLVER PERFORMANCE
+  --------------------------------------------------
+  Total solver time         : 42451.4ms
+  Avg matching time         : 84.9ms
+  Min matching time         : 41.0ms
+  Max matching time         : 199.7ms
+  Doctors in system         : 50
+
+  --------------------------------------------------
+  BREAKDOWN BY DATE
+  --------------------------------------------------
+    Tue 2026-04-07 : 35 matched, 0 failed  (of 35)  avg_penalty=0.3
+    Wed 2026-04-08 : 52 matched, 0 failed  (of 52)  avg_penalty=0.2
+    Thu 2026-04-09 : 46 matched, 0 failed  (of 46)  avg_penalty=0.4
+    Fri 2026-04-10 : 48 matched, 0 failed  (of 48)  avg_penalty=0.8
+    Mon 2026-04-13 : 46 matched, 0 failed  (of 46)  avg_penalty=0.4
+    Tue 2026-04-14 : 51 matched, 0 failed  (of 51)  avg_penalty=1.0
+    Wed 2026-04-15 : 48 matched, 0 failed  (of 48)  avg_penalty=1.2
+    Thu 2026-04-16 : 58 matched, 0 failed  (of 58)  avg_penalty=0.7
+    Fri 2026-04-17 : 54 matched, 0 failed  (of 54)  avg_penalty=0.6
+    Mon 2026-04-20 : 62 matched, 0 failed  (of 62)  avg_penalty=0.8
+
+  --------------------------------------------------
+  BREAKDOWN BY SPECIALTY
+  --------------------------------------------------
+    General        : 89/89 matched  avg_penalty=0.0
+    Cardiology     : 102/102 matched  avg_penalty=0.0
+    Pediatrics     : 105/105 matched  avg_penalty=3.1
+    Dermatology    : 115/115 matched  avg_penalty=0.0
+    Orthopedics    : 89/89 matched  avg_penalty=0.0
+
+  --------------------------------------------------
+  BREAKDOWN BY TIME PREFERENCE
+  --------------------------------------------------
+    MORNING        : 154/154 matched  avg_penalty=0.5
+    MIDDAY         : 164/164 matched  avg_penalty=0.6
+    AFTERNOON      : 182/182 matched  avg_penalty=0.9
+
+======================================================================
+  Tip: Run with --cleanup to remove test data afterwards.
+       python manage.py load_test_500 --cleanup
+  All test data removed.
